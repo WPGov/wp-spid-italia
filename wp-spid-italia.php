@@ -3,7 +3,7 @@
 Plugin Name: WP SPID Italia
 Description: SPID - Sistema Pubblico di Identità Digitale
 Author: Marco Milesi
-Version: 1.0.1
+Version: 1.1
 Author URI: http://www.marcomilesi.ml
 */
 
@@ -156,27 +156,39 @@ add_filter( 'login_message', function( $message ) {
     }
 
     if ( $auth->isAuthenticated() ) {
-        echo 'SPID: Autenticato';
         $attributes = $auth->getAttributes();
-        print_r($attributes);
         $name = $attributes['email'][0];    
         $user = get_user_by( 'email', $attributes['email'][0] );
-        if ( !is_wp_error( $user ) ) {
-            echo 'Autenticazione in corso...';
+        $cf = str_replace( 'TINIT-', '', $attributes['fiscalNumber'][0]);
+        
+        if ( empty( $user ) ) {
+            $user = reset(
+                get_users(
+                 array(
+                  'meta_key' => 'codice_fiscale',
+                  'meta_value' => $cf,
+                  'number' => 1,
+                  'count_total' => false,
+                 )
+                )
+            );
+        }
+
+        if ( !is_wp_error( $user ) && !empty( $user ) ) {
             update_user_meta( $user->ID, 'spid_attributes', $attributes);
+            update_user_meta( $user->ID, 'codice_fiscale', $cf);
             wp_clear_auth_cookie();
             wp_set_current_user ( $user->ID );
             wp_set_auth_cookie  ( $user->ID );
         
-            $redirect_to = user_admin_url();
-            wp_safe_redirect( $redirect_to );
+            wp_safe_redirect( user_admin_url() );
+            exit();
+        } else {
+            $auth->logout( get_home_url() );
             exit();
         }
-    }
-    //$auth->requireAuth();
-    //print("Hello, authenticated user!");
 
-    //echo $auth->getLoginURL();
+    }
 
     $plugin_dir = plugin_dir_url( __FILE__ );
     $spid_ico_circle_svg = $plugin_dir . '/img/spid-ico-circle-bb.svg';

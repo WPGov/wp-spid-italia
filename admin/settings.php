@@ -38,7 +38,6 @@ function spid_menu_func() {
 
   echo '
   <div class="wrap about-wrap">
-  
   <a href="?page=spid_menu"><img src="'.plugins_url( '../img/spid-logo-wp.png', __FILE__ ).'" width="300px" style="padding:20px;" /></a>';
     
   if ( is_file (SPID__CERT_DIR.'/saml.pem') ) {

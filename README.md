@@ -9,11 +9,13 @@ Plugin WordPress di tipo _Plug and Play_ per l'interfacciamento con SPID - Siste
 
 ### Credits
 * **Marco Milesi**: sviluppatore e mantainer nell'ambito del progetto [WPGov.it - WordPress per la Pubblica Amministrazione](https://wpgov.it/)
+* **Christian Ghellere, Andrea Smith**: beta testing
 
 ### Ringraziamenti
 * **Paolo Bozzo**: sviluppo libreria Drupal-PASW
 * **Nadia Caprotti**: condivisione know-how Drupal-PASW
-* **Christian Ghellere, Andrea Smith**: beta testing
 * **Comune di Firenze**: sviluppo libreria SimpleSaml riadattata da Paolo
+* **Italian Linux Society** per il contributo economico nello sviluppo di questo plugin
+* **Porte Aperte sul Web**
 
 Copyright © 2017 Marco Milesi

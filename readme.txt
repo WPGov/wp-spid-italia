@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubblico di identità digitale, wpgov, marco, milesi, marco milesi
 Requires at least: 4.8
 Tested up to: 4.9
-Version: 1.0.1
+Version: 1.1
 Stable tag: trunk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -26,23 +26,26 @@ https://www.youtube.com/watch?v=i2eTL_Q2xfM
 
 ### Credits
 * **Marco Milesi**: sviluppatore e mantainer nell'ambito del progetto [WPGov.it - WordPress per la Pubblica Amministrazione](https://wpgov.it/)
+* **Christian Ghellere, Andrea Smith**: beta testing
 
 ### Ringraziamenti
 * **Paolo Bozzo**: sviluppo libreria Drupal-PASW
 * **Nadia Caprotti**: condivisione know-how Drupal-PASW
-* **Christian Ghellere, Andrea Smith**: beta testing
 * **Comune di Firenze**: sviluppo libreria SimpleSaml riadattata da Paolo
+* **Italian Linux Society** per il contributo economico nello sviluppo di questo plugin
+* **Porte Aperte sul Web**
 
 Copyright © 2017 Marco Milesi
-
-== Installation ==
-
-
-== Screenshots ==
 
 == Changelog ==
 > Questa è la lista completa di tutti gli aggiornamenti, test e correzioni.
 > Ogni volta che una nuova versione viene rilasciata assicuratevi di aggiornare il prima possibile per usufruire delle ultime migliorie!
+
+= Versione 1.1 27/11/2017 =
+* **Aggiunto** sistema di login tramite codice fiscale
+* **Aggiunto** campo utente codice_fiscale
+* Miglioramenti vari
+* Modifiche alla schermata impostazioni
 
 = Versione 1.0.1 24/11/2017 =
 * **Corretti** bug (falsi allarmi) nel pannello di verifica
