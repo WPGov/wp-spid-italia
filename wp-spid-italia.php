@@ -3,7 +3,7 @@
 Plugin Name: WP SPID Italia
 Description: SPID - Sistema Pubblico di Identità Digitale
 Author: Marco Milesi
-Version: 1.1
+Version: 1.2
 Author URI: http://www.marcomilesi.ml
 */
 
@@ -147,9 +147,7 @@ add_filter( 'login_message', function( $message ) {
             wp_logout();
         }
 
-        $authformat = 'https://www.spid.gov.it/%s';
-        $authlevel = 'SpidL1';
-        $options['saml:AuthnContextClassRef'] = sprintf($authformat, $authlevel);
+        //$options['saml:AuthnContextClassRef'] = 'https://www.spid.gov.it/SpidL1';
         $options['samlp:RequestedAuthnContext'] = array("Comparison" => "minimum");
         $options['ErrorURL'] = wp_login_url();
         $auth->requireAuth( $options );
