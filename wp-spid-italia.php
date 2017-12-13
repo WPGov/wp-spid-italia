@@ -3,7 +3,7 @@
 Plugin Name: WP SPID Italia
 Description: SPID - Sistema Pubblico di Identità Digitale
 Author: Marco Milesi
-Version: 1.2
+Version: 1.3
 Author URI: http://www.marcomilesi.ml
 */
 
@@ -58,51 +58,30 @@ add_action( 'admin_init', function() {
     }
 });
 
-include( plugin_dir_path( __FILE__ ) . 'user.php');
+add_action( 'init', function() {
 
-/*
-add_action('wp_logout', function() {
-    require_once( SPID__LIB_DIR . '/lib/_autoload.php');
+  if (isset($_GET)) {
+    if (isset($_GET['action'])) {
+        if ($_GET['action'] == 'logout') {
 
-    $_simplesamlphp_auth_saml_config = SimpleSAML_Configuration::getInstance();
-    $auth = new SimpleSAML_Auth_Simple( 'default-sp' );
-    if ( $auth->isAuthenticated() ) {
-        $auth->logout(array(
-            'ReturnTo' => get_site_url(),
-            'ReturnStateParam' => 'LogoutState',
-            'ReturnStateStage' => 'MyLogoutState'));
-    }
-}, 10, 1);
-
-add_filter( 'logout_url', function( $logout_url, $redirect ) {
-    require_once( SPID__LIB_DIR . '/lib/_autoload.php');
-    $_simplesamlphp_auth_saml_config = SimpleSAML_Configuration::getInstance();
-    $auth = new SimpleSAML_Auth_Simple( 'default-sp' );
-    if ( $auth->isAuthenticated() ) {
-        return $auth->getLogoutURL( get_site_url() );
-    }
-    return $logout_url;
-}, 10, 2 );
-*/
-add_filter( 'logout_url', function( $logout_url, $redirect ) {
-    
-    if ( !is_file (SPID__CERT_DIR.'/saml.pem') || !spid_option('enabled') ) {
-        return $logout_url;
-    }
-    
-    require_once( SPID__LIB_DIR . '/lib/_autoload.php');
-    
-    $auth = new SimpleSAML_Auth_Simple( 'default-sp' );
-    if ( $auth->isAuthenticated() ) {
-        if ( $redirect ) {
-            $red = $redirect;
-        } else {
-            $red = get_site_url();
+            if ( !is_file (SPID__CERT_DIR.'/saml.pem') || !spid_option('enabled') ) {
+                return;
+            }
+            
+            require_once( SPID__LIB_DIR . '/lib/_autoload.php');
+            
+            $auth = new SimpleSAML_Auth_Simple( 'default-sp' );
+        
+            if ( $auth->isAuthenticated() ) {
+                $auth->logout();
+            }
         }
-        return $auth->getLogoutURL( $logout_url );
     }
-    return $logout_url;
-}, 10, 2 );
+}
+
+});
+
+include( plugin_dir_path( __FILE__ ) . 'user.php');
 
 add_filter( 'plugin_action_links_'.plugin_basename( __FILE__ ), function( $links ) {
     $settings_link = '<a href="options-general.php?page=spid_menu">Impostazioni</a>';
@@ -225,7 +204,7 @@ add_filter( 'login_message', function( $message ) {
     ?>
     
     <form name="spid_idp_access" action="?saml_login=spid" method="post" style="text-align: center;background:none;box-shadow:none;margin: 10px 0;padding: 0;">
-            <a href="#" class="italia-it-button italia-it-button-size-s button-spid" spid-idp-button="#spid-idp-button-small-post" aria-haspopup="true" aria-expanded="false">
+            <a href="#" class="italia-it-button italia-it-button-size-m button-spid" spid-idp-button="#spid-idp-button-small-post" aria-haspopup="true" aria-expanded="false">
                 <span class="italia-it-button-icon"><img src="<?php echo $spid_ico_circle_svg; ?>" onerror="this.src='<?php echo $spid_ico_circle_png; ?>'; this.onerror=null;" alt="" /></span>
                 <span class="italia-it-button-text">Entra con SPID</span>
             </a>
