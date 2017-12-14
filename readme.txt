@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubblico di identità digitale, wpgov, marco, milesi, marco milesi
 Requires at least: 4.8
 Tested up to: 4.9
-Version: 1.3
+Version: 1.3.1
 Stable tag: trunk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -13,14 +13,14 @@ SPID - Sistema Pubblico di Identità Digitale
 
 == Description ==
 
-Plugin WordPress di tipo _Plug and Play_ per l'interfacciamento con SPID - Sistema Pubblico di Identità Digitale
+Plugin WordPress per l'interfacciamento con il Sistema Pubblico di Identità Digitale (SPID)
 
 https://www.youtube.com/watch?v=w5Z5EBG1R1M
 
-* Repository WordPress: [https://wordpress.org/plugins/wp-spid-italia/](https://wordpress.org/plugins/wp-spid-italia/)
-* Segnalazioni GitHub: [https://github.com/WPGov/wp-spid-italia/issues](https://github.com/WPGov/wp-spid-italia/issues)
-* Pull requests: [https://github.com/WPGov/wp-spid-italia/pulls](https://github.com/WPGov/wp-spid-italia/pulls)
-* Wiki & Documentazione: [https://github.com/WPGov/wp-spid-italia/wiki](https://github.com/WPGov/wp-spid-italia/wiki)
+* Repository: [wordpress.org/plugins/wp-spid-italia/](https://wordpress.org/plugins/wp-spid-italia/)
+* Segnalazioni GitHub: [github.com/WPGov/wp-spid-italia/issues](https://github.com/WPGov/wp-spid-italia/issues)
+* Pull requests: [github.com/WPGov/wp-spid-italia/pulls](https://github.com/WPGov/wp-spid-italia/pulls)
+* Documentazione: [github.com/WPGov/wp-spid-italia/wiki](https://github.com/WPGov/wp-spid-italia/wiki)
 
 https://www.youtube.com/watch?v=i2eTL_Q2xfM
 
@@ -32,14 +32,27 @@ https://www.youtube.com/watch?v=i2eTL_Q2xfM
 * **Paolo Bozzo**: sviluppo libreria Drupal-PASW
 * **Nadia Caprotti**: condivisione know-how Drupal-PASW
 * **Comune di Firenze**: sviluppo libreria SimpleSaml riadattata da Paolo
-* **Italian Linux Society** per il contributo economico nello sviluppo di questo plugin
+* **Italian Linux Society** per il contributo economico
 * **Porte Aperte sul Web**
 
 Copyright © 2017 Marco Milesi
 
+== Installation ==
+
+Per informazioni dettagliate consultare la [documentazione](https://github.com/WPGov/wp-spid-italia/wiki).
+
+### Videotutorial
+
+https://www.youtube.com/watch?v=w1jf8GgF1OQ
+
+https://www.youtube.com/watch?v=2UNAtVjFFAs
+
 == Changelog ==
 > Questa è la lista completa di tutti gli aggiornamenti, test e correzioni.
 > Ogni volta che una nuova versione viene rilasciata assicuratevi di aggiornare il prima possibile per usufruire delle ultime migliorie!
+
+= Versione 1.3.1 14/12/2017 =
+* readme.txt changes
 
 = Versione 1.3 13/12/2017 =
 * **Nuovo** sistema di logout non più basato su wp_logout_url (testare)
