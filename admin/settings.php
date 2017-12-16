@@ -2,6 +2,7 @@
 
 function spid_get_tabs( $id ) {
 
+  $id0 = $id1 = $id2 = $id3 = '';
   switch ( $id ) {
     case 0:
       $id0 = ' nav-tab-active';
@@ -48,7 +49,7 @@ function spid_menu_func() {
     echo '<p style="color:darkred;"><b>Non hai ancora inizializzato i certificati: utilizza il menù "Configurazione" per avviare la procedura.</b></p>';
   }
 
-  if ( $_GET['spid_action'] == 'configure' ) {
+  if ( isset($_GET['spid_action']) && $_GET['spid_action'] == 'configure' ) {
 
     echo '<h3>Log di installazione</h3>';
     echo 'Avvio raccolta dati file di configurazione...<br>';
@@ -86,7 +87,7 @@ function spid_menu_func() {
     echo 'Scrittura authsources.php <b>completata</b>!<br>';
     echo 'Installazione completata!';
     die();
-  } else if ( $_GET['spid_action'] == 'make' ) {
+  } else if ( isset($_GET['spid_action']) && $_GET['spid_action'] == 'make' ) {
     echo spid_get_tabs( 1 );
 
   if ( is_file (SPID__CERT_DIR.'/saml.pem') ) {
@@ -121,7 +122,7 @@ function spid_menu_func() {
   	</form>
   <?php
   }
-  } else if ( $_GET['spid_action'] == 'param' ) {
+  } else if ( isset($_GET['spid_action']) && $_GET['spid_action'] == 'param' ) {
     echo spid_get_tabs( 2 );
 
     echo '<p>Presta attenzione ai dati sensibili che comunichi a terzi.</p>';
@@ -160,7 +161,7 @@ function spid_menu_func() {
 
   echo '</table>';
 
-  } else if ( $_GET['spid_action'] == 'option' ) {
+  } else if ( isset($_GET['spid_action']) && $_GET['spid_action'] == 'option' ) {
     echo spid_get_tabs( 3 );
     echo '<form method="post" action="options.php">';
     settings_fields( 'spid_options');
