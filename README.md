@@ -1,5 +1,5 @@
+[![WP compatibility](https://plugintests.com/plugins/wp-spid-italia/wp-badge.svg)](https://plugintests.com/plugins/wp-spid-italia/latest-report) [![PHP compatibility](https://plugintests.com/plugins/wp-spid-italia/php-badge.svg)](https://plugintests.com/plugins/wp-spid-italia/latest-report)
 ![SPID WP](https://raw.githubusercontent.com/WPGov/wp-spid-italia/asset/banner-1544x500.png)
-[![WP compatibility](https://plugintests.com/plugins/wp-spid-italia/wp-badge.svg)](https://plugintests.com/plugins/wp-spid-italia/latest-report)[![PHP compatibility](https://plugintests.com/plugins/wp-spid-italia/php-badge.svg)](https://plugintests.com/plugins/wp-spid-italia/latest-report)
 
 Plugin WordPress per l'interfacciamento con il Sistema Pubblico di Identità Digitale (SPID)
 
