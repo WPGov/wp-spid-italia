@@ -19,4 +19,4 @@ Plugin WordPress per l'interfacciamento con il Sistema Pubblico di Identità Dig
 * **Italian Linux Society** per il contributo economico
 * **Porte Aperte sul Web**
 
-Copyright © 2017 Marco Milesi
+Copyright © 2017-2019 Marco Milesi
