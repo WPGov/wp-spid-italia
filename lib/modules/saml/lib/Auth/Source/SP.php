@@ -228,7 +228,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			if (is_string($state['saml:NameIDPolicy'])) {
 				$policy = array(
 					'Format' => (string)$state['saml:NameIDPolicy'],
-					'AllowCreate' => TRUE,
+					'AllowCreate' => FALSE,
 				);
 			} elseif (is_array($state['saml:NameIDPolicy'])) {
 				$policy = $state['saml:NameIDPolicy'];

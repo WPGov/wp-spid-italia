@@ -118,6 +118,12 @@ add_filter( 'login_message', function( $message ) {
             $options['saml:idp'] = $_REQUEST['namirial_id'];
         } elseif ((isset($_REQUEST['register_id']) && $_REQUEST['register_id'])) {
             $options['saml:idp'] = $_REQUEST['register_id'];
+        } elseif ((isset($_REQUEST['lepida_id']) && $_REQUEST['lepida_id'])) {
+            $options['saml:idp'] = $_REQUEST['lepida_id'];
+        } elseif ((isset($_REQUEST['intesa_id']) && $_REQUEST['intesa_id'])) {
+            $options['saml:idp'] = $_REQUEST['intesa_id'];
+        } elseif ((isset($_REQUEST['govtest_id']) && $_REQUEST['govtest_id'])) {
+            $options['saml:idp'] = $_REQUEST['govtest_id'];
         } else {
             echo '<b>ERRORE</b>';
         }
@@ -126,7 +132,7 @@ add_filter( 'login_message', function( $message ) {
             wp_logout();
         }
 
-        //$options['saml:AuthnContextClassRef'] = 'https://www.spid.gov.it/SpidL1';
+        $options['saml:AuthnContextClassRef'] = 'https://www.spid.gov.it/SpidL1';
         $options['samlp:RequestedAuthnContext'] = array("Comparison" => "minimum");
         $options['ErrorURL'] = wp_login_url();
         $auth->requireAuth( $options );
@@ -192,13 +198,25 @@ add_filter( 'login_message', function( $message ) {
     $spid_idp_registerid_svg = $plugin_dir . '/img/spid-idp-spiditalia.svg';
     $spid_idp_registerid_png = $plugin_dir . '/img/spid-idp-spiditalia.png';
 
+    $spid_idp_lepida_svg = $plugin_dir . '/img/spid-idp-lepida.svg';
+    $spid_idp_lepida_png = $plugin_dir . '/img/spid-idp-lepida.png';
+
+    $spid_idp_intesaid_svg = $plugin_dir . '/img/spid-idp-intesaid.svg';
+    $spid_idp_intesaid_png = $plugin_dir . '/img/spid-idp-intesaid.png';
+
+    $spid_idp_testid_svg = $plugin_dir . '/img/spid-idp-test.svg';
+    $spid_idp_testid_png = $plugin_dir . '/img/spid-idp-test.png';
+
     $infocert_id = 'https://identity.infocert.it';
     $poste_id = 'https://posteid.poste.it';
     $tim_id = 'https://login.id.tim.it/affwebservices/public/saml2sso';
     $sielte_id = 'https://identity.sieltecloud.it';
     $aruba_id = 'https://loginspid.aruba.it';
 	$namirial_id = 'https://idp.namirialtsp.com/idp';
-	$register_id = 'https://spid.register.it';
+    $register_id = 'https://spid.register.it';
+    $lepida_id = 'https://id.lepida.it/';
+    $intesa_id = 'https://spid.intesa.it/';
+    $test_id = 'https://idptest.spid.gov.it/sso';
 
   $formaction = $auth->getLoginURL();
     ?>
@@ -230,6 +248,15 @@ add_filter( 'login_message', function( $message ) {
                     </li>
                     <li class="spid-idp-button-link">
                         <button class="idp-button-idp-logo" name="register_id" type="submit" value="<?php echo $register_id; ?>"><span class="spid-sr-only">SpidItalia ID</span><img class="spid-idp-button-logo" src="<?php echo $spid_idp_registerid_png; ?>" onerror="this.src='<?php echo $spid_idp_registerid_svg; ?>'; this.onerror=null;" alt="SpidItalia ID" /></button>
+                    </li>
+                    <li class="spid-idp-button-link">
+                        <button class="idp-button-idp-logo" name="lepida_id" type="submit" value="<?php echo $lepida_id; ?>"><span class="spid-sr-only">Lepida ID</span><img class="spid-idp-button-logo" src="<?php echo $spid_idp_lepidaid_png; ?>" onerror="this.src='<?php echo $spid_idp_lepidaid_svg; ?>'; this.onerror=null;" alt="Lepida ID" /></button>
+                    </li>
+                    <li class="spid-idp-button-link">
+                        <button class="idp-button-idp-logo" name="intesa_id" type="submit" value="<?php echo $intesa_id; ?>"><span class="spid-sr-only">Intesa ID</span><img class="spid-idp-button-logo" src="<?php echo $spid_idp_intesaid_png; ?>" onerror="this.src='<?php echo $spid_idp_intesaid_svg; ?>'; this.onerror=null;" alt="Intesa ID" /></button>
+                    </li>
+                    <li class="spid-idp-button-link">
+                        <button class="idp-button-idp-logo" name="test_id" type="submit" value="<?php echo $test_id; ?>"><span class="spid-sr-only">GovTest ID</span><img class="spid-idp-button-logo" src="<?php echo $spid_idp_testid_png; ?>" onerror="this.src='<?php echo $spid_idp_testid_svg; ?>'; this.onerror=null;" alt="GovTest ID" /></button>
                     </li>
                     <li class="spid-idp-support-link">
                         <a href="http://www.spid.gov.it">Maggiori info</a>

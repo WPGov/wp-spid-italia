@@ -485,6 +485,8 @@ hW/hLxLdhks68/TK694xVIuiB40pvMmJwxIyDA==',
 
 /* FINE ARUBA PROD */
 
+/* Inizio NAMIRIAL PROD */
+
 $metadata['https://idp.namirialtsp.com/idp'] = array (
   'entityid' => 'https://idp.namirialtsp.com/idp',
   'description' => 
@@ -578,6 +580,10 @@ jC3Y67LUWQ8YgOc=',
   ),
 );
 
+/* FINE NAMIRIAL PROD */
+
+/* Inizio REGISTER PROD */
+
 $metadata['https://spid.register.it'] = array (
   'entityid' => 'https://spid.register.it',
   'description' => 
@@ -649,3 +655,274 @@ $metadata['https://spid.register.it'] = array (
     ),
   ),
 );
+
+/* FINE REGISTER PROD */
+
+/*INIZIO Lepida PROD*/
+​
+$metadata['https://id.lepida.it/idp/shibboleth'] = array (
+  'entityid' => 'https://id.lepida.it/idp/shibboleth',
+  'description' =>
+  array (
+    'en' => 'Lepida S.p.A.',
+    'it' => 'Lepida S.p.A.',
+  ),
+  'OrganizationName' =>
+  array (
+    'en' => 'Lepida S.p.A.',
+    'it' => 'Lepida S.p.A.',
+  ),
+  'name' =>
+  array (
+    'en' => 'https://www.lepida.it/',
+    'it' => 'https://www.lepida.it/',
+  ),
+  'OrganizationDisplayName' =>
+  array (
+    'en' => 'Lepida S.p.A.',
+    'it' => 'Lepida S.p.A.',
+  ),
+  'url' =>
+  array (
+    'en' => 'https://www.lepida.it/',
+    'it' => 'https://www.lepida.it/',
+  ),
+  'OrganizationURL' =>
+  array (
+    'en' => 'https://www.lepida.it/',
+    'it' => 'https://www.lepida.it/',
+  ),
+  'contacts' =>
+  array (
+  ),
+  'metadata-set' => 'saml20-idp-remote',
+  'sign.authnrequest' => true,
+  'SingleSignOnService' =>
+  array (
+    0 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+      'Location' => 'https://id.lepida.it/idp/profile/SAML2/Redirect/SSO',
+    ),
+    1 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      'Location' => 'https://id.lepida.it/idp/profile/SAML2/POST/SSO',
+    ),
+  ),
+  'SingleLogoutService' =>
+  array (
+    0 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+      'Location' => 'https://id.lepida.it/idp/profile/SAML2/Redirect/SLO',
+    ),
+    1 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      'Location' => 'https://id.lepida.it/idp/profile/SAML2/POST/SLO',
+    ),
+  ),
+  'ArtifactResolutionService' =>
+  array (
+  ),
+  'NameIDFormats' =>
+  array (
+    0 => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
+  ),
+  'keys' =>
+  array (
+    0 =>
+    array (
+      'encryption' => false,
+      'signing' => true,
+      'type' => 'X509Certificate',
+      'X509Certificate' => 'MIIDHDCCAgSgAwIBAgIVALisbudTRxLy3vlMcEDfaqr3iW89MA0GCSqGSIb3DQEB CwUAMBcxFTATBgNVBAMMDGlkLmxlcGlkYS5pdDAeFw0xODA4MDgxMDIzMTJaFw0z ODA4MDgxMDIzMTJaMBcxFTATBgNVBAMMDGlkLmxlcGlkYS5pdDCCASIwDQYJKoZI hvcNAQEBBQADggEPADCCAQoCggEBAMOFERgxPEYPqAjN7oW6y8oSSY6tGm2OCIU+ VyKhb2OqfNLpF8tPrytX17pgwVYHzjxRCNMTC83frbmtBapABtm9KuX7qaSPvaJx 0+UqYk9FdKCKQOEkmWcNOJfwzNMP65B+cDxP3sa1JoAMeAO0x95bnYoX0ZHcssKk wpgMb8/JHZHzqu3odxADtO5PaT3xaCyMIcqIp1O2nVn7SizUE1gNucLAdaP4kh0o 7nU61pz4pG3gQXK+uROteDD8cTU2Nxi7W1T73tQSuwst54BS2p9IBXzWrA9V0Ck1 0oiQTcIC8X9McepCrNzgCOBdap00Tifusb30t74BREARgwjp1N8CAwEAAaNfMF0w HQYDVR0OBBYEFL32/n7uf1Re14pW+gwGxZQHUZBCMDwGA1UdEQQ1MDOCDGlkLmxl cGlkYS5pdIYjaHR0cHM6Ly9pZC5sZXBpZGEuaXQvaWRwL3NoaWJib2xldGgwDQYJ KoZIhvcNAQELBQADggEBAK80B1mEWKOTJkVJOJot2xU79Lhs1+domUSYQiA+tlS4 6IAfWwDZqI1llIjgL85n7qMsKFvYTIskInoG51Iezv2dTxlB6IMI8NPRfiFXo2s8 NYjbzWyETbdXzCbDR0tKNke0TFE0oxunNfE5YRsmH4bPnjhPUjCSHX7wIhlNrLae 3FjMQp1OLDs7HmJo3AhuAVmHCoG7QV/ly4ZHcVYx4F7HUsFg5uxNYjZbo+XMutJz 4nZFOFE+uRzTwwfdR2sxny+ppkruTwIhEXyzknoiw1mGIEWZc6scnOAiwZeqTccU YVNHp+PSFs9SD8l+2PO4Oh8Y3dYT+5ojv+S6T7vy5xE=',
+    ),
+    1 =>
+    array (
+      'encryption' => true,
+      'signing' => false,
+      'type' => 'X509Certificate',
+      'X509Certificate' => 'MIIDHDCCAgSgAwIBAgIVALisbudTRxLy3vlMcEDfaqr3iW89MA0GCSqGSIb3DQEB CwUAMBcxFTATBgNVBAMMDGlkLmxlcGlkYS5pdDAeFw0xODA4MDgxMDIzMTJaFw0z ODA4MDgxMDIzMTJaMBcxFTATBgNVBAMMDGlkLmxlcGlkYS5pdDCCASIwDQYJKoZI hvcNAQEBBQADggEPADCCAQoCggEBAMOFERgxPEYPqAjN7oW6y8oSSY6tGm2OCIU+ VyKhb2OqfNLpF8tPrytX17pgwVYHzjxRCNMTC83frbmtBapABtm9KuX7qaSPvaJx 0+UqYk9FdKCKQOEkmWcNOJfwzNMP65B+cDxP3sa1JoAMeAO0x95bnYoX0ZHcssKk wpgMb8/JHZHzqu3odxADtO5PaT3xaCyMIcqIp1O2nVn7SizUE1gNucLAdaP4kh0o 7nU61pz4pG3gQXK+uROteDD8cTU2Nxi7W1T73tQSuwst54BS2p9IBXzWrA9V0Ck1 0oiQTcIC8X9McepCrNzgCOBdap00Tifusb30t74BREARgwjp1N8CAwEAAaNfMF0w HQYDVR0OBBYEFL32/n7uf1Re14pW+gwGxZQHUZBCMDwGA1UdEQQ1MDOCDGlkLmxl cGlkYS5pdIYjaHR0cHM6Ly9pZC5sZXBpZGEuaXQvaWRwL3NoaWJib2xldGgwDQYJ KoZIhvcNAQELBQADggEBAK80B1mEWKOTJkVJOJot2xU79Lhs1+domUSYQiA+tlS4 6IAfWwDZqI1llIjgL85n7qMsKFvYTIskInoG51Iezv2dTxlB6IMI8NPRfiFXo2s8 NYjbzWyETbdXzCbDR0tKNke0TFE0oxunNfE5YRsmH4bPnjhPUjCSHX7wIhlNrLae 3FjMQp1OLDs7HmJo3AhuAVmHCoG7QV/ly4ZHcVYx4F7HUsFg5uxNYjZbo+XMutJz 4nZFOFE+uRzTwwfdR2sxny+ppkruTwIhEXyzknoiw1mGIEWZc6scnOAiwZeqTccU YVNHp+PSFs9SD8l+2PO4Oh8Y3dYT+5ojv+S6T7vy5xE=',
+    ),
+  ),
+);
+/*FINE Lepida PROD*/
+
+/* INIZIO Intesa */
+$metadata['https://spid.intesa.it'] = array (
+  'entityid' => 'https://spid.intesa.it',
+  'description' =>
+  array (
+    'it' => 'Intesa S.p.A.',
+  ),
+  'OrganizationName' =>
+  array (
+    'it' => 'IN.TE.S.A. S.p.A.',
+  ),
+  'name' =>
+  array (
+    'it' => 'Intesa S.p.A.',
+  ),
+  'OrganizationDisplayName' =>
+  array (
+    'it' => 'Intesa S.p.A.',
+  ),
+  'url' =>
+  array (
+    'it' => 'https://www.intesa.it/',
+  ),
+  'OrganizationURL' =>
+  array (
+    'it' => 'https://www.intesa.it/',
+  ),
+  'contacts' =>
+  array (
+  ),
+  'metadata-set' => 'saml20-idp-remote',
+  'sign.authnrequest' => true,
+  'SingleSignOnService' =>
+  array (
+    0 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      'Location' => 'https://spid.intesa.it/Time4UserServices/services/idp/AuthnRequest/',
+    ),
+    1 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+      'Location' => 'https://spid.intesa.it/Time4UserServices/services/idp/AuthnRequest/',
+    ),
+  ),
+  'SingleLogoutService' =>
+  array (
+    0 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      'Location' => 'https://spid.intesa.it/Time4UserServices/services/idp/SingleLogout/',
+    ),
+    1 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+      'Location' => 'https://spid.intesa.it/Time4UserServices/services/idp/SingleLogout',
+    ),
+  ),
+  'ArtifactResolutionService' =>
+  array (
+  ),
+  'NameIDFormats' =>
+  array (
+    0 => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
+  ),
+  'keys' =>
+  array (
+    0 =>
+    array (
+      'encryption' => false,
+      'signing' => true,
+      'type' => 'X509Certificate',
+      'X509Certificate' => 'MIIEDjCCAvagAwIBAgIIIT1A+ywbIQAwDQYJKoZIhvcNAQELBQAwXjEzMDEGA1UE
+                        AwwqSU4uVEUuUy5BLiBTLnAuQSAtIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MRow
+                        GAYDVQQKDBFJTi5URS5TLkEuIFMucC5BLjELMAkGA1UEBhMCSVQwHhcNMTcwOTE1
+                        MTMyMzQ1WhcNMzYwNzAxMTk1OTAwWjBQMSUwDwYDVQQuEwgyMDA3OTc5NzASBgNV
+                        BAMMC1NBTUwgU2lnbmVyMRowGAYDVQQKDBFJTi5URS5TLkEuIFMucC5BLjELMAkG
+                        A1UEBhMCSVQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDhYXkP+eQB
+                        URgmslDXBjG0ad+DkSAkWt7hUoaTyiK0e34QiyArq043plqTrt+6FzTGeX7960Qr
+                        3tCLGCiVOi47QuE09IKfJmKGEaUQnJQehHYZs/XV0OYQl18WrCxUX6ALOcqPs+4y
+                        pCbJV1WzSosfBcPBzivJER8kvrynMXI3or18e9XPTGBn8qNFyNF1E3BJ5UhrDvk5
+                        W2gKyYKz0M/CIu9PiHuO/ne6HbeNrCS/xzXtjsTusk41AOxIQoFbEzS08xcRY+QD
+                        E8oLcAmecSjT3xv3r9dWke6KTTAahS3K+5mOYRcBXj2FFegiUp+xh4OAWdH1+gGD
+                        Ym+3aAmMpaLtAgMBAAGjgd0wgdowHQYDVR0OBBYEFEw9xWg4qvQGdlGMCqmJcVDg
+                        dE8aMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUySnWJ2sw0ljDpJVrtrxCCP0b
+                        1CYwGgYDVR0QBBMwEYAPMjAxNzA5MTUxMzIzNDVaMD8GA1UdHwQ4MDYwNKAyoDCG
+                        Lmh0dHA6Ly9lLXRydXN0Y29tLmludGVzYS5pdC9DUkwvSU5URVNBX25DQS5jcmww
+                        DgYDVR0PAQH/BAQDAgSwMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDAN
+                        BgkqhkiG9w0BAQsFAAOCAQEAVRHyFRZZFpW/qjJpKftd86h3wOdUqOhc2W8ZHv0s
+                        t8ptG+mZk3l1iWAsEPqKMIBhksgTvalnHC1lHUt11xsZ2mzUjVpiG8XiWXYXQnY2
+                        D+q7Dc4n20kJ717qf4SDN8wX1A6XvT3Wrsfh87vg3ZFD56/eyur2snWu4OilsFqA
+                        yLhnExG4puJ4JKBWnlwAGXD9SFgkSZ8FC66KQs6CAwVkvCIom3IwJeU/VrYQF6XH
+                        kVCQgr5mojXgCkrlRNl53WAKfQHCT4QH+oQVP97PCEL/wQ1zi0UzWauKT6u2wDym
+                        9rcpch+WLa0GUtYNhuoLU2SregPKwTWg2DfINJObyWRpww==',
+    ),
+  ),
+);
+/* FINE Intesa */
+
+/* INIZIO idptest */
+$metadata['https://idptest.spid.gov.it'] = array (
+  'entityid' => 'https://idptest.spid.gov.it',
+  'description' =>
+  array (
+    'it' => 'idptest',
+  ),
+  'OrganizationName' =>
+  array (
+    'it' => 'idptest',
+  ),
+  'name' =>
+  array (
+    'it' => 'idptest',
+  ),
+  'OrganizationDisplayName' =>
+  array (
+    'it' => 'idptest',
+  ),
+  'url' =>
+  array (
+    'it' => 'https://idptest.spid.gov.it',
+  ),
+  'OrganizationURL' =>
+  array (
+    'it' => 'https://idptest.spid.gov.it',
+  ),
+  'contacts' =>
+  array (
+  ),
+  'metadata-set' => 'saml20-idp-remote',
+  'sign.authnrequest' => true,
+  'SingleSignOnService' =>
+  array (
+    0 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      'Location' => 'https://idptest.spid.gov.it/sso',
+    ),
+    1 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+      'Location' => 'https://idptest.spid.gov.it/sso',
+    ),
+  ),
+  'SingleLogoutService' =>
+  array (
+    0 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      'Location' => 'https://idptest.spid.gov.it/slo',
+    ),
+    1 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+      'Location' => 'https://idptest.spid.gov.it/slo',
+    ),
+  ),
+  'ArtifactResolutionService' =>
+  array (
+  ),
+  'NameIDFormats' =>
+  array (
+    0 => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
+  ),
+  'keys' =>
+  array (
+    0 =>
+    array (
+      'encryption' => false,
+      'signing' => true,
+      'type' => 'X509Certificate',
+      'X509Certificate' => 'MIID7DCCAtSgAwIBAgIJALE117dRPeh4MA0GCSqGSIb3DQEBCwUAMIGKMQswCQYD VQQGEwJJVDENMAsGA1UECAwEUm9tZTENMAsGA1UEBwwEUm9tZTENMAsGA1UECgwE QWdJRDENMAsGA1UECwwEU1BJRDEcMBoGA1UEAwwTaWRwdGVzdC5zcGlkLmdvdi5p dDEhMB8GCSqGSIb3DQEJARYScm9zaW5pQGFnaWQuZ292Lml0MB4XDTE5MDEwODEx MzY1MFoXDTE5MDIwNzExMzY1MFowgYoxCzAJBgNVBAYTAklUMQ0wCwYDVQQIDARS b21lMQ0wCwYDVQQHDARSb21lMQ0wCwYDVQQKDARBZ0lEMQ0wCwYDVQQLDARTUElE MRwwGgYDVQQDDBNpZHB0ZXN0LnNwaWQuZ292Lml0MSEwHwYJKoZIhvcNAQkBFhJy b3NpbmlAYWdpZC5nb3YuaXQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB AQDHJReZwfCI6isu4kyEEYGQK90aWjri9Ss0FBl+yOg1tR1BwrGLDpp4TClsoDi/ xS9KBwuf5jyOnaShS7wN4ppaUwZTUP1rGmGoLULDdJyTvjBa+eI4bxRAsTZMSPqI usCh4itxj5JzORgyBXqDGQMVQ9beG8gE/537JsBjdBksUu03VSoYY3U4LuX3XFTf MgwQq8xgHQI2gZRrrcFbvxo7dhDj2e+PNKf8KlJtZF/KvmwHt7ePR1Ramg0xDi/P 65zz/jMtiu9wCGIqvtD82K+xw3xzaH0VuDbdJ8F97RPXNQvHPEP9hubf9GRW+vNY wC7gwkXHwAemXaIBog8yrQXdAgMBAAGjUzBRMB0GA1UdDgQWBBSGJwgrGGuW0YBK dME07V5oDXSpWDAfBgNVHSMEGDAWgBSGJwgrGGuW0YBKdME07V5oDXSpWDAPBgNV HRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQBAR2FtHwCR8jWODYQicM94 7jciLvlpZtWahgZtpi+NuMDkXN2A/WI5lfVdSnOq5vTMmRzQ7X36s2l0e7odHzT4 65/Hb9CkBHgRox+9R7p6gF5K0QiLtHDQCHo+yO2pwNPvOjho4ai44omF+kzIJh7d FVBFlbE/oJl0LeNSOEVZljgZ7uWqyu6/e4zs/hkycedkKymgJwnx67ytZn6kkYW9 PpBskbuQbEbUqyiQ167nEkr2KGPPvAkwGyZL1j0qkW9JKM5NTfSCrMbXffwjwGSq zgmu1T5W5VAJJFL6SGnr5Pg+JMw+AmsLt2MhRVdfo6zjFohR/+dOKM4+mTrB2enW',
+    ),
+  ),
+ );
+ /* FINE idptest */

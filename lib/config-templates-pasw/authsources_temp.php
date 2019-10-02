@@ -1,5 +1,5 @@
 <?php
-
+​
 $config = array(
     // This is a authentication source which handles admin authentication.
     'admin' => array(
@@ -22,7 +22,7 @@ $config = array(
         // The URL to the discovery service.
         // Can be NULL/unset, in which case a builtin discovery service will be used.
         'discoURL' => null,
-
+​
         /*
          * WARNING: SHA-1 is disallowed starting January the 1st, 2014.
          *
@@ -41,7 +41,7 @@ $config = array(
          *
          * Please refer to the hosted SP configuration reference for more information.
          */
-
+​
         /*
          * The attributes parameter must contain an array of desired attributes by the SP.
          * The attributes can be expressed as an array of names or as an associative array
@@ -55,12 +55,13 @@ $config = array(
         /* 'attributes.required' => array (
           'urn:oid:x.x.x.x',
           ), */
-
-
+​
+​
         /* Impostare il livello di spid che si vuole (1,2,3)  per il servizio */
-
+​
         'AuthnContextClassRef' =>
         array(
+​
             /* la stringa sottostante non è più corretta
             *
             * 'urn:oasis:names:tc:SAML:2.0:ac:classes:SpidL1',
@@ -76,26 +77,25 @@ $config = array(
             // 'https://www.spid.gov.it/SpidL3',
 ​
         ),
-        
+​
         'AuthnContextComparison' => 'minimum',
-        
+​
         /*Per autenticazione superiori a SPID Livello 1 occorre specificare 'ForceAuthn' => true */
         'ForceAuthn' => true,
-	 // CHG added next 2 lines
+	    // CHG added next 2 lines
         'NameIDPolicy' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
         'WantAssertionsSigned' => true,
-        
-        'AssertionConsumerServiceIndex' => 0,
+​
         'AttributeConsumingServiceIndex' => 0,
         'signature.algorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
         'metadata.sign.enable' => true,
         'metadata.sign.algorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
         'metadata.supported.protocols' => array('urn:oasis:names:tc:SAML:2.0:protocol'),
-        
-
+​
+​
         'sign.authnrequest' => true,
         'sign.logout' => true,
-
+​
         'OrganizationName' => array(
             'it' => '@organizationName / @localityName',
         ),
@@ -112,13 +112,13 @@ $config = array(
             'it' => '@organizationName / @localityName (@stateOrProvinceName)',
         ),
         'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic',
-        
+​
         /* Per avere gli attributi richiesti tramite il metadata (codice fiscale, ecc) */
         'attributes' => array(
             'spidCode',
             'fiscalNumber', //codice fiscale (OBBLIGATORIO)
 #			 'ivaCode', // partita IVA
-#            'idCard', // Documento d'identità 
+#            'idCard', // Documento d'identità
 #            'expirationDate', // Data di scadenza identità
             'familyName', // cognome (OBBLIGATORIO)
             'name',  // nome (OBBLIGATORIO)
@@ -129,14 +129,12 @@ $config = array(
 #            'companyName',  // Ragione o denominazione sociale
 #            'registeredOffice', // Sede legale
 #            'address', // domicilio fisico
-#            'digitalAddress' // Indirizzo casella PEC  
+#            'digitalAddress' // Indirizzo casella PEC
             'email', // email
-            'mobilePhone', // cellulare
+#            'mobilePhone', // cellulare
         ),
-
+​
         'acs.Bindings' => array('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'),
         'SingleLogoutServiceBinding' => array('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'),
     ),
-); 
- 
-
+);
