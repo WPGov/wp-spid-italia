@@ -201,8 +201,8 @@ add_filter( 'login_message', function( $message ) {
     $spid_idp_registerid_svg = $plugin_dir . '/img/spid-idp-spiditalia.svg';
     $spid_idp_registerid_png = $plugin_dir . '/img/spid-idp-spiditalia.png';
 
-    $spid_idp_lepida_svg = $plugin_dir . '/img/spid-idp-lepida.svg';
-    $spid_idp_lepida_png = $plugin_dir . '/img/spid-idp-lepida.png';
+    $spid_idp_lepidaid_svg = $plugin_dir . '/img/spid-idp-lepida.svg';
+    $spid_idp_lepidaid_png = $plugin_dir . '/img/spid-idp-lepida.png';
 
     $spid_idp_intesaid_svg = $plugin_dir . '/img/spid-idp-intesaid.svg';
     $spid_idp_intesaid_png = $plugin_dir . '/img/spid-idp-intesaid.png';
