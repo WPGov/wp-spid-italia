@@ -5,7 +5,7 @@
  *
  * Remember to remove the IdPs you don't use from this file.
  *
- * See: https://simplesamlphp.org/docs/stable/simplesamlphp-reference-idp-remote 
+ * See: https://simplesamlphp.org/docs/stable/simplesamlphp-reference-idp-remote
  */
 
 /*INFOCERT*/
@@ -14,91 +14,91 @@
 
 $metadata['https://identity.infocert.it'] = array (
   'entityid' => 'https://identity.infocert.it',
-  'description' => 
+  'description' =>
   array (
     'it' => 'InfoCert S.p.A.',
     'en' => 'InfoCert S.p.A.',
     'fr' => 'InfoCert S.p.A.',
     'de' => 'InfoCert S.p.A.',
   ),
-  'OrganizationName' => 
+  'OrganizationName' =>
   array (
     'it' => 'InfoCert S.p.A.',
     'en' => 'InfoCert S.p.A.',
     'fr' => 'InfoCert S.p.A.',
     'de' => 'InfoCert S.p.A.',
   ),
-  'name' => 
+  'name' =>
   array (
     'it' => 'InfoCert S.p.A.',
     'en' => 'InfoCert S.p.A.',
     'fr' => 'InfoCert S.p.A.',
     'de' => 'InfoCert S.p.A.',
   ),
-  'OrganizationDisplayName' => 
+  'OrganizationDisplayName' =>
   array (
     'it' => 'InfoCert S.p.A.',
     'en' => 'InfoCert S.p.A.',
     'fr' => 'InfoCert S.p.A.',
     'de' => 'InfoCert S.p.A.',
   ),
-  'url' => 
+  'url' =>
   array (
     'it' => 'https://www.infocert.it',
     'en' => 'https://www.infocert.it/international/?lang=en',
     'fr' => 'https://www.infocert.it/international/?lang=fr',
     'de' => 'https://www.infocert.it/international/?lang=de',
   ),
-  'OrganizationURL' => 
+  'OrganizationURL' =>
   array (
     'it' => 'https://www.infocert.it',
     'en' => 'https://www.infocert.it/international/?lang=en',
     'fr' => 'https://www.infocert.it/international/?lang=fr',
     'de' => 'https://www.infocert.it/international/?lang=de',
   ),
-  'contacts' => 
+  'contacts' =>
   array (
   ),
   'metadata-set' => 'saml20-idp-remote',
   'sign.authnrequest' => true,
-  'SingleSignOnService' => 
+  'SingleSignOnService' =>
   array (
-    0 => 
+    0 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
       'Location' => 'https://identity.infocert.it/spid/samlsso',
     ),
-    1 => 
+    1 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
       'Location' => 'https://identity.infocert.it/spid/samlsso',
     ),
   ),
-  'SingleLogoutService' => 
+  'SingleLogoutService' =>
   array (
-    0 => 
+    0 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
       'Location' => 'https://identity.infocert.it/spid/samlslo',
       'ResponseLocation' => 'https://identity.infocert.it/spid/samlslo/response',
     ),
-    1 => 
+    1 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
       'Location' => 'https://identity.infocert.it/spid/samlslo',
       'ResponseLocation' => 'https://identity.infocert.it/spid/samlslo/response',
     ),
   ),
-  'ArtifactResolutionService' => 
+  'ArtifactResolutionService' =>
   array (
   ),
-  'NameIDFormats' => 
+  'NameIDFormats' =>
   array (
     0 => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
   ),
-  'keys' => 
+  'keys' =>
   array (
-    0 => 
+    0 =>
     array (
       'encryption' => false,
       'signing' => true,
@@ -118,71 +118,71 @@ $metadata['https://identity.infocert.it'] = array (
 
 $metadata['https://login.id.tim.it/affwebservices/public/saml2sso'] = array (
   'entityid' => 'https://login.id.tim.it/affwebservices/public/saml2sso',
-  'description' => 
+  'description' =>
   array (
     'en' => 'TI Trust Technologies srl',
   ),
-  'OrganizationName' => 
+  'OrganizationName' =>
   array (
     'en' => 'TI Trust Technologies srl',
   ),
-  'name' => 
+  'name' =>
   array (
     'en' => 'Trust Technologies srl',
   ),
-  'OrganizationDisplayName' => 
+  'OrganizationDisplayName' =>
   array (
     'en' => 'Trust Technologies srl',
   ),
-  'url' => 
+  'url' =>
   array (
     'en' => 'https://www.trusttechnologies.it',
   ),
-  'OrganizationURL' => 
+  'OrganizationURL' =>
   array (
     'en' => 'https://www.trusttechnologies.it',
   ),
-  'contacts' => 
+  'contacts' =>
   array (
   ),
   'metadata-set' => 'saml20-idp-remote',
   'sign.authnrequest' => true,
-  'SingleSignOnService' => 
+  'SingleSignOnService' =>
   array (
-    0 => 
+    0 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
       'Location' => 'https://login.id.tim.it/affwebservices/public/saml2sso',
     ),
-    1 => 
+    1 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
       'Location' => 'https://login.id.tim.it/affwebservices/public/saml2sso',
     ),
   ),
-  'SingleLogoutService' => 
+  'SingleLogoutService' =>
   array (
-    0 => 
+    0 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
       'Location' => 'https://login.id.tim.it/affwebservices/public/saml2slo',
     ),
-    1 => 
+    1 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
       'Location' => 'https://login.id.tim.it/affwebservices/public/saml2slo',
     ),
   ),
-  'ArtifactResolutionService' => 
+  'ArtifactResolutionService' =>
   array (
   ),
-  'NameIDFormats' => 
+  'NameIDFormats' =>
   array (
     0 => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
   ),
-  'keys' => 
+  'keys' =>
   array (
-    0 => 
+    0 =>
     array (
       'encryption' => false,
       'signing' => true,
@@ -197,73 +197,73 @@ $metadata['https://login.id.tim.it/affwebservices/public/saml2sso'] = array (
 
 $metadata['https://posteid.poste.it'] = array (
   'entityid' => 'https://posteid.poste.it',
-  'description' => 
+  'description' =>
   array (
     'it' => 'Poste Italiane SpA',
   ),
-  'OrganizationName' => 
+  'OrganizationName' =>
   array (
     'it' => 'Poste Italiane SpA',
   ),
-  'name' => 
+  'name' =>
   array (
     'it' => 'Poste Italiane SpA',
   ),
-  'OrganizationDisplayName' => 
+  'OrganizationDisplayName' =>
   array (
     'it' => 'Poste Italiane SpA',
   ),
-  'url' => 
+  'url' =>
   array (
     'it' => 'https://www.poste.it',
   ),
-  'OrganizationURL' => 
+  'OrganizationURL' =>
   array (
     'it' => 'https://www.poste.it',
   ),
-  'contacts' => 
+  'contacts' =>
   array (
   ),
   'metadata-set' => 'saml20-idp-remote',
   'sign.authnrequest' => true,
-  'SingleSignOnService' => 
+  'SingleSignOnService' =>
   array (
-    0 => 
+    0 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
       'Location' => 'https://posteid.poste.it/jod-fs/ssoservicepost',
     ),
-    1 => 
+    1 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
       'Location' => 'https://posteid.poste.it/jod-fs/ssoserviceredirect',
     ),
   ),
-  'SingleLogoutService' => 
+  'SingleLogoutService' =>
   array (
-    0 => 
+    0 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
       'Location' => 'https://posteid.poste.it/jod-fs/sloservicepost',
       'ResponseLocation' => 'https://posteid.poste.it/jod-fs/sloserviceresponsepost',
     ),
-    1 => 
+    1 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
       'Location' => 'https://posteid.poste.it/jod-fs/sloserviceredirect',
       'ResponseLocation' => 'https://posteid.poste.it/jod-fs/sloserviceresponseredirect',
     ),
   ),
-  'ArtifactResolutionService' => 
+  'ArtifactResolutionService' =>
   array (
   ),
-  'NameIDFormats' => 
+  'NameIDFormats' =>
   array (
     0 => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
   ),
-  'keys' => 
+  'keys' =>
   array (
-    0 => 
+    0 =>
     array (
       'encryption' => false,
       'signing' => true,
@@ -296,84 +296,84 @@ b1fdaRSEuCQk2+gmdsiRcTs9EqPCCNiNlrNAiWEyGtL8A4ao3pDMwCtrb2yr',
 
 $metadata['https://identity.sieltecloud.it'] = array (
   'entityid' => 'https://identity.sieltecloud.it',
-  'description' => 
+  'description' =>
   array (
     'en' => 'Sielte S.p.A.',
     'it' => 'Sielte S.p.A.',
   ),
-  'OrganizationName' => 
+  'OrganizationName' =>
   array (
     'en' => 'Sielte S.p.A.',
     'it' => 'Sielte S.p.A.',
   ),
-  'name' => 
+  'name' =>
   array (
     'en' => 'http://www.sielte.it',
     'it' => 'http://www.sielte.it',
   ),
-  'OrganizationDisplayName' => 
+  'OrganizationDisplayName' =>
   array (
     'en' => 'http://www.sielte.it',
     'it' => 'http://www.sielte.it',
   ),
-  'url' => 
+  'url' =>
   array (
     'en' => 'http://www.sielte.it',
     'it' => 'http://www.sielte.it',
   ),
-  'OrganizationURL' => 
+  'OrganizationURL' =>
   array (
     'en' => 'http://www.sielte.it',
     'it' => 'http://www.sielte.it',
   ),
-  'contacts' => 
+  'contacts' =>
   array (
   ),
   'metadata-set' => 'saml20-idp-remote',
   'sign.authnrequest' => true,
-  'SingleSignOnService' => 
+  'SingleSignOnService' =>
   array (
-    0 => 
+    0 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
       'Location' => 'https://identity.sieltecloud.it/simplesaml/saml2/idp/SSO.php',
     ),
-    1 => 
+    1 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
       'Location' => 'https://identity.sieltecloud.it/simplesaml/saml2/idp/SSO.php',
     ),
   ),
-  'SingleLogoutService' => 
+  'SingleLogoutService' =>
   array (
-    0 => 
+    0 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
       'Location' => 'https://identity.sieltecloud.it/simplesaml/saml2/idp/SLS.php',
     ),
-    1 => 
+    1 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
       'Location' => 'https://identity.sieltecloud.it/simplesaml/saml2/idp/SLS.php',
     ),
   ),
-  'ArtifactResolutionService' => 
+  'ArtifactResolutionService' =>
   array (
   ),
-  'NameIDFormats' => 
+  'NameIDFormats' =>
   array (
     0 => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
   ),
-  'keys' => 
+  'keys' =>
   array (
-    0 => 
+    0 =>
     array (
       'encryption' => false,
       'signing' => true,
       'type' => 'X509Certificate',
       'X509Certificate' => 'MIIDczCCAlugAwIBAgIJAMsX0iEKQM6xMA0GCSqGSIb3DQEBCwUAMFAxCzAJBgNVBAYTAklUMQ4wDAYDVQQIDAVJdGFseTEgMB4GA1UEBwwXU2FuIEdyZWdvcmlvIGRpIENhdGFuaWExDzANBgNVBAoMBlNpZWx0ZTAeFw0xNTEyMTQwODE0MTVaFw0yNTEyMTMwODE0MTVaMFAxCzAJBgNVBAYTAklUMQ4wDAYDVQQIDAVJdGFseTEgMB4GA1UEBwwXU2FuIEdyZWdvcmlvIGRpIENhdGFuaWExDzANBgNVBAoMBlNpZWx0ZTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANIRlOjM/tS9V9jYjJreqZSctuYriLfPTDgX2XdhWEbMpMpwA9p0bsbLQoC1gP0piLO+qbCsIh9+boPfb4/dLIA7E+Vmm5/+evOtzvjfHG4oXjZK6jo08QwkVV8Bm1jkakJPVZ57QFbyDSr+uBbIMY7CjA2LdgnIIwKN/kSfFhrZUMJ6ZxwegM100X5psfNPSV9WUtgHsvqlIlvydPo2rMm21sg+2d3Vtg8DthNSYRLqgazCc0NTsigrH7niSbJCO0nq/svMX2rSFdh5GFK7/pxT+c3OFWqIR8r+RX4qW+auJqkbTuNRwxV22Sm6r69ZJwV0WspvsVJi+FYqiyoWhgUCAwEAAaNQME4wHQYDVR0OBBYEFCUx063GwUhEFDllwCBe/+jdeW+XMB8GA1UdIwQYMBaAFCUx063GwUhEFDllwCBe/+jdeW+XMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBADF94c3JwyBM86QBLeoUZxRYKPniba8B39FfJk0pb+LejKfZMvspOrOFgYQQ9UrS8IFkBX9Xr7/tjRbr2cPwZNjrEZhoq+NfcE09bnaWTyEl1IEKK8TWOupJj9UNVpYXX0LfIRrMwNEzAPQykOaqPOnyHxOCPTY957xXSo3jXOyvugtvPHbd+iliAzUoPm1tgiTKWS+EkQ/e22eFv5NEyT+oHiKovrQ+voPWOIvJVMjiTyxRic8fEnI9zzV0SxWvFvty77wgcYbeEuFZa3iidhojUge8o1uY/JUyQjFxcvvfAgWSIZwdHiNyWaAgwzLPmPCPsvBdR3xrlcDg/9Bd3D0=',
     ),
-    1 => 
+    1 =>
     array (
       'encryption' => true,
       'signing' => false,
@@ -388,71 +388,71 @@ $metadata['https://identity.sieltecloud.it'] = array (
 
 $metadata['https://loginspid.aruba.it'] = array (
   'entityid' => 'https://loginspid.aruba.it',
-  'description' => 
+  'description' =>
   array (
     'it' => 'ArubaPEC S.p.A.',
   ),
-  'OrganizationName' => 
+  'OrganizationName' =>
   array (
     'it' => 'ArubaPEC S.p.A.',
   ),
-  'name' => 
+  'name' =>
   array (
     'it' => 'ArubaPEC S.p.A.',
   ),
-  'OrganizationDisplayName' => 
+  'OrganizationDisplayName' =>
   array (
     'it' => 'ArubaPEC S.p.A.',
   ),
-  'url' => 
+  'url' =>
   array (
     'it' => 'https://www.pec.it/',
   ),
-  'OrganizationURL' => 
+  'OrganizationURL' =>
   array (
     'it' => 'https://www.pec.it/',
   ),
-  'contacts' => 
+  'contacts' =>
   array (
   ),
   'metadata-set' => 'saml20-idp-remote',
   'sign.authnrequest' => true,
-  'SingleSignOnService' => 
+  'SingleSignOnService' =>
   array (
-    0 => 
+    0 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
       'Location' => 'https://loginspid.aruba.it/ServiceLoginWelcome',
     ),
-    1 => 
+    1 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
       'Location' => 'https://loginspid.aruba.it/ServiceLoginWelcome',
     ),
   ),
-  'SingleLogoutService' => 
+  'SingleLogoutService' =>
   array (
-    0 => 
+    0 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
       'Location' => 'https://loginspid.aruba.it/ServiceLogoutRequest',
     ),
-    1 => 
+    1 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
       'Location' => 'https://loginspid.aruba.it/ServiceLogoutRequest',
     ),
   ),
-  'ArtifactResolutionService' => 
+  'ArtifactResolutionService' =>
   array (
   ),
-  'NameIDFormats' => 
+  'NameIDFormats' =>
   array (
     0 => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
   ),
-  'keys' => 
+  'keys' =>
   array (
-    0 => 
+    0 =>
     array (
       'encryption' => false,
       'signing' => true,
@@ -485,181 +485,9 @@ hW/hLxLdhks68/TK694xVIuiB40pvMmJwxIyDA==',
 
 /* FINE ARUBA PROD */
 
-/* Inizio NAMIRIAL PROD */
-
-$metadata['https://idp.namirialtsp.com/idp'] = array (
-  'entityid' => 'https://idp.namirialtsp.com/idp',
-  'description' => 
-  array (
-    'it' => 'Namirial',
-  ),
-  'OrganizationName' => 
-  array (
-    'it' => 'Namirial',
-  ),
-  'name' => 
-  array (
-    'it' => 'Namirial S.p.a. Trust Service Provider',
-  ),
-  'OrganizationDisplayName' => 
-  array (
-    'it' => 'Namirial S.p.a. Trust Service Provider',
-  ),
-  'url' => 
-  array (
-    'it' => 'https://www.namirialtsp.com',
-  ),
-  'OrganizationURL' => 
-  array (
-    'it' => 'https://www.namirialtsp.com',
-  ),
-  'contacts' => 
-  array (
-  ),
-  'metadata-set' => 'saml20-idp-remote',
-  'sign.authnrequest' => true,
-  'SingleSignOnService' => 
-  array (
-    0 => 
-    array (
-      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-      'Location' => 'https://idp.namirialtsp.com/idp/profile/SAML2/POST/SSO',
-    ),
-    1 => 
-    array (
-      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-      'Location' => 'https://idp.namirialtsp.com/idp/profile/SAML2/Redirect/SSO',
-    ),
-  ),
-  'SingleLogoutService' => 
-  array (
-    0 => 
-    array (
-      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-      'Location' => 'https://idp.namirialtsp.com/idp/profile/SAML2/POST/SLO',
-    ),
-    1 => 
-    array (
-      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-      'Location' => 'https://idp.namirialtsp.com/idp/profile/SAML2/Redirect/SLO',
-    ),
-  ),
-  'ArtifactResolutionService' => 
-  array (
-  ),
-  'NameIDFormats' => 
-  array (
-    0 => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
-  ),
-  'keys' => 
-  array (
-    0 => 
-    array (
-      'encryption' => false,
-      'signing' => true,
-      'type' => 'X509Certificate',
-      'X509Certificate' => 'MIIDNzCCAh+gAwIBAgIUNGvDUjTpLSPlP4sEfO0+JARITnEwDQYJKoZIhvcNAQEL
-BQAwHjEcMBoGA1UEAwwTaWRwLm5hbWlyaWFsdHNwLmNvbTAeFw0xNzAzMDgwOTE3
-NTZaFw0zNzAzMDgwOTE3NTZaMB4xHDAaBgNVBAMME2lkcC5uYW1pcmlhbHRzcC5j
-b20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDrcJvYRh49nNijgzwL
-1OOwgzeMDUWcMSwoWdtMpx3kDhZwMFQ3ITDmNvlz21I0QKaP0BDg/UAjfCbDtLqU
-y6wHtI6NWVJoqIziw+dLfg7S5Sr2nOzJ/sKhzadWH1kDsetIenOLU2ex+7Vf/+4P
-7nIrS0c+xghi9/zN8dH6+09wWYnloGmcW3qWRFMKJjR3ctBmsmqCKWNIIq2QfeFs
-zSSeG0xaNlLKBrj6TyPDxDqPAskq038W1fCuh7aejCk7XTTOxuuIwDGJiYsc8rfX
-SG9/auskAfCziGEm304/ojy5MRcNjekz4KgWxT9anMCipv0I2T7tCAivc1z9QCsE
-Pk5pAgMBAAGjbTBrMB0GA1UdDgQWBBQi8+cnv0Nw0lbuICzxlSHsvBw5SzBKBgNV
-HREEQzBBghNpZHAubmFtaXJpYWx0c3AuY29thipodHRwczovL2lkcC5uYW1pcmlh
-bHRzcC5jb20vaWRwL3NoaWJib2xldGgwDQYJKoZIhvcNAQELBQADggEBAEp953KM
-WY7wJbJqnPTmDkXaZJVoubcjW86IY494RgVBeZ4XzAGOifa3ScDK6a0OWfIlRTba
-KKu9lEVw9zs54vLp9oQI4JulomSaL805Glml4bYqtcLoh5qTnKaWp5qvzBgcQ7i2
-GcDC9F+qrsJYreCA7rbHXzF0hu5yIfz0BrrCRWvuWiop92WeKvtucI4oBGfoHhYO
-ZsLuoTT3hZiEFJT60xS5Y2SNdz+Eia9Dgt0cvAzoOVk93Cxg+XBdyyEEiZn/zvhj
-us29KyFrzh3XYznh+4jq3ymt7Os4JKmY0aJm7yNxw+LyPjkdaB0icfo3+hD7PiuU
-jC3Y67LUWQ8YgOc=',
-    ),
-  ),
-);
-
-/* FINE NAMIRIAL PROD */
-
-/* Inizio REGISTER PROD */
-
-$metadata['https://spid.register.it'] = array (
-  'entityid' => 'https://spid.register.it',
-  'description' => 
-  array (
-    'it' => 'Register S.p.A.',
-  ),
-  'OrganizationName' => 
-  array (
-    'it' => 'Register S.p.A.',
-  ),
-  'name' => 
-  array (
-    'it' => 'Register S.p.A.',
-  ),
-  'OrganizationDisplayName' => 
-  array (
-    'it' => 'Register S.p.A.',
-  ),
-  'url' => 
-  array (
-    'it' => 'https//www.register.it',
-  ),
-  'OrganizationURL' => 
-  array (
-    'it' => 'https//www.register.it',
-  ),
-  'contacts' => 
-  array (
-  ),
-  'metadata-set' => 'saml20-idp-remote',
-  'sign.authnrequest' => true,
-  'SingleSignOnService' => 
-  array (
-    0 => 
-    array (
-      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-      'Location' => 'https://spid.register.it/login/sso',
-    ),
-    1 => 
-    array (
-      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-      'Location' => 'https://spid.register.it/login/sso',
-    ),
-  ),
-  'SingleLogoutService' => 
-  array (
-    0 => 
-    array (
-      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-      'Location' => 'https://spid.register.it/login/singleLogout',
-      'ResponseLocation' => 'https://spid.register.it/login/singleLogout/response',
-    ),
-  ),
-  'ArtifactResolutionService' => 
-  array (
-  ),
-  'NameIDFormats' => 
-  array (
-    0 => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
-  ),
-  'keys' => 
-  array (
-    0 => 
-    array (
-      'encryption' => false,
-      'signing' => true,
-      'type' => 'X509Certificate',
-      'X509Certificate' => 'MIIDazCCAlOgAwIBAgIED8R+MDANBgkqhkiG9w0BAQsFADBmMQswCQYDVQQGEwJJVDELMAkGA1UECBMCRkkxETAPBgNVBAcTCGZsb3JlbmNlMREwDwYDVQQKEwhyZWdpc3RlcjERMA8GA1UECxMIcmVnaXN0ZXIxETAPBgNVBAMTCHJlZ2lzdGVyMB4XDTE3MDcxMDEwMzM0OVoXDTI3MDcwODEwMzM0OVowZjELMAkGA1UEBhMCSVQxCzAJBgNVBAgTAkZJMREwDwYDVQQHEwhmbG9yZW5jZTERMA8GA1UEChMIcmVnaXN0ZXIxETAPBgNVBAsTCHJlZ2lzdGVyMREwDwYDVQQDEwhyZWdpc3RlcjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANkYXHbm3q6xt3wrLAXnytswtj2JE1MM8aYmNXkTgDMCwO/+ahQOoQru6IBTbjfWH9jr+Woy54FDdX6bHl+5/mO6l/yAB/bKgwe5HmUjZJ5oakJjWucsSm+VkEwN2HquBZoN+mktju00xvLX5VAjmDHvZc/b8NhNr/FRKlYITboygkhGiUwGI3wLf3IaB76J0o7ugpW2WNLcywpX+p1VWZAMCdHBveBe/e42hh6WnWPqdwYUWHOgJ8HX4IzCHifiS1n6eUMgtoTQOmSvTQDwSjD0WWJE8tWSYt+txXg1t+3A3tbZOFu7T442wE7DtMdUL4+8gimQS+e8PxDK1uTqIPUCAwEAAaMhMB8wHQYDVR0OBBYEFMCgo1gzCIcUThQIs5g5ikfv1D7eMA0GCSqGSIb3DQEBCwUAA4IBAQBnGw3i3hQ37L8vyelkyZMeO3tLK65Cqti4oVrQZxClGV5zNA6fIMDY8Mci1UhLwjzp29POd/sez0vuHZ/Vmmygzoye4jTKr6c3jAh0u81FTzefBU+vIietm9RuV3sd7D9xq6EqOY1NDL+rkvBcTFtiwLEUm2kHYu/U67jk73pxOtmqxQvQeMU8oi42tehMZGLIGp3U5lGS8YGGl+GtkkQ2Z5/PSm67HGP81kTArG/QX+bX+ykypTJVg9hfb9zOFQidp1HkCRIez6YhDiP/ZLurd6Grt/wVfZPNBO8EOgy25AkRZlp+UD686BFg7qq5KKEbz3qmPrj8deHL3duacZcp',
-    ),
-  ),
-);
-
-/* FINE REGISTER PROD */
 
 /*INIZIO Lepida PROD*/
-​
+
 $metadata['https://id.lepida.it/idp/shibboleth'] = array (
   'entityid' => 'https://id.lepida.it/idp/shibboleth',
   'description' =>
@@ -750,32 +578,35 @@ $metadata['https://id.lepida.it/idp/shibboleth'] = array (
 );
 /*FINE Lepida PROD*/
 
-/* INIZIO Intesa */
-$metadata['https://spid.intesa.it'] = array (
-  'entityid' => 'https://spid.intesa.it',
+
+
+/*INIZIO namirialtsp PROD*/
+
+$metadata['https://idp.namirialtsp.com/idp'] = array (
+  'entityid' => 'https://idp.namirialtsp.com/idp',
   'description' =>
   array (
-    'it' => 'Intesa S.p.A.',
+    'it' => 'Namirial',
   ),
   'OrganizationName' =>
   array (
-    'it' => 'IN.TE.S.A. S.p.A.',
+    'it' => 'Namirial',
   ),
   'name' =>
   array (
-    'it' => 'Intesa S.p.A.',
+    'it' => 'Namirial S.p.a. Trust Service Provider',
   ),
   'OrganizationDisplayName' =>
   array (
-    'it' => 'Intesa S.p.A.',
+    'it' => 'Namirial S.p.a. Trust Service Provider',
   ),
   'url' =>
   array (
-    'it' => 'https://www.intesa.it/',
+    'it' => 'https://www.namirialtsp.com',
   ),
   'OrganizationURL' =>
   array (
-    'it' => 'https://www.intesa.it/',
+    'it' => 'https://www.namirialtsp.com',
   ),
   'contacts' =>
   array (
@@ -787,12 +618,12 @@ $metadata['https://spid.intesa.it'] = array (
     0 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-      'Location' => 'https://spid.intesa.it/Time4UserServices/services/idp/AuthnRequest/',
+      'Location' => 'https://idp.namirialtsp.com/idp/profile/SAML2/POST/SSO',
     ),
     1 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-      'Location' => 'https://spid.intesa.it/Time4UserServices/services/idp/AuthnRequest/',
+      'Location' => 'https://idp.namirialtsp.com/idp/profile/SAML2/Redirect/SSO',
     ),
   ),
   'SingleLogoutService' =>
@@ -800,12 +631,12 @@ $metadata['https://spid.intesa.it'] = array (
     0 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-      'Location' => 'https://spid.intesa.it/Time4UserServices/services/idp/SingleLogout/',
+      'Location' => 'https://idp.namirialtsp.com/idp/profile/SAML2/POST/SLO',
     ),
     1 =>
     array (
       'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-      'Location' => 'https://spid.intesa.it/Time4UserServices/services/idp/SingleLogout',
+      'Location' => 'https://idp.namirialtsp.com/idp/profile/SAML2/Redirect/SLO',
     ),
   ),
   'ArtifactResolutionService' =>
@@ -822,34 +653,104 @@ $metadata['https://spid.intesa.it'] = array (
       'encryption' => false,
       'signing' => true,
       'type' => 'X509Certificate',
-      'X509Certificate' => 'MIIEDjCCAvagAwIBAgIIIT1A+ywbIQAwDQYJKoZIhvcNAQELBQAwXjEzMDEGA1UE
-                        AwwqSU4uVEUuUy5BLiBTLnAuQSAtIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MRow
-                        GAYDVQQKDBFJTi5URS5TLkEuIFMucC5BLjELMAkGA1UEBhMCSVQwHhcNMTcwOTE1
-                        MTMyMzQ1WhcNMzYwNzAxMTk1OTAwWjBQMSUwDwYDVQQuEwgyMDA3OTc5NzASBgNV
-                        BAMMC1NBTUwgU2lnbmVyMRowGAYDVQQKDBFJTi5URS5TLkEuIFMucC5BLjELMAkG
-                        A1UEBhMCSVQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDhYXkP+eQB
-                        URgmslDXBjG0ad+DkSAkWt7hUoaTyiK0e34QiyArq043plqTrt+6FzTGeX7960Qr
-                        3tCLGCiVOi47QuE09IKfJmKGEaUQnJQehHYZs/XV0OYQl18WrCxUX6ALOcqPs+4y
-                        pCbJV1WzSosfBcPBzivJER8kvrynMXI3or18e9XPTGBn8qNFyNF1E3BJ5UhrDvk5
-                        W2gKyYKz0M/CIu9PiHuO/ne6HbeNrCS/xzXtjsTusk41AOxIQoFbEzS08xcRY+QD
-                        E8oLcAmecSjT3xv3r9dWke6KTTAahS3K+5mOYRcBXj2FFegiUp+xh4OAWdH1+gGD
-                        Ym+3aAmMpaLtAgMBAAGjgd0wgdowHQYDVR0OBBYEFEw9xWg4qvQGdlGMCqmJcVDg
-                        dE8aMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUySnWJ2sw0ljDpJVrtrxCCP0b
-                        1CYwGgYDVR0QBBMwEYAPMjAxNzA5MTUxMzIzNDVaMD8GA1UdHwQ4MDYwNKAyoDCG
-                        Lmh0dHA6Ly9lLXRydXN0Y29tLmludGVzYS5pdC9DUkwvSU5URVNBX25DQS5jcmww
-                        DgYDVR0PAQH/BAQDAgSwMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDAN
-                        BgkqhkiG9w0BAQsFAAOCAQEAVRHyFRZZFpW/qjJpKftd86h3wOdUqOhc2W8ZHv0s
-                        t8ptG+mZk3l1iWAsEPqKMIBhksgTvalnHC1lHUt11xsZ2mzUjVpiG8XiWXYXQnY2
-                        D+q7Dc4n20kJ717qf4SDN8wX1A6XvT3Wrsfh87vg3ZFD56/eyur2snWu4OilsFqA
-                        yLhnExG4puJ4JKBWnlwAGXD9SFgkSZ8FC66KQs6CAwVkvCIom3IwJeU/VrYQF6XH
-                        kVCQgr5mojXgCkrlRNl53WAKfQHCT4QH+oQVP97PCEL/wQ1zi0UzWauKT6u2wDym
-                        9rcpch+WLa0GUtYNhuoLU2SregPKwTWg2DfINJObyWRpww==',
+      'X509Certificate' => 'MIIDNzCCAh+gAwIBAgIUNGvDUjTpLSPlP4sEfO0+JARITnEwDQYJKoZIhvcNAQEL
+BQAwHjEcMBoGA1UEAwwTaWRwLm5hbWlyaWFsdHNwLmNvbTAeFw0xNzAzMDgwOTE3
+NTZaFw0zNzAzMDgwOTE3NTZaMB4xHDAaBgNVBAMME2lkcC5uYW1pcmlhbHRzcC5j
+b20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDrcJvYRh49nNijgzwL
+1OOwgzeMDUWcMSwoWdtMpx3kDhZwMFQ3ITDmNvlz21I0QKaP0BDg/UAjfCbDtLqU
+y6wHtI6NWVJoqIziw+dLfg7S5Sr2nOzJ/sKhzadWH1kDsetIenOLU2ex+7Vf/+4P
+7nIrS0c+xghi9/zN8dH6+09wWYnloGmcW3qWRFMKJjR3ctBmsmqCKWNIIq2QfeFs
+zSSeG0xaNlLKBrj6TyPDxDqPAskq038W1fCuh7aejCk7XTTOxuuIwDGJiYsc8rfX
+SG9/auskAfCziGEm304/ojy5MRcNjekz4KgWxT9anMCipv0I2T7tCAivc1z9QCsE
+Pk5pAgMBAAGjbTBrMB0GA1UdDgQWBBQi8+cnv0Nw0lbuICzxlSHsvBw5SzBKBgNV
+HREEQzBBghNpZHAubmFtaXJpYWx0c3AuY29thipodHRwczovL2lkcC5uYW1pcmlh
+bHRzcC5jb20vaWRwL3NoaWJib2xldGgwDQYJKoZIhvcNAQELBQADggEBAEp953KM
+WY7wJbJqnPTmDkXaZJVoubcjW86IY494RgVBeZ4XzAGOifa3ScDK6a0OWfIlRTba
+KKu9lEVw9zs54vLp9oQI4JulomSaL805Glml4bYqtcLoh5qTnKaWp5qvzBgcQ7i2
+GcDC9F+qrsJYreCA7rbHXzF0hu5yIfz0BrrCRWvuWiop92WeKvtucI4oBGfoHhYO
+ZsLuoTT3hZiEFJT60xS5Y2SNdz+Eia9Dgt0cvAzoOVk93Cxg+XBdyyEEiZn/zvhj
+us29KyFrzh3XYznh+4jq3ymt7Os4JKmY0aJm7yNxw+LyPjkdaB0icfo3+hD7PiuU
+jC3Y67LUWQ8YgOc=',
     ),
   ),
 );
-/* FINE Intesa */
+
+$metadata['https://spid.register.it'] = array (
+  'entityid' => 'https://spid.register.it',
+  'description' =>
+  array (
+    'it' => 'Register S.p.A.',
+  ),
+  'OrganizationName' =>
+  array (
+    'it' => 'Register S.p.A.',
+  ),
+  'name' =>
+  array (
+    'it' => 'Register S.p.A.',
+  ),
+  'OrganizationDisplayName' =>
+  array (
+    'it' => 'Register S.p.A.',
+  ),
+  'url' =>
+  array (
+    'it' => 'https//www.register.it',
+  ),
+  'OrganizationURL' =>
+  array (
+    'it' => 'https//www.register.it',
+  ),
+  'contacts' =>
+  array (
+  ),
+  'metadata-set' => 'saml20-idp-remote',
+  'sign.authnrequest' => true,
+  'SingleSignOnService' =>
+  array (
+    0 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+      'Location' => 'https://spid.register.it/login/sso',
+    ),
+    1 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      'Location' => 'https://spid.register.it/login/sso',
+    ),
+  ),
+  'SingleLogoutService' =>
+  array (
+    0 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      'Location' => 'https://spid.register.it/login/singleLogout',
+      'ResponseLocation' => 'https://spid.register.it/login/singleLogout/response',
+    ),
+  ),
+  'ArtifactResolutionService' =>
+  array (
+  ),
+  'NameIDFormats' =>
+  array (
+    0 => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
+  ),
+  'keys' =>
+  array (
+    0 =>
+    array (
+      'encryption' => false,
+      'signing' => true,
+      'type' => 'X509Certificate',
+      'X509Certificate' => 'MIIDazCCAlOgAwIBAgIED8R+MDANBgkqhkiG9w0BAQsFADBmMQswCQYDVQQGEwJJVDELMAkGA1UECBMCRkkxETAPBgNVBAcTCGZsb3JlbmNlMREwDwYDVQQKEwhyZWdpc3RlcjERMA8GA1UECxMIcmVnaXN0ZXIxETAPBgNVBAMTCHJlZ2lzdGVyMB4XDTE3MDcxMDEwMzM0OVoXDTI3MDcwODEwMzM0OVowZjELMAkGA1UEBhMCSVQxCzAJBgNVBAgTAkZJMREwDwYDVQQHEwhmbG9yZW5jZTERMA8GA1UEChMIcmVnaXN0ZXIxETAPBgNVBAsTCHJlZ2lzdGVyMREwDwYDVQQDEwhyZWdpc3RlcjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANkYXHbm3q6xt3wrLAXnytswtj2JE1MM8aYmNXkTgDMCwO/+ahQOoQru6IBTbjfWH9jr+Woy54FDdX6bHl+5/mO6l/yAB/bKgwe5HmUjZJ5oakJjWucsSm+VkEwN2HquBZoN+mktju00xvLX5VAjmDHvZc/b8NhNr/FRKlYITboygkhGiUwGI3wLf3IaB76J0o7ugpW2WNLcywpX+p1VWZAMCdHBveBe/e42hh6WnWPqdwYUWHOgJ8HX4IzCHifiS1n6eUMgtoTQOmSvTQDwSjD0WWJE8tWSYt+txXg1t+3A3tbZOFu7T442wE7DtMdUL4+8gimQS+e8PxDK1uTqIPUCAwEAAaMhMB8wHQYDVR0OBBYEFMCgo1gzCIcUThQIs5g5ikfv1D7eMA0GCSqGSIb3DQEBCwUAA4IBAQBnGw3i3hQ37L8vyelkyZMeO3tLK65Cqti4oVrQZxClGV5zNA6fIMDY8Mci1UhLwjzp29POd/sez0vuHZ/Vmmygzoye4jTKr6c3jAh0u81FTzefBU+vIietm9RuV3sd7D9xq6EqOY1NDL+rkvBcTFtiwLEUm2kHYu/U67jk73pxOtmqxQvQeMU8oi42tehMZGLIGp3U5lGS8YGGl+GtkkQ2Z5/PSm67HGP81kTArG/QX+bX+ykypTJVg9hfb9zOFQidp1HkCRIez6YhDiP/ZLurd6Grt/wVfZPNBO8EOgy25AkRZlp+UD686BFg7qq5KKEbz3qmPrj8deHL3duacZcp',
+    ),
+  ),
+);
+/*FINE namirialtsp PROD*/
+
 
 /* INIZIO idptest */
+
 $metadata['https://idptest.spid.gov.it'] = array (
   'entityid' => 'https://idptest.spid.gov.it',
   'description' =>
@@ -924,5 +825,252 @@ $metadata['https://idptest.spid.gov.it'] = array (
       'X509Certificate' => 'MIID7DCCAtSgAwIBAgIJALE117dRPeh4MA0GCSqGSIb3DQEBCwUAMIGKMQswCQYD VQQGEwJJVDENMAsGA1UECAwEUm9tZTENMAsGA1UEBwwEUm9tZTENMAsGA1UECgwE QWdJRDENMAsGA1UECwwEU1BJRDEcMBoGA1UEAwwTaWRwdGVzdC5zcGlkLmdvdi5p dDEhMB8GCSqGSIb3DQEJARYScm9zaW5pQGFnaWQuZ292Lml0MB4XDTE5MDEwODEx MzY1MFoXDTE5MDIwNzExMzY1MFowgYoxCzAJBgNVBAYTAklUMQ0wCwYDVQQIDARS b21lMQ0wCwYDVQQHDARSb21lMQ0wCwYDVQQKDARBZ0lEMQ0wCwYDVQQLDARTUElE MRwwGgYDVQQDDBNpZHB0ZXN0LnNwaWQuZ292Lml0MSEwHwYJKoZIhvcNAQkBFhJy b3NpbmlAYWdpZC5nb3YuaXQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB AQDHJReZwfCI6isu4kyEEYGQK90aWjri9Ss0FBl+yOg1tR1BwrGLDpp4TClsoDi/ xS9KBwuf5jyOnaShS7wN4ppaUwZTUP1rGmGoLULDdJyTvjBa+eI4bxRAsTZMSPqI usCh4itxj5JzORgyBXqDGQMVQ9beG8gE/537JsBjdBksUu03VSoYY3U4LuX3XFTf MgwQq8xgHQI2gZRrrcFbvxo7dhDj2e+PNKf8KlJtZF/KvmwHt7ePR1Ramg0xDi/P 65zz/jMtiu9wCGIqvtD82K+xw3xzaH0VuDbdJ8F97RPXNQvHPEP9hubf9GRW+vNY wC7gwkXHwAemXaIBog8yrQXdAgMBAAGjUzBRMB0GA1UdDgQWBBSGJwgrGGuW0YBK dME07V5oDXSpWDAfBgNVHSMEGDAWgBSGJwgrGGuW0YBKdME07V5oDXSpWDAPBgNV HRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQBAR2FtHwCR8jWODYQicM94 7jciLvlpZtWahgZtpi+NuMDkXN2A/WI5lfVdSnOq5vTMmRzQ7X36s2l0e7odHzT4 65/Hb9CkBHgRox+9R7p6gF5K0QiLtHDQCHo+yO2pwNPvOjho4ai44omF+kzIJh7d FVBFlbE/oJl0LeNSOEVZljgZ7uWqyu6/e4zs/hkycedkKymgJwnx67ytZn6kkYW9 PpBskbuQbEbUqyiQ167nEkr2KGPPvAkwGyZL1j0qkW9JKM5NTfSCrMbXffwjwGSq zgmu1T5W5VAJJFL6SGnr5Pg+JMw+AmsLt2MhRVdfo6zjFohR/+dOKM4+mTrB2enW',
     ),
   ),
- );
- /* FINE idptest */
+);
+
+/* FINE idptest */
+/* inizio register prod */
+
+$metadata['https://spid.register.it'] = array (
+  'entityid' => 'https://spid.register.it',
+  'description' =>
+  array (
+    'it' => 'Register S.p.A.',
+  ),
+  'OrganizationName' =>
+  array (
+    'it' => 'Register S.p.A.',
+  ),
+  'name' =>
+  array (
+    'it' => 'Register S.p.A.',
+  ),
+  'OrganizationDisplayName' =>
+  array (
+    'it' => 'Register S.p.A.',
+  ),
+  'url' =>
+  array (
+    'it' => 'https//www.register.it',
+  ),
+  'OrganizationURL' =>
+  array (
+    'it' => 'https//www.register.it',
+  ),
+  'contacts' =>
+  array (
+  ),
+  'metadata-set' => 'saml20-idp-remote',
+  'sign.authnrequest' => true,
+  'SingleSignOnService' =>
+  array (
+    0 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+      'Location' => 'https://spid.register.it/login/sso',
+    ),
+    1 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      'Location' => 'https://spid.register.it/login/sso',
+    ),
+  ),
+  'SingleLogoutService' =>
+  array (
+    0 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      'Location' => 'https://spid.register.it/login/singleLogout',
+      'ResponseLocation' => 'https://spid.register.it/login/singleLogout/response',
+    ),
+  ),
+  'ArtifactResolutionService' =>
+  array (
+  ),
+  'NameIDFormats' =>
+  array (
+    0 => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
+  ),
+  'keys' =>
+  array (
+    0 =>
+    array (
+      'encryption' => false,
+      'signing' => true,
+      'type' => 'X509Certificate',
+      'X509Certificate' => 'MIIDazCCAlOgAwIBAgIED8R+MDANBgkqhkiG9w0BAQsFADBmMQswCQYDVQQGEwJJVDELMAkGA1UECBMCRkkxETAPBgNVBAcTCGZsb3JlbmNlMREwDwYDVQQKEwhyZWdpc3RlcjERMA8GA1UECxMIcmVnaXN0ZXIxETAPBgNVBAMTCHJlZ2lzdGVyMB4XDTE3MDcxMDEwMzM0OVoXDTI3MDcwODEwMzM0OVowZjELMAkGA1UEBhMCSVQxCzAJBgNVBAgTAkZJMREwDwYDVQQHEwhmbG9yZW5jZTERMA8GA1UEChMIcmVnaXN0ZXIxETAPBgNVBAsTCHJlZ2lzdGVyMREwDwYDVQQDEwhyZWdpc3RlcjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANkYXHbm3q6xt3wrLAXnytswtj2JE1MM8aYmNXkTgDMCwO/+ahQOoQru6IBTbjfWH9jr+Woy54FDdX6bHl+5/mO6l/yAB/bKgwe5HmUjZJ5oakJjWucsSm+VkEwN2HquBZoN+mktju00xvLX5VAjmDHvZc/b8NhNr/FRKlYITboygkhGiUwGI3wLf3IaB76J0o7ugpW2WNLcywpX+p1VWZAMCdHBveBe/e42hh6WnWPqdwYUWHOgJ8HX4IzCHifiS1n6eUMgtoTQOmSvTQDwSjD0WWJE8tWSYt+txXg1t+3A3tbZOFu7T442wE7DtMdUL4+8gimQS+e8PxDK1uTqIPUCAwEAAaMhMB8wHQYDVR0OBBYEFMCgo1gzCIcUThQIs5g5ikfv1D7eMA0GCSqGSIb3DQEBCwUAA4IBAQBnGw3i3hQ37L8vyelkyZMeO3tLK65Cqti4oVrQZxClGV5zNA6fIMDY8Mci1UhLwjzp29POd/sez0vuHZ/Vmmygzoye4jTKr6c3jAh0u81FTzefBU+vIietm9RuV3sd7D9xq6EqOY1NDL+rkvBcTFtiwLEUm2kHYu/U67jk73pxOtmqxQvQeMU8oi42tehMZGLIGp3U5lGS8YGGl+GtkkQ2Z5/PSm67HGP81kTArG/QX+bX+ykypTJVg9hfb9zOFQidp1HkCRIez6YhDiP/ZLurd6Grt/wVfZPNBO8EOgy25AkRZlp+UD686BFg7qq5KKEbz3qmPrj8deHL3duacZcp',
+    ),
+  ),
+);
+/*FINE namirialtsp PROD*/
+
+$metadata['https://spid.register.it'] = array (
+  'entityid' => 'https://spid.register.it',
+  'description' =>
+  array (
+    'it' => 'Register S.p.A.',
+  ),
+  'OrganizationName' =>
+  array (
+    'it' => 'Register S.p.A.',
+  ),
+  'name' =>
+  array (
+    'it' => 'Register S.p.A.',
+  ),
+  'OrganizationDisplayName' =>
+  array (
+    'it' => 'Register S.p.A.',
+  ),
+  'url' =>
+  array (
+    'it' => 'https//www.register.it',
+  ),
+  'OrganizationURL' =>
+  array (
+    'it' => 'https//www.register.it',
+  ),
+  'contacts' =>
+  array (
+  ),
+  'metadata-set' => 'saml20-idp-remote',
+  'sign.authnrequest' => true,
+  'SingleSignOnService' =>
+  array (
+    0 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+      'Location' => 'https://spid.register.it/login/sso',
+    ),
+    1 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      'Location' => 'https://spid.register.it/login/sso',
+    ),
+  ),
+  'SingleLogoutService' =>
+  array (
+    0 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      'Location' => 'https://spid.register.it/login/singleLogout',
+      'ResponseLocation' => 'https://spid.register.it/login/singleLogout/response',
+    ),
+  ),
+  'ArtifactResolutionService' =>
+  array (
+  ),
+  'NameIDFormats' =>
+  array (
+    0 => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
+  ),
+  'keys' =>
+  array (
+    0 =>
+    array (
+      'encryption' => false,
+      'signing' => true,
+      'type' => 'X509Certificate',
+      'X509Certificate' => 'MIIDazCCAlOgAwIBAgIED8R+MDANBgkqhkiG9w0BAQsFADBmMQswCQYDVQQGEwJJVDELMAkGA1UECBMCRkkxETAPBgNVBAcTCGZsb3JlbmNlMREwDwYDVQQKEwhyZWdpc3RlcjERMA8GA1UECxMIcmVnaXN0ZXIxETAPBgNVBAMTCHJlZ2lzdGVyMB4XDTE3MDcxMDEwMzM0OVoXDTI3MDcwODEwMzM0OVowZjELMAkGA1UEBhMCSVQxCzAJBgNVBAgTAkZJMREwDwYDVQQHEwhmbG9yZW5jZTERMA8GA1UEChMIcmVnaXN0ZXIxETAPBgNVBAsTCHJlZ2lzdGVyMREwDwYDVQQDEwhyZWdpc3RlcjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANkYXHbm3q6xt3wrLAXnytswtj2JE1MM8aYmNXkTgDMCwO/+ahQOoQru6IBTbjfWH9jr+Woy54FDdX6bHl+5/mO6l/yAB/bKgwe5HmUjZJ5oakJjWucsSm+VkEwN2HquBZoN+mktju00xvLX5VAjmDHvZc/b8NhNr/FRKlYITboygkhGiUwGI3wLf3IaB76J0o7ugpW2WNLcywpX+p1VWZAMCdHBveBe/e42hh6WnWPqdwYUWHOgJ8HX4IzCHifiS1n6eUMgtoTQOmSvTQDwSjD0WWJE8tWSYt+txXg1t+3A3tbZOFu7T442wE7DtMdUL4+8gimQS+e8PxDK1uTqIPUCAwEAAaMhMB8wHQYDVR0OBBYEFMCgo1gzCIcUThQIs5g5ikfv1D7eMA0GCSqGSIb3DQEBCwUAA4IBAQBnGw3i3hQ37L8vyelkyZMeO3tLK65Cqti4oVrQZxClGV5zNA6fIMDY8Mci1UhLwjzp29POd/sez0vuHZ/Vmmygzoye4jTKr6c3jAh0u81FTzefBU+vIietm9RuV3sd7D9xq6EqOY1NDL+rkvBcTFtiwLEUm2kHYu/U67jk73pxOtmqxQvQeMU8oi42tehMZGLIGp3U5lGS8YGGl+GtkkQ2Z5/PSm67HGP81kTArG/QX+bX+ykypTJVg9hfb9zOFQidp1HkCRIez6YhDiP/ZLurd6Grt/wVfZPNBO8EOgy25AkRZlp+UD686BFg7qq5KKEbz3qmPrj8deHL3duacZcp',
+    ),
+  ),
+);
+/*FINE namirialtsp PROD*/
+
+/*inizio intesa prod*/
+
+$metadata['https://spid.intesa.it'] = array (
+    'entityid' => 'https://spid.intesa.it',
+    'description' =>
+    array (
+      'it' => 'Intesa S.p.A.',
+    ),
+    'OrganizationName' =>
+    array (
+      'it' => 'IN.TE.S.A. S.p.A.',
+    ),
+    'name' =>
+    array (
+      'it' => 'IN.TE.S.A. S.p.A',
+    ),
+    'OrganizationDisplayName' =>
+    array (
+      'it' => 'Intesa S.p.A.',
+    ),
+    'url' =>
+    array (
+      'it' => 'https://www.intesa.it/',
+    ),
+    'OrganizationURL' =>
+    array (
+      'it' => 'https://www.intesa.it/',
+    ),
+    'contacts' =>
+    array (
+    ),
+    'metadata-set' => 'saml20-idp-remote',
+    'sign.authnrequest' => true,
+    'SingleSignOnService' =>
+    array (
+      0 =>
+      array (
+        'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+        'Location' => 'https://spid.intesa.it/Time4UserServices/services/idp/AuthnRequest/',
+      ),
+      1 =>
+      array (
+        'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+        'Location' => 'https://spid.intesa.it/Time4UserServices/services/idp/AuthnRequest/',
+      ),
+    ),
+    'SingleLogoutService' =>
+  array (
+    0 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
+      'Location' => 'https://spid.intesa.it/Time4UserServices/services/idp/SingleLogout/',
+    ),
+    1 =>
+    array (
+      'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+      'Location' => 'https://spid.intesa.it/Time4UserServices/services/idp/SingleLogout',
+    ),
+  ),
+    'ArtifactResolutionService' =>
+    array (
+    ),
+    'NameIDFormats' =>
+    array (
+      0 => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
+    ),
+    'keys' =>
+    array (
+      0 =>
+      array (
+        'encryption' => false,
+        'signing' => true,
+        'type' => 'X509Certificate',
+        'X509Certificate' => 'MIIEDjCCAvagAwIBAgIIIT1A+ywbIQAwDQYJKoZIhvcNAQELBQAwXjEzMDEGA1UE
+        AwwqSU4uVEUuUy5BLiBTLnAuQSAtIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MRow
+        GAYDVQQKDBFJTi5URS5TLkEuIFMucC5BLjELMAkGA1UEBhMCSVQwHhcNMTcwOTE1
+        MTMyMzQ1WhcNMzYwNzAxMTk1OTAwWjBQMSUwDwYDVQQuEwgyMDA3OTc5NzASBgNV
+        BAMMC1NBTUwgU2lnbmVyMRowGAYDVQQKDBFJTi5URS5TLkEuIFMucC5BLjELMAkG
+        A1UEBhMCSVQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDhYXkP+eQB
+        URgmslDXBjG0ad+DkSAkWt7hUoaTyiK0e34QiyArq043plqTrt+6FzTGeX7960Qr
+        3tCLGCiVOi47QuE09IKfJmKGEaUQnJQehHYZs/XV0OYQl18WrCxUX6ALOcqPs+4y
+        pCbJV1WzSosfBcPBzivJER8kvrynMXI3or18e9XPTGBn8qNFyNF1E3BJ5UhrDvk5
+        W2gKyYKz0M/CIu9PiHuO/ne6HbeNrCS/xzXtjsTusk41AOxIQoFbEzS08xcRY+QD
+        E8oLcAmecSjT3xv3r9dWke6KTTAahS3K+5mOYRcBXj2FFegiUp+xh4OAWdH1+gGD
+        Ym+3aAmMpaLtAgMBAAGjgd0wgdowHQYDVR0OBBYEFEw9xWg4qvQGdlGMCqmJcVDg
+        dE8aMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUySnWJ2sw0ljDpJVrtrxCCP0b
+        1CYwGgYDVR0QBBMwEYAPMjAxNzA5MTUxMzIzNDVaMD8GA1UdHwQ4MDYwNKAyoDCG
+        Lmh0dHA6Ly9lLXRydXN0Y29tLmludGVzYS5pdC9DUkwvSU5URVNBX25DQS5jcmww
+        DgYDVR0PAQH/BAQDAgSwMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDAN
+        BgkqhkiG9w0BAQsFAAOCAQEAVRHyFRZZFpW/qjJpKftd86h3wOdUqOhc2W8ZHv0s
+        t8ptG+mZk3l1iWAsEPqKMIBhksgTvalnHC1lHUt11xsZ2mzUjVpiG8XiWXYXQnY2
+        D+q7Dc4n20kJ717qf4SDN8wX1A6XvT3Wrsfh87vg3ZFD56/eyur2snWu4OilsFqA
+        yLhnExG4puJ4JKBWnlwAGXD9SFgkSZ8FC66KQs6CAwVkvCIom3IwJeU/VrYQF6XH
+        kVCQgr5mojXgCkrlRNl53WAKfQHCT4QH+oQVP97PCEL/wQ1zi0UzWauKT6u2wDym9rcpch+WLa0GUtYNhuoLU2SregPKwTWg2DfINJObyWRpww==',
+      ),
+    ),
+  );
+  /*FINE intesa PROD*/

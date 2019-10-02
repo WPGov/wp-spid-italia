@@ -3,7 +3,7 @@
 Plugin Name: WP SPID Italia
 Description: SPID - Sistema Pubblico di Identità Digitale
 Author: Marco Milesi
-Version: 1.3.2
+Version: 1.4
 Author URI: http://www.marcomilesi.ml
 */
 
@@ -98,6 +98,9 @@ add_filter( 'login_message', function( $message ) {
     if ( isset($_GET['SimpleSAML_Auth_State_exceptionId']) ) {
         echo '<div id="login_error"><b>ERRORE</b>: login SPID non riuscito. Riprova tra qualche istante.</div>';
     }
+    if ( isset($_GET['spid']) && $_GET['spid'] == "nouser" ) {
+        echo '<div id="login_error"><b>ERRORE</b>: non è stata trovata alcuna utenza associata all\'indirizzo email o codice fiscale di SPID</div>';
+    }
     require_once( SPID__LIB_DIR . '/lib/_autoload.php');
 
     $auth = new SimpleSAML_Auth_Simple( 'default-sp' );
@@ -122,8 +125,8 @@ add_filter( 'login_message', function( $message ) {
             $options['saml:idp'] = $_REQUEST['lepida_id'];
         } elseif ((isset($_REQUEST['intesa_id']) && $_REQUEST['intesa_id'])) {
             $options['saml:idp'] = $_REQUEST['intesa_id'];
-        } elseif ((isset($_REQUEST['govtest_id']) && $_REQUEST['govtest_id'])) {
-            $options['saml:idp'] = $_REQUEST['govtest_id'];
+        } elseif ((isset($_REQUEST['test_id']) && $_REQUEST['test_id'])) {
+            $options['saml:idp'] = $_REQUEST['test_id'];
         } else {
             echo '<b>ERRORE</b>';
         }
@@ -167,7 +170,7 @@ add_filter( 'login_message', function( $message ) {
             wp_safe_redirect( user_admin_url() );
             exit();
         } else {
-            $auth->logout( get_home_url() );
+            $auth->logout( add_query_arg( 'spid', 'nouser', wp_login_url() ) );
             exit();
         }
 
@@ -214,9 +217,9 @@ add_filter( 'login_message', function( $message ) {
     $aruba_id = 'https://loginspid.aruba.it';
 	$namirial_id = 'https://idp.namirialtsp.com/idp';
     $register_id = 'https://spid.register.it';
-    $lepida_id = 'https://id.lepida.it/';
-    $intesa_id = 'https://spid.intesa.it/';
-    $test_id = 'https://idptest.spid.gov.it/sso';
+    $lepida_id = 'https://id.lepida.it/idp/shibboleth';
+    $intesa_id = 'https://spid.intesa.it';
+    $test_id = 'https://idptest.spid.gov.it';
 
   $formaction = $auth->getLoginURL();
     ?>

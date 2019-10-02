@@ -1,9 +1,10 @@
 <div class="feature-section one-col">
   <div class="col">
-    <h2>Sistema Pubblico di Identità Digitale</h2>
+    <h2>Powered by <a href="https://www.wpgov.it/" title="WPGov">WPGov.it</a></h2>
     <p class="lead-description">
-    La soluzione che ti permette di accedere a tutti i servizi online della Pubblica Amministrazione con un'unica Identità Digitale (username e password) utilizzabile da computer, tablet e smartphone.
-    </p>
+	Servizi e soluzioni per privati, aziende e pubbliche amministrazioni<br>grazie a un'esperienza di sviluppo su WordPress dal 2011
+    <br>
+	<a href="https://www.wpgov.it/servizi/">Servizi</a> &bull; <a href="https://www.wpgov.it/category/news/">Blog</a> &bull; <a href="https://www.wpgov.it/contatti/">Contatti</a></p>
   </div>
 </div>
 <div class="changelog">

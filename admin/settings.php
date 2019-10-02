@@ -18,11 +18,11 @@ function spid_get_tabs( $id ) {
       break;
   }
   $r = '<h2 class="nav-tab-wrapper wp-clearfix">
-    <a href="?page=spid_menu" class="nav-tab'.$id0.'">Benvenuto</a>
+    <a href="?page=spid_menu" class="nav-tab'.$id0.'">Home</a>
     <a href="?page=spid_menu&spid_action=make" class="nav-tab'.$id1.'">Configurazione</a>
     <a href="?page=spid_menu&spid_action=param" class="nav-tab'.$id2.'">Verifica</a>
     <a href="?page=spid_menu&spid_action=option" class="nav-tab'.$id3.'">Impostazioni</a>
-    <a href="'.SPID__LIB_URL.'" class="nav-tab dashicons-before dashicons-welcome-widgets-menus" title="SimpleSaml Login"> </a>
+    <a href="'.SPID__LIB_URL.'" class="nav-tab dashicons-before dashicons-welcome-widgets-menus" title="SimpleSaml Login"> SimpleSaml</a>
   </h2>';
   return $r;
 }
@@ -38,8 +38,13 @@ function spid_menu_func() {
   } );
 
   echo '
-  <div class="wrap about-wrap">
-  <a href="?page=spid_menu"><img src="'.plugins_url( '../img/spid-logo-wp.png', __FILE__ ).'" width="300px" style="padding:20px;" /></a>';
+
+  <div id="welcome-panel" class="welcome-panel" style="text-align: center; padding: 30px;">
+    <a href="?page=spid_menu"><img src="'.plugins_url( '../img/spid-logo-wp.png', __FILE__ ).'" width="200px" style="padding:20px;" /></a>
+    <h2>Benvenuto in SPID | Sistema Pubblico di Identità Digitale</h2>
+	  <p class="about-description">La soluzione che ti permette di accedere a tutti i servizi online della Pubblica Amministrazione con un\'unica Identità Digitale (username e password) utilizzabile da computer, tablet e smartphone.</p>
+	</div>
+  <div class="wrap about-wrap">';
     
   if ( is_file (SPID__CERT_DIR.'/saml.pem') ) {
     if ( !spid_option('enabled') ) {

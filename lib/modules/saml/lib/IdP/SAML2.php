@@ -383,7 +383,7 @@ class sspmod_saml_IdP_SAML2 {
 			'saml:ConsumerURL' => $acsEndpoint['Location'],
 			'saml:Binding' => $acsEndpoint['Binding'],
 			'saml:NameIDFormat' => $nameIDFormat,
-			'saml:AllowCreate' => FALSE,
+			'saml:AllowCreate' => $allowCreate,
 			'saml:Extensions' => $extensions,
 			'saml:AuthnRequestReceivedAt' => microtime(TRUE),
 			'saml:RequestedAuthnContext' => $authnContext,

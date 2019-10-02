@@ -95,8 +95,8 @@ $config = array(
      * also as the technical contact in generated metadata.
      */
     // CHG commented out next 2 lines
-    //'technicalcontact_name' => 'Direttore SGA',
-    //'technicalcontact_email' => '@emailAddress',
+    'technicalcontact_name' => 'Direttore SGA',
+    'technicalcontact_email' => '@emailAddress',
 
     /*
      * The timezone of the server. This option should be set to the timezone you want
@@ -260,8 +260,8 @@ $config = array(
      * one of the functionalities below, but in some cases you could run multiple functionalities.
      * In example when you are setting up a federation bridge.
      */
-    'enable.saml20-idp' => false,
-    'enable.shib13-idp' => false,
+    'enable.saml20-idp' => true,
+    'enable.shib13-idp' => true,
     'enable.adfs-idp' => false,
     'enable.wsfed-sp' => false,
     'enable.authmemcookie' => false,
