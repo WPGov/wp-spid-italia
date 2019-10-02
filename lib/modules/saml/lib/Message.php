@@ -430,7 +430,7 @@ class sspmod_saml_Message {
 		$nameIdPolicy_cf = SimpleSAML_Configuration::loadFromArray($nameIdPolicy);
 		$policy = array(
 			'Format' => $nameIdPolicy_cf->getString('Format', \SAML2\Constants::NAMEID_TRANSIENT),
-			'AllowCreate' => $nameIdPolicy_cf->getBoolean('AllowCreate', true),
+			'AllowCreate' => $nameIdPolicy_cf->getBoolean('AllowCreate', TRUE),
 		);
 		$spNameQualifier = $nameIdPolicy_cf->getString('SPNameQualifier', false);
 		if ($spNameQualifier !== false) {
@@ -458,7 +458,7 @@ class sspmod_saml_Message {
 		$ar->setIssuer($issuer);
 		/*COMUNE DI FIRENZE*/
 
-                
+
 		$ar->setAssertionConsumerServiceIndex($spMetadata->getInteger('AssertionConsumerServiceIndex', NULL));
 		$ar->setAttributeConsumingServiceIndex($spMetadata->getInteger('AttributeConsumingServiceIndex', NULL));
 

@@ -58,7 +58,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$this->entityId = $this->metadata->getString('entityID');
 		$this->idp = $this->metadata->getString('idp', NULL);
 		$this->discoURL = $this->metadata->getString('discoURL', NULL);
-		
+
 		if (empty($this->discoURL) && SimpleSAML\Module::isModuleEnabled('discojuice')) {
 			$this->discoURL = SimpleSAML\Module::getModuleURL('discojuice/central.php');
 		}
@@ -179,7 +179,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 	 * @param array $state  The state array for the current authentication.
 	 */
 	private function startSSO2(SimpleSAML_Configuration $idpMetadata, array $state) {
-	
+
 		if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] < 0) {
 			SimpleSAML_Auth_State::throwException(
 				$state,
@@ -228,7 +228,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			if (is_string($state['saml:NameIDPolicy'])) {
 				$policy = array(
 					'Format' => (string)$state['saml:NameIDPolicy'],
-					'AllowCreate' => TRUE,
+					'AllowCreate' => FALSE,
 				);
 			} elseif (is_array($state['saml:NameIDPolicy'])) {
 				$policy = $state['saml:NameIDPolicy'];
@@ -243,11 +243,11 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		} else {
 			$IDPList = array();
 		}
-		
-		$ar->setIDPList(array_unique(array_merge($this->metadata->getArray('IDPList', array()), 
+
+		$ar->setIDPList(array_unique(array_merge($this->metadata->getArray('IDPList', array()),
 												$idpMetadata->getArray('IDPList', array()),
 												(array) $IDPList)));
-		
+
 		if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] !== null) {
 			$ar->setProxyCount($state['saml:ProxyCount']);
 		} elseif ($idpMetadata->getInteger('ProxyCount', null) !== null) {
@@ -255,18 +255,18 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		} elseif ($this->metadata->getInteger('ProxyCount', null) !== null) {
 			$ar->setProxyCount($this->metadata->getInteger('ProxyCount', null));
 		}
-		
+
 		$requesterID = array();
 		if (isset($state['saml:RequesterID'])) {
 			$requesterID = $state['saml:RequesterID'];
 		}
-		
+
 		if (isset($state['core:SP'])) {
 			$requesterID[] = $state['core:SP'];
 		}
-		
+
 		$ar->setRequesterID($requesterID);
-		
+
 		if (isset($state['saml:Extensions'])) {
 			$ar->setExtensions($state['saml:Extensions']);
 		}
@@ -359,13 +359,13 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		}
 
 		$returnTo = SimpleSAML\Module::getModuleURL('saml/sp/discoresp.php', array('AuthID' => $id));
-		
+
 		$params = array(
 			'entityID' => $this->entityId,
 			'return' => $returnTo,
 			'returnIDParam' => 'idpentityid'
 		);
-		
+
 		if(isset($state['saml:IDPList'])) {
 			$params['IDPList'] = $state['saml:IDPList'];
 		}
@@ -683,7 +683,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		assert('is_string($idp)');
 		assert('array_key_exists("LogoutState", $state)');
 		assert('array_key_exists("saml:logout:Type", $state["LogoutState"])');
-		
+
 		$idpMetadata = $this->getIdpMetadata($idp);
 
 		$spMetadataArray = $this->metadata->toArray();
