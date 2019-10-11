@@ -1,7 +1,7 @@
 <?php
-/* 
+/*
  * The configuration of SimpleSAMLphp
- * 
+ *
  */
 
 $config = array(
@@ -95,7 +95,7 @@ $config = array(
      * also as the technical contact in generated metadata.
      */
     // CHG commented out next 2 lines
-    'technicalcontact_name' => 'Direttore SGA',
+    //'technicalcontact_name' => 'Direttore SGA',
     'technicalcontact_email' => '@emailAddress',
 
     /*
@@ -680,7 +680,7 @@ $config = array(
      * (This option replaces the old 'session.handler'-option.)
      */
     'store.type'                    => 'sql',
-    
+
     /*
      * The DSN the sql datastore should connect to.
      *
@@ -842,6 +842,6 @@ $config = array(
      *   'trusted.url.domains' => array('sp.example.com', 'app.example.com'),
      */
     'trusted.url.domains' => array(),
-); 
- 
+);
+
 

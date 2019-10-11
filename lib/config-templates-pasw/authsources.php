@@ -74,11 +74,13 @@ $config = array(
         'AuthnContextComparison' => 'minimum',
 
         /*Per autenticazione superiori a SPID Livello 1 occorre specificare 'ForceAuthn' => true */
-        'ForceAuthn' => true,
+        'ForceAuthn' => false,
 	 // CHG added next 2 lines
         'NameIDPolicy' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
         'WantAssertionsSigned' => true,
 
+
+        'AssertionConsumerServiceIndex' => 0,
         'AttributeConsumingServiceIndex' => 0,
         'signature.algorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
         'metadata.sign.enable' => true,
@@ -124,7 +126,7 @@ $config = array(
 #            'address', // domicilio fisico
 #            'digitalAddress' // Indirizzo casella PEC
             'email', // email
-#           'mobilePhone', // cellulare
+            'mobilePhone', // cellulare
         ),
 
         'acs.Bindings' => array('urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'),
