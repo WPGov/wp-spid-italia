@@ -9,7 +9,9 @@ Plugin WordPress per l'interfacciamento con il Sistema Pubblico di Identità Dig
 * Documentazione: https://github.com/WPGov/wp-spid-italia/wiki
 
 ### Credits
-Pacchetto sviluppato da **Marco Milesi** nell'ambito del progetto [WPGov.it - WordPress per la Pubblica Amministrazione](https://wpgov.it/)
+Sviluppato da **Marco Milesi** nell'ambito del progetto [WPGov.it - WordPress per la Pubblica Amministrazione](https://wpgov.it/)
+
+[www.marcomilesi.com](https://www.marcomilesi.com)
 
 ### Ringraziamenti
 * **Italian Linux Society** per il contributo economico

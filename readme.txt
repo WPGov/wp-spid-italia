@@ -3,8 +3,8 @@ Contributors: Milmor
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=F2JK36SCXKTE2
 Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubblico di identità digitale, wpgov, marco, milesi, marco milesi
 Requires at least: 4.8
-Tested up to: 4.9
-Version: 1.4
+Tested up to: 5.3
+Version: 1.5
 Stable tag: trunk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -50,6 +50,10 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 == Changelog ==
 > Questa è la lista completa di tutti gli aggiornamenti, test e correzioni.
 > Ogni volta che una nuova versione viene rilasciata assicuratevi di aggiornare il prima possibile per usufruire delle ultime migliorie!
+
+= Versione 1.5 09/10/2019 =
+* **Fixed** SAML component security issue, xmlseclibs from 2.0.1 to 2.1.1
+* Minor improvements
 
 = Versione 1.4 11/09/2018 =
 * **Aggiunto** messaggio di errore in caso di utente non riconosciuto (email/CF mancanti in WordPress)

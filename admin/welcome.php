@@ -35,7 +35,7 @@
 <h3 class="wp-people-group">Credits</h3>
 <ul class="wp-people-group " id="wp-people-group-project-leaders">
 <li class="wp-person">
-<a href="https://marcomilesi.ml" class="web"><img src="https://www.gravatar.com/avatar/c70b8e378aa035f77ab7a3ddee83b892" class="gravatar" alt="">
+<a href="https://www.marcomilesi.com" class="web"><img src="https://www.gravatar.com/avatar/c70b8e378aa035f77ab7a3ddee83b892" class="gravatar" alt="">
 Marco Milesi</a>
 <span class="title">Sviluppatore</span>
 </li>
