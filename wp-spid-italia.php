@@ -3,7 +3,7 @@
 Plugin Name: WP SPID Italia
 Description: SPID - Sistema Pubblico di Identità Digitale
 Author: Marco Milesi
-Version: 1.3.2
+Version: 1.4
 Author URI: http://www.marcomilesi.ml
 */
 
@@ -98,6 +98,9 @@ add_filter( 'login_message', function( $message ) {
     if ( isset($_GET['SimpleSAML_Auth_State_exceptionId']) ) {
         echo '<div id="login_error"><b>ERRORE</b>: login SPID non riuscito. Riprova tra qualche istante.</div>';
     }
+    if ( isset($_GET['spid']) && $_GET['spid'] == "nouser" ) {
+        echo '<div id="login_error"><b>ERRORE</b>: non è stata trovata alcuna utenza associata all\'indirizzo email o codice fiscale di SPID</div>';
+    }
     require_once( SPID__LIB_DIR . '/lib/_autoload.php');
 
     $auth = new SimpleSAML_Auth_Simple( 'default-sp' );
@@ -161,7 +164,7 @@ add_filter( 'login_message', function( $message ) {
             wp_safe_redirect( user_admin_url() );
             exit();
         } else {
-            $auth->logout( get_home_url() );
+            $auth->logout( add_query_arg( 'spid', 'nouser', wp_login_url() ) );
             exit();
         }
 
