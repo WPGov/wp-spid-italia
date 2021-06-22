@@ -3,8 +3,9 @@ Contributors: Milmor
 Donate link: https://www.paypal.me/milesimarco
 Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubblico di identità digitale, wpgov, marco, milesi, marco milesi
 Requires at least: 4.8
-Tested up to: 5.8
-Version: 1.5.4
+Requires PHP: 7
+Tested up to: 5.9
+Version: 2.0.BETA
 Stable tag: trunk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -47,19 +48,15 @@ https://www.youtube.com/watch?v=w1jf8GgF1OQ
 https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
-> Questa è la lista completa di tutti gli aggiornamenti, test e correzioni.
-> Ogni volta che una nuova versione viene rilasciata assicuratevi di aggiornare il prima possibile per usufruire delle ultime migliorie!
+> Always backup your data before proceed!
 
-= 1.5.4 - 20210515 **WARNING / ATTENZIONE** =
-* **ATTENZIONE: nei prossimi giorni sarà rilasciata una importante major release per aderire agli ultimi standard AGID con importanti modifiche tecniche e grafiche.
-* Si invita già da ora a **effettuare il backup della cartella wp-contents/spid e wp-contents/plugins/wp-spid-italia** in modo da poter ripristinare eventuali configurazioni pregresse.
-* **Compatibility** check
+= 2.0 =
+* **Improved** graphic design
+* **Improved** login error handling with WP standards
 
-= 1.5.3 - 20210406 =
-* **ATTENZIONE: nei prossimi giorni sarà rilasciata una importante major release a questo plugin, essenziale per aderire agli ultimi standard AGID.
-* Si invita già da ora a effettuare il backup della cartella wp-contents/spid e wp-contents/plugins/wp-spid-italia in modo da poter ripristinare eventuali configurazioni pregresse.
-* **Compatibility** check
-* Minor changes
+* Changed level type due to AGID corrige 'AuthnContextClassRef' => array( 'https://www.spid.gov.it/SpidL1' )
+* Removed AllowCreate parameter, as requested by AGID - lib\modules\saml\lib\Auth\Source\SP.php
+* RelayState change to encoded aes-265 - lib\vendor\simplesamlphp\saml2\src\SAML2\HTTPArtifact.php
 
 = 1.5.2 - 20200926 =
 * **Compatibility** check
