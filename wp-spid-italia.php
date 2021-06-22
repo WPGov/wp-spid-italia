@@ -3,42 +3,11 @@
 Plugin Name: WP SPID Italia
 Description: SPID - Sistema Pubblico di Identità Digitale
 Author: Marco Milesi
-Version: 1.5
+Version: 2.0-BETA
 Author URI: http://www.marcomilesi.com
 */
 
 include( plugin_dir_path( __FILE__ ) . 'constants.php');
-
-register_activation_hook( __FILE__, function(){
-
-    $dir = array(
-        SPID__PERM_DIR,
-        SPID__CONFIG_DIR,
-        SPID__CERT_DIR,
-        SPID__TEMP_DIR,
-        SPID__DATA_DIR,
-        SPID__LOG_DIR
-    );
-
-    foreach ($dir as $value) {
-        if ( !is_dir( $value ) && !mkdir( $value, 0755, false)) {
-            die('Errore durante la creazione della directory <b>'.$value.'</b>!<br>
-            Verificare che la directory sia scrivibile, provare a riattivare il plugin o crearla manualmente.');
-        }
-    }
-
-    if ( !file_exists( SPID__PERM_DIR . '/.htaccess' ) && !copy( SPID__LIB_DIR . '/.htaccess', SPID__PERM_DIR . '/.htaccess') ) {
-        die('Cannot write .htaccess...');
-    }
-
-    if ( !file_exists( SPID__CONFIG_DIR . '/config.php' ) && !copy( SPID__LIB_DIR . '/config-templates-pasw/config.php', SPID__CONFIG_DIR . '/config.php') ) {
-        die('Cannot write config.php...');
-    }
-
-    if ( !file_exists( SPID__CONFIG_DIR . '/authsources.php' ) && !copy( SPID__LIB_DIR . '/config-templates-pasw/authsources.php', SPID__CONFIG_DIR . '/authsources.php') ) {
-        die('Cannot write authsources.php...');
-    }
-});
 
 add_action( 'admin_menu', function() {
   add_submenu_page(
@@ -58,29 +27,6 @@ add_action( 'admin_init', function() {
     }
 });
 
-add_action( 'init', function() {
-
-  if (isset($_GET)) {
-    if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'logout') {
-
-            if ( !is_file (SPID__CERT_DIR.'/saml.pem') || !spid_option('enabled') ) {
-                return;
-            }
-            
-            require_once( SPID__LIB_DIR . '/lib/_autoload.php');
-            
-            $auth = new SimpleSAML_Auth_Simple( 'default-sp' );
-        
-            if ( $auth->isAuthenticated() ) {
-                $auth->logout();
-            }
-        }
-    }
-}
-
-});
-
 include( plugin_dir_path( __FILE__ ) . 'user.php');
 
 add_filter( 'plugin_action_links_'.plugin_basename( __FILE__ ), function( $links ) {
@@ -89,164 +35,255 @@ add_filter( 'plugin_action_links_'.plugin_basename( __FILE__ ), function( $links
   	return $links;
 } );
 
-add_filter( 'login_message', function( $message ) {
+add_filter('wp_login_errors', function($errors) {
+    if ( isset($_GET['SimpleSAML_Auth_State_exceptionId']) ) {
+        $errors->add('access', 'Login SPID non riuscito. Riprova tra qualche istante.');
+    } else if ( isset($_GET['spid']) && $_GET['spid'] ) {
+        $errors->add('access', 'Non è stata trovata alcuna utenza associata all\'indirizzo email o codice fiscale di SPID');
+    }
+    return $errors;
+} );
+  
+add_action( 'init', function() {
+    if ( session_status() == PHP_SESSION_NONE ) {
+        session_start();
+    }
+} );
 
-    if ( !is_file (SPID__CERT_DIR.'/saml.pem') || !spid_option('enabled') ) {
+add_action( 'login_form', function() {
+
+    if ( !is_spid_enabled() ) {
         return;
     }
+
+    $site_name = get_bloginfo( 'name' );
+		if ( ! $site_name ) {
+			$site_name = get_bloginfo( 'url' );
+		}
+
+		$display_name = ! empty( $_COOKIE[ 'spid_sso_wpcom_name_' . COOKIEHASH ] )
+			? $_COOKIE[ 'spid_sso_wpcom_name_' . COOKIEHASH ]
+			: false;
+		$gravatar = ! empty( $_COOKIE[ 'spid_sso_wpcom_gravatar_' . COOKIEHASH ] )
+			? $_COOKIE[ 'spid_sso_wpcom_gravatar_' . COOKIEHASH ]
+			: false;
+
+		?>
+		<div id="spid-sso-wrap">
+			<?php
+
+				if ( $display_name && $gravatar ) : ?>
+				<div id="spid-sso-wrap__user">
+					<img width="72" height="72" src="<?php echo esc_html( $gravatar ); ?>" />
+
+					<h2>
+						<?php
+							echo wp_kses(
+								sprintf( __( 'Log in as <span>%s</span>', 'spid' ), esc_html( $display_name ) ),
+								array( 'span' => true )
+							);
+						?>
+					</h2>
+				</div>
+
+			<?php endif; ?>
+
+
+    <div id="spid-sso-wrap__action">
+        <p>
     
-    if ( isset($_GET['SimpleSAML_Auth_State_exceptionId']) ) {
-        echo '<div id="login_error"><b>ERRORE</b>: login SPID non riuscito. Riprova tra qualche istante.</div>';
-    }
-    if ( isset($_GET['spid']) && $_GET['spid'] == "nouser" ) {
-        echo '<div id="login_error"><b>ERRORE</b>: non è stata trovata alcuna utenza associata all\'indirizzo email o codice fiscale di SPID</div>';
-    }
-    require_once( SPID__LIB_DIR . '/lib/_autoload.php');
-
-    $auth = new SimpleSAML_Auth_Simple( 'default-sp' );
-    $_simplesamlphp_auth_saml_attributes = $auth->getAttributes();
-
-    if ( isset( $_GET['saml_login'] ) && $_GET['saml_login'] == 'spid' ) {
-        if ((isset($_REQUEST['infocert_id']) && $_REQUEST['infocert_id'])) {
-            $options['saml:idp'] = $_REQUEST['infocert_id'];
-        } elseif ((isset($_REQUEST['poste_id']) && $_REQUEST['poste_id'])) {
-            $options['saml:idp'] = $_REQUEST['poste_id'];
-        } elseif ((isset($_REQUEST['tim_id']) && $_REQUEST['tim_id'])) {
-            $options['saml:idp'] = $_REQUEST['tim_id'];
-        } elseif ((isset($_REQUEST['sielte_id']) && $_REQUEST['sielte_id'])) {
-            $options['saml:idp'] = $_REQUEST['sielte_id'];
-        } elseif ((isset($_REQUEST['aruba_id']) && $_REQUEST['aruba_id'])) {
-            $options['saml:idp'] = $_REQUEST['aruba_id'];
-        } elseif ((isset($_REQUEST['namirial_id']) && $_REQUEST['namirial_id'])) {
-            $options['saml:idp'] = $_REQUEST['namirial_id'];
-        } elseif ((isset($_REQUEST['register_id']) && $_REQUEST['register_id'])) {
-            $options['saml:idp'] = $_REQUEST['register_id'];
-        } else {
-            echo '<b>ERRORE</b>';
-        }
-    
-        if ( is_user_logged_in() ) {
-            wp_logout();
-        }
-
-        //$options['saml:AuthnContextClassRef'] = 'https://www.spid.gov.it/SpidL1';
-        $options['samlp:RequestedAuthnContext'] = array("Comparison" => "minimum");
-        $options['ErrorURL'] = wp_login_url();
-        $auth->requireAuth( $options );
-    }
-
-    if ( $auth->isAuthenticated() ) {
-        $attributes = $auth->getAttributes();
-        $name = $attributes['email'][0];    
-        $user = get_user_by( 'email', $attributes['email'][0] );
-        $cf = str_replace( 'TINIT-', '', $attributes['fiscalNumber'][0]);
-        
-        if ( empty( $user ) ) {
-            $user = reset(
-                get_users(
-                 array(
-                  'meta_key' => 'codice_fiscale',
-                  'meta_value' => $cf,
-                  'number' => 1,
-                  'count_total' => false,
-                 )
-                )
-            );
-        }
-
-        if ( !is_wp_error( $user ) && !empty( $user ) ) {
-            update_user_meta( $user->ID, 'spid_attributes', $attributes);
-            update_user_meta( $user->ID, 'codice_fiscale', $cf);
-            wp_clear_auth_cookie();
-            wp_set_current_user ( $user->ID );
-            wp_set_auth_cookie  ( $user->ID );
-        
-            wp_safe_redirect( user_admin_url() );
-            exit();
-        } else {
-            $auth->logout( add_query_arg( 'spid', 'nouser', wp_login_url() ) );
-            exit();
-        }
-
-    }
-
+    <?php
+                            
     $plugin_dir = plugin_dir_url( __FILE__ );
     $spid_ico_circle_svg = $plugin_dir . '/img/spid-ico-circle-bb.svg';
     $spid_ico_circle_png = $plugin_dir . '/img/spid-ico-circle-bb.png';
 
-    $spid_idp_infocert_svg =  $plugin_dir . '/img/spid-idp-infocertid.svg';
-    $spid_idp_infocert_png = $plugin_dir . '/img/spid-idp-infocertid.png';
+    if ( spid_option('enable_validator') ) {
+        $provider = array(
+            array(
+                'SPID validator',
+                'https://validator.spid.gov.it',
+                'test',
+                0
+            )
+        );
+        $provider[] = array( 'SPID Local', 'http://localhost:8088', 'localhost', 'local' );
+        $provider[] = array( 'SPID TEST', 'https://idptest.spid.gov.it/', 'idptest', 'test' );
+    } else {
+        $provider = null;
+    }
+    $shuffle = array();
+    $shuffle[] = array( 'Infocert ID', 'https://identity.infocert.it', 'infocertid', 1 );
+    $shuffle[] = array( 'Tim ID', 'https://login.id.tim.it/affwebservices/public/saml2sso', 'timid', 3 );
+    $shuffle[] = array( 'Poste ID', 'https://posteid.poste.it', 'posteid', 2 );
+    $shuffle[] = array( 'Sielte ID', 'https://identity.sieltecloud.it', 'sielteid', 4 );
+    $shuffle[] = array( 'Aruba ID', 'https://loginspid.aruba.it', 'arubaid', 5 );
+    $shuffle[] = array( 'Namirial ID', 'https://idp.namirialtsp.com/idp', 'namirialid', 6 );
+    $shuffle[] = array( 'SpidItalia ID', 'https://spid.register.it', 'spiditalia', 7 );
+    $shuffle[] = array( 'Intesa ID', 'https://spid.intesa.it', 'intesaid', 8 );
+    $shuffle[] = array( 'Lepida ID', 'https://id.lepida.it/idp/shibboleth', 'lepidaid', 9 );
+    shuffle( $shuffle );
+    $provider = array_merge( $provider, $shuffle );
 
-    $spid_idp_timid_svg = $plugin_dir . '/img/spid-idp-timid.svg';
-    $spid_idp_timid_png = $plugin_dir . '/img/spid-idp-timid.png';
 
-    $spid_idp_posteid_svg = $plugin_dir . '/img/spid-idp-posteid.svg';
-    $spid_idp_posteid_png = $plugin_dir . '/img/spid-idp-posteid.png';
-
-    $spid_idp_sielteid_svg = $plugin_dir . '/img/spid-idp-sielteid.svg';
-    $spid_idp_sielteid_png = $plugin_dir . '/img/spid-idp-sielteid.png';
-
-    $spid_idp_arubaid_svg = $plugin_dir . '/img/spid-idp-arubaid.svg';
-    $spid_idp_arubaid_png = $plugin_dir . '/img/spid-idp-arubaid.png';
-
-    $spid_idp_namirialid_svg = $plugin_dir . '/img/spid-idp-namirialid.svg';
-    $spid_idp_namirialid_png = $plugin_dir . '/img/spid-idp-namirialid.png';
-
-    $spid_idp_registerid_svg = $plugin_dir . '/img/spid-idp-spiditalia.svg';
-    $spid_idp_registerid_png = $plugin_dir . '/img/spid-idp-spiditalia.png';
-
-    $infocert_id = 'https://identity.infocert.it';
-    $poste_id = 'https://posteid.poste.it';
-    $tim_id = 'https://login.id.tim.it/affwebservices/public/saml2sso';
-    $sielte_id = 'https://identity.sieltecloud.it';
-    $aruba_id = 'https://loginspid.aruba.it';
-	$namirial_id = 'https://idp.namirialtsp.com/idp';
-	$register_id = 'https://spid.register.it';
-
-  $formaction = $auth->getLoginURL();
+    echo '<div style="text-align:center;">';
+    foreach ( $provider as $p ) {
+        echo '<a href="?spid_sso=in&spid_idp='.$p[3].'" alt="'.$p[0].'"><img class="spid-provider" src="'.$plugin_dir.'img/idp/spid-idp-'.$p[2].'.svg" alt="'.$p[0].'" />';
+    }
+    echo '</div>';
     ?>
+    <div style="margin-top:30px;text-align:center;">
+        <a href="http://www.spid.gov.it/#registrati">Non hai SPID?</a> &bull; <a href="http://www.spid.gov.it">Maggiori info</a>
+    </div>
+	</p>
+        </div>
+        <div class="spid-sso-or">
+            <span>OPPURE</span>
+        </div>
+
+        <a href="<?php echo esc_url( add_query_arg( 'spid-sso-show-default-form', '1' ) ); ?>" class="spid-sso-toggle wpcom">
+            <?php esc_html_e( 'Log in with username and password', 'spid' ); ?>
+        </a>
+        <div class="spid-sso-toggle default">
+            <?php echo spid_get_button(); ?>
+        </div>
+    </div>
+<?php
+} );
+
+
+add_action( 'init', function() {
+    if ( isset( $_GET['spid_metadata'] ) && $_GET['spid_metadata'] == spid_get_metadata_token()  ) {
+		header( 'Content-type: text/xml' );
+        $sp = spid_load();
+        echo $sp->getSPMetadata();
+        die();
+    }
+} );
+
+function spid_get_metadata_url() {
+    return add_query_arg( 'spid_metadata', spid_get_metadata_token(), get_home_url() );
+}
+
+function spid_get_metadata_token() {
+    //delete_option( 'spid_metadata_token' );
+    $token = get_option( 'spid_metadata_token');
+    if ( !$token ) {
+        update_option( 'spid_metadata_token', substr(str_shuffle(str_repeat($x='0123456789-abcdefghijklmnopqrstuvwxyz', ceil( 15 / strlen($x)) )), 1, 15 ) );
+        $token = get_option( 'spid_metadata_token');
+    }
+    return $token;
+}
+
+add_filter( 'login_message', function( $message ) {
     
-    <form name="spid_idp_access" action="?saml_login=spid" method="post" style="text-align: center;background:none;box-shadow:none;margin: 10px 0;padding: 0;">
-            <a href="#" class="italia-it-button italia-it-button-size-m button-spid" spid-idp-button="#spid-idp-button-small-post" aria-haspopup="true" aria-expanded="false">
-                <span class="italia-it-button-icon"><img src="<?php echo $spid_ico_circle_svg; ?>" onerror="this.src='<?php echo $spid_ico_circle_png; ?>'; this.onerror=null;" alt="" /></span>
-                <span class="italia-it-button-text">Entra con SPID</span>
-            </a>
-            <div id="spid-idp-button-small-post" class="spid-idp-button spid-idp-button-tip spid-idp-button-relative">
-                <ul id="spid-idp-list-small-root-post" class="spid-idp-button-menu" aria-labelledby="spid-idp">
-                    <li class="spid-idp-button-link">
-                        <button class="idp-button-idp-logo" name="infocert_id" type="submit" value="<?php echo $infocert_id; ?>"><span class="spid-sr-only">Infocert ID</span><img class="spid-idp-button-logo" src="<?php echo $spid_idp_infocert_svg; ?>" onerror="this.src='<?php echo $spid_idp_infocert_png; ?>'; this.onerror=null;" alt="Infocert ID" /></button>
-                    </li>
-                    <li class="spid-idp-button-link">
-                        <button class="idp-button-idp-logo" name="poste_id" type="submit" value="<?php echo $poste_id; ?>"><span class="spid-sr-only">Poste ID</span><img class="spid-idp-button-logo" src="<?php echo $spid_idp_posteid_svg; ?>" onerror="this.src='<?php echo $spid_idp_posteid_png; ?>'; this.onerror=null;" alt="Poste ID" /></button>
-                    </li>
-                    <li class="spid-idp-button-link">
-                        <button class="idp-button-idp-logo" name="tim_id" type="submit" value="<?php echo $tim_id; ?>"><span class="spid-sr-only">Tim ID</span><img class="spid-idp-button-logo" src="<?php echo $spid_idp_timid_png; ?>" onerror="this.src='<?php echo $spid_idp_timid_svg; ?>'; this.onerror=null;" alt="Tim ID" /></button>
-                    </li>
-                    <li class="spid-idp-button-link">
-                        <button class="idp-button-idp-logo" name="sielte_id" type="submit" value="<?php echo $sielte_id; ?>"><span class="spid-sr-only">Sielte ID</span><img class="spid-idp-button-logo" src="<?php echo $spid_idp_sielteid_png; ?>" onerror="this.src='<?php echo $spid_idp_sielteid_svg; ?>'; this.onerror=null;" alt="Sielte ID" /></button>
-                    </li>
-                    <li class="spid-idp-button-link">
-                        <button class="idp-button-idp-logo" name="aruba_id" type="submit" value="<?php echo $aruba_id; ?>"><span class="spid-sr-only">Aruba ID</span><img class="spid-idp-button-logo" src="<?php echo $spid_idp_arubaid_png; ?>" onerror="this.src='<?php echo $spid_idp_arubaid_svg; ?>'; this.onerror=null;" alt="Aruba ID" /></button>
-                    </li>
-                    <li class="spid-idp-button-link">
-                        <button class="idp-button-idp-logo" name="namirial_id" type="submit" value="<?php echo $namirial_id; ?>"><span class="spid-sr-only">Namirial ID</span><img class="spid-idp-button-logo" src="<?php echo $spid_idp_namirialid_png; ?>" onerror="this.src='<?php echo $spid_idp_namirialid_svg; ?>'; this.onerror=null;" alt="Namirial ID" /></button>
-                    </li>
-                    <li class="spid-idp-button-link">
-                        <button class="idp-button-idp-logo" name="register_id" type="submit" value="<?php echo $register_id; ?>"><span class="spid-sr-only">SpidItalia ID</span><img class="spid-idp-button-logo" src="<?php echo $spid_idp_registerid_png; ?>" onerror="this.src='<?php echo $spid_idp_registerid_svg; ?>'; this.onerror=null;" alt="SpidItalia ID" /></button>
-                    </li>
-                    <li class="spid-idp-support-link">
-                        <a href="http://www.spid.gov.it">Maggiori info</a>
-                    </li>
-                    <li class="spid-idp-support-link">
-                        <a href="http://www.spid.gov.it/#registrati">Non hai SPID?</a>
-                    </li>
-                <li class="spid-idp-support-link">
-                    <a href="https://www.spid.gov.it/serve-aiuto">Serve aiuto?</a>
-                </li>
-                </ul>
-            </div>
-        </form>
-        <?php
+    if ( WP_DEBUG === true ) {
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+    }
+
+    try {
+        $sp = spid_load();
+        $sp->isAuthenticated();
+    } catch ( Exception  $e) {
+
+        if ( WP_DEBUG === true ) {
+            echo '<br><br><pre><small style="color:yellow;">'.$e->getMessage().'</small></pre>';
+            echo $_SESSION['idpEntityId'];
+        }
+
+        function spid_errors( $errorMsg2 ){
+            $xmlString = isset($_GET['SAMLResponse']) ?
+            gzinflate(base64_decode($_GET['SAMLResponse'])) :
+            base64_decode($_POST['SAMLResponse']);
+            $xmlResp = new \DOMDocument();
+            $xmlResp->loadXML($xmlString);
+            if ( $xmlResp->textContent ) {
+                switch ( $xmlResp->textContent ) {
+                    case stripos( $xmlResp->textContent, 'nr19') !== false:
+                        return '<b>SPID errore 19</b> - Ripetuta sottomissione di credenziali errate';
+                    case stripos( $xmlResp->textContent, 'nr20') !== false:
+                        return '<b>SPID errore 20</b> - Utente privo di credenziali compatibili';
+                    case stripos( $xmlResp->textContent, 'nr21') !== false:
+                        return '<b>SPID errore 21</b> - Timeout';
+                    case stripos( $xmlResp->textContent, 'nr22') !== false:
+                    case stripos( $xmlResp->textContent, 'nr25') !== false:
+                        return '<b>SPID errore 22</b> - Autenticazione annullata';
+                    case stripos( $xmlResp->textContent, 'nr23') !== false:
+                        return '<b>SPID errore 23</b> - Credenziali bloccate';
+                    default: 
+                        return 'Si è verificato un errore durante l\'accesso SPID. Contattare l\'amministratore per maggiori informazioni.';
+                }
+            }
+        }
+        
+        add_filter( 'login_errors', 'spid_errors' );
+        return;
+    }
+
+    if ( isset( $_GET['spid_sso'] ) && $_GET['spid_sso'] == 'out' ) {
+        add_filter( 'login_errors', function() { return 'Disconnesso'; } );
+        $sp->logout( 0, wp_logout_url() );
+        //wp_logout();
+    }
+
+    if ( isset( $_GET['spid_sso'] ) && $_GET['spid_sso'] == 'in' ) {
+        
+        if ( is_user_logged_in() ) {
+            wp_logout();
+        }
+        
+        if ( isset( $_GET['spid_idp'] ) && $_GET['spid_idp'] != '' ) {
+            $assertId = 0; // index of assertion consumer service as per the SP metadata (sp_assertionconsumerservice in settings array)
+            $attrId = 0; // index of attribute consuming service as per the SP metadata (sp_attributeconsumingservice in settings array)
+            $sp->login( 'idp_'.$_GET['spid_idp'], $assertId, $attrId); // Generate the login URL and redirect to the IdP login page
+        } else if ( $sp->isAuthenticated() ) {
+            $attributes = $sp->getAttributes();
+            $name = $attributes['email'][0];    
+            $user = get_user_by( 'email', $attributes['email'] );
+            $cf = str_replace( 'TINIT-', '', $attributes['fiscalNumber']);
+            
+            if ( empty( $user ) ) {
+                $users = get_users(
+                    array(
+                        'meta_key' => 'codice_fiscale',
+                        'meta_value' => $cf,
+                        'number' => 1,
+                        'count_total' => false,
+                    )
+                );
+                if ( !empty( $user ) ) {
+                    $user = reset( $users );
+                }
+            }
+            if ( !is_wp_error( $user ) && !empty( $user ) ) {
+                update_user_meta( $user->ID, 'spid_attributes', $attributes);
+                update_user_meta( $user->ID, 'codice_fiscale', $cf);
+                wp_clear_auth_cookie();
+                wp_set_current_user ( $user->ID );
+                wp_set_auth_cookie  ( $user->ID );
+            
+                wp_safe_redirect( user_admin_url() );
+                exit();
+            } else {
+                #$sp->logout( 0, add_query_arg( 'spid', 'nouser', wp_login_url() ) );
+                //$sp->logout( add_query_arg( 'spid', 'nouser', wp_login_url() ) );
+                echo '<img src="'.plugin_dir_url( __FILE__ ). '/img/spid.jpg" width="100%" />';
+                echo '<style>body { background-color: #0066cb; }</style>';
+                echo '<p style="color:#fff;font-size:1.2em;text-align:center;">';
+                $attributes = $sp->getAttributes();
+                echo 'Gentile '.$attributes['name'].',<br>il tuo account non è abilitato su questo sito.';
+                //echo '<br><br><a class="button button-secondary button-hero" href="'.esc_url( wp_login_url() ).'" alt="Accedi">Accedi</a>';
+                echo '<br><br><a class="button button-secondary button-large" href="'.esc_url( get_site_url() . '/wp-login.php?spid_sso=out' ).'" alt="Logout">Disconnetti SPID</a>';
+                echo '</p>';
+                die();
+                return '<p class="error">' . __( 'SPID | You don\'t have an account on this site', 'wp_spid_italia' ) . '</p>';
+                #exit();
+            }
+        }
+
+    }
 });
 
 add_action( 'login_enqueue_scripts', function() {
@@ -257,12 +294,124 @@ add_action( 'login_enqueue_scripts', function() {
     wp_enqueue_script( 'spid-js', plugins_url( 'js/spid-sp-access-button.min.js', __FILE__ ), array( 'jquery' )  );
 }, 1 );
 
+function is_spid_enabled() {
+    return spid_option('enabled');
+}
+
+function spid_load() {
+    
+    if ( !is_spid_enabled() ) {
+        return false;
+    }
+
+    if ( !is_dir( SPID__PERM_DIR ) ) {
+        mkdir( SPID__PERM_DIR );
+    }
+
+    if ( !is_dir( SPID__CERT_DIR ) ) {
+        mkdir( SPID__CERT_DIR );
+    }
+
+
+    require_once( SPID__LIB_DIR . 'vendor/autoload.php' );
+
+    // ["name", "fiscalNumber", "email", "spidCode", "familyName", "placeOfBirth", "countyOfBirth", "dateOfBirth", "gender", "mobilePhone", "address"]
+
+    return new Italia\Spid\Sp(
+        array(
+            'sp_entityid' => get_site_url(),
+            'sp_key_file' => SPID__CERT_DIR.'sp.key',
+            'sp_cert_file' => SPID__CERT_DIR.'sp.crt',
+            'sp_comparison' => 'minimum', // one of: "exact", "minimum", "better" or "maximum"
+            'sp_assertionconsumerservice' => [
+                get_site_url() . '/wp-login.php?spid_sso=in', // Servizio standard
+            ],
+			'sp_singlelogoutservice'       => [ [ get_site_url() . '/wp-login.php?spid_sso=out', '' ] ],
+            'sp_org_name' => spid_option( 'sp_org_name' ),
+            'sp_org_display_name' => spid_option( 'sp_org_display_name' ),
+            'sp_contact_ipa_code' => spid_option( 'sp_contact_ipa_code' ),
+            //'sp_contact_fiscal_code' => spid_option( 'sp_contact_fiscal_code' ), // Deprecated - Avviso 29
+            'sp_contact_email' => spid_option( 'sp_contact_email' ),
+            'sp_contact_phone' => spid_option( 'sp_contact_phone' ),
+            'sp_key_cert_values' => [ // Optional: remove this if you want to generate .key & .crt files manually
+                'countryName' => spid_option( 'countryName' ),
+                'stateOrProvinceName' => spid_option( 'stateOrProvinceName' ),
+                'localityName' => spid_option( 'localityName' ),
+                'commonName' => spid_option( 'commonName' ),
+                'emailAddress' => spid_option( 'emailAddress' ),
+            ],
+            'idp_metadata_folder' => plugin_dir_path( __FILE__ ) . 'metadata/',
+            'sp_attributeconsumingservice' => [
+                ["name", "fiscalNumber", "email"]
+            ]
+        ), null, true
+    );
+}
+
 function spid_option($name) {
 	$options = get_option('spid');
 	if (isset($options[$name])) {
 		return $options[$name];
 	}
 	return false;
+}
+
+function spid_get_button() {
+    $plugin_dir = plugin_dir_url( __FILE__ );
+    $spid_ico_circle_svg = $plugin_dir . '/img/spid-ico-circle-bb.svg';
+    $spid_ico_circle_png = $plugin_dir . '/img/spid-ico-circle-bb.png';
+?>
+    
+    <div style="text-align:center;">
+        <a href="#" class="italia-it-button italia-it-button-size-m button-spid" aria-haspopup="true" aria-expanded="false" id="spid-toggle">
+            <span class="italia-it-button-icon"><img src="<?php echo $spid_ico_circle_svg; ?>" onerror="this.src='<?php echo $spid_ico_circle_png; ?>'; this.onerror=null;" alt="" /></span>
+            <span class="italia-it-button-text">Entra con SPID</span>
+        </a>
+        <br>
+        <br>
+        <img src="<?php echo $plugin_dir . '/img/spid-agid-logo-lb.png'; ?>" width="200px" alt="Agenzia per l'Italia Digitale" />
+    </div>
+<?php }
+
+if ( ! function_exists( 'wsi_fs' ) ) {
+    // Create a helper function for easy SDK access.
+    function wsi_fs() {
+        global $wsi_fs;
+
+        if ( ! isset( $wsi_fs ) ) {
+            // Include Freemius SDK.
+            require_once dirname(__FILE__) . '/freemius/start.php';
+
+            $wsi_fs = fs_dynamic_init( array(
+                'id'                  => '7763',
+                'slug'                => 'wp-spid-italia',
+                'type'                => 'plugin',
+                'public_key'          => 'pk_60022b74a2ac02d5ea215998e8671',
+                'is_premium'          => true,
+                // If your plugin is a serviceware, set this option to false.
+                'has_premium_version' => true,
+                'has_addons'          => false,
+                'has_paid_plans'      => true,
+                'menu'                => array(
+                    'slug'           => 'spid_menu',
+                    'support'        => false,
+                    'parent'         => array(
+                        'slug' => 'options-general.php',
+                    ),
+                ),
+                // Set the SDK to work in a sandbox mode (for development & testing).
+                // IMPORTANT: MAKE SURE TO REMOVE SECRET KEY BEFORE DEPLOYMENT.
+                'secret_key'          => 'sk_E0FP^f%CDVXJ)8K3XAJBruh;{Lhy8',
+            ) );
+        }
+
+        return $wsi_fs;
+    }
+
+    // Init Freemius.
+    wsi_fs();
+    // Signal that SDK was initiated.
+    do_action( 'wsi_fs_loaded' );
 }
 
 ?>

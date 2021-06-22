@@ -1,10 +1,11 @@
 ﻿=== WP SPID Italia ===
 Contributors: Milmor
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=F2JK36SCXKTE2
+Donate link: https://www.paypal.me/milesimarco
 Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubblico di identità digitale, wpgov, marco, milesi, marco milesi
 Requires at least: 4.8
-Tested up to: 5.3
-Version: 1.5
+Requires PHP: 7
+Tested up to: 5.9
+Version: 2.0-BETA
 Stable tag: trunk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -24,18 +25,17 @@ https://www.youtube.com/watch?v=w5Z5EBG1R1M
 
 https://www.youtube.com/watch?v=i2eTL_Q2xfM
 
-### Credits
-* **Marco Milesi**: sviluppatore e mantainer nell'ambito del progetto [WPGov.it - WordPress per la Pubblica Amministrazione](https://wpgov.it/)
-* **Christian Ghellere, Andrea Smith**: beta testing
+Sviluppo a cura di **Marco Milesi** nell'ambito del progetto [WPGov.it - WordPress per la Pubblica Amministrazione](https://wpgov.it/)
 
 ### Ringraziamenti
+* **Christian Ghellere, Andrea Smith**: beta testing
 * **Paolo Bozzo**: sviluppo libreria Drupal-PASW
 * **Nadia Caprotti**: condivisione know-how Drupal-PASW
 * **Comune di Firenze**: sviluppo libreria SimpleSaml riadattata da Paolo
 * **Italian Linux Society** per il contributo economico
 * **Porte Aperte sul Web**
 
-Copyright © 2017-2018 Marco Milesi
+Copyright © 2017-2020 Marco Milesi
 
 == Installation ==
 
@@ -48,8 +48,19 @@ https://www.youtube.com/watch?v=w1jf8GgF1OQ
 https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
-> Questa è la lista completa di tutti gli aggiornamenti, test e correzioni.
-> Ogni volta che una nuova versione viene rilasciata assicuratevi di aggiornare il prima possibile per usufruire delle ultime migliorie!
+> Always backup your data before proceed!
+
+= 2.0 =
+* **Improved** graphic design
+* **Improved** login error handling with WP standards
+
+* Changed level type due to AGID corrige 'AuthnContextClassRef' => array( 'https://www.spid.gov.it/SpidL1' )
+* Removed AllowCreate parameter, as requested by AGID - lib\modules\saml\lib\Auth\Source\SP.php
+* RelayState change to encoded aes-265 - lib\vendor\simplesamlphp\saml2\src\SAML2\HTTPArtifact.php
+
+= 1.5.2 - 20200926 =
+* **Compatibility** check
+* Minor changes
 
 = Versione 1.5 09/10/2019 =
 * **Fixed** SAML component security issue, xmlseclibs from 2.0.1 to 2.1.1
