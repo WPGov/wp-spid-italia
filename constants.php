@@ -1,6 +1,6 @@
 <?php
     if ( !defined( 'SPID__LIB_DIR' ) ) {
-        define( 'SPID__LIB_DIR', plugin_dir_path( __FILE__ ) . 'lib/' );
+        define( 'SPID__LIB_DIR', plugin_dir_path( __FILE__ ) . 'lib' );
     }
 
     if ( !defined( 'SPID__LIB_URL' ) ) {
@@ -14,7 +14,7 @@
         define( 'SPID__CONFIG_DIR', SPID__PERM_DIR .'/config' );
     }
     if ( !defined( 'SPID__CERT_DIR' ) ) {
-        define( 'SPID__CERT_DIR', SPID__PERM_DIR .'/cert/' );
+        define( 'SPID__CERT_DIR', SPID__PERM_DIR .'/cert' );
     }
 
     if ( !defined( 'SPID__TEMP_DIR' ) ) {
@@ -25,9 +25,5 @@
     }
     if ( !defined( 'SPID__LOG_DIR' ) ) {
         define( 'SPID__LOG_DIR', SPID__PERM_DIR .'/log' );
-    }
-
-    if ( !defined( 'SPID__METADATA_DIR' ) ) {
-        define( 'SPID__METADATA_DIR', SPID__PERM_DIR .'/metadata' );
     }
 ?>

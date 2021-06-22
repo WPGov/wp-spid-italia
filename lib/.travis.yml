@@ -1,19 +1,20 @@
 language: php
-
 php:
-  - 7.2.26
-  - 7.3.12
-  - 7.4.1
-
-cache:
-  directories:
-    - $HOME/.composer/cache
-    
-install:
-  - composer install --no-interaction
-  - mkdir -p example/idp_metadata
-  - php bin/download_idp_metadata.php ./example/idp_metadata
-  
+- 5.3
+- 5.4
+- 5.5
+- 5.6
+- 7.0
+- hhvm
+matrix:
+  allow_failures:
+  - php: hhvm
+before_script: composer update --dev
 script:
-  - find . | grep 'php$' | grep -v vendor | grep -v tests | xargs ./vendor/bin/phpcs --standard=PSR2
-  - vendor/bin/phpunit --stderr tests
+- php vendor/phpunit/phpunit/phpunit --configuration tools/phpunit
+- bin/check-syntax.sh
+after_success:
+- if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then php vendor/bin/coveralls -v; fi
+notifications:
+  slack:
+    secure: h5YiO7tAk5bzAQBkUZ3crnOFAOBkNqHp0nc2cxvGauogVfCLE9K8bME512uTeu9QWMht2D30uyTOHFKQ7sPEW4omHNF4qYl4p9L037oQFfEwZPBzJFo9QUzviT3mvKHTN4HSQOkq/08ZoMhh1i3p/OhyFS56J28IDJWDqGZkEUE=

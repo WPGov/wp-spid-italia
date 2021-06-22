@@ -25,7 +25,7 @@
 					<p>Su GitHub sono disponibili guide e videotutorial semplici e intuitivi per implementare al meglio il plugin.</p>
 				</div>
         <div class="col">
-					<h3><a href="https://www.paypal.me/milesimarco">Donazione</a></h3>
+					<h3><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=F2JK36SCXKTE2">Donazione</a></h3>
 					<p>Per fornirti tutto questo e garantire sviluppi futuri sono necessarie molte ore di lavoro. Se vuoi, puoi contribuire anche con un contributo economico.</p>
 				</div>
 			</div>
