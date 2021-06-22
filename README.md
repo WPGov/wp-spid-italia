@@ -21,4 +21,4 @@ Sviluppato da **Marco Milesi** nell'ambito del progetto [WPGov.it - WordPress pe
 * **Comune di Firenze**: sviluppo libreria SimpleSaml riadattata da Paolo
 * **Porte Aperte sul Web**
 
-Copyright © 2017-2019 Marco Milesi
+Copyright © 2017-2021 Marco Milesi
