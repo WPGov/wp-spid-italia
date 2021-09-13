@@ -110,7 +110,7 @@ add_action( 'login_form', function() {
         $provider[] = array( 'SPID Local', 'http://localhost:8088', 'localhost', 'local' );
         $provider[] = array( 'SPID TEST', 'https://idptest.spid.gov.it/', 'idptest', 'test' );
     } else {
-        $provider = null;
+        $provider = array();
     }
     $shuffle = array();
     $shuffle[] = array( 'Infocert ID', 'https://identity.infocert.it', 'infocertid', 1 );
