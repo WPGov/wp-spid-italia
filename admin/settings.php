@@ -101,7 +101,7 @@ function spid_menu_func() {
           <label for="sp_org_name">sp_org_name</label>
         </th>
         <td>
-          <input id="sp_org_name" name="spid[sp_org_name]" type="text" value="<?php echo $options['sp_org_name']; ?>" /> your organization full name
+          <input id="sp_org_name" name="spid[sp_org_name]" type="text" value="<?php echo $options['sp_org_name']; ?>" maxlength="60"/> your organization full name
         </td>
       </tr>
       <tr valign="top">
@@ -109,7 +109,7 @@ function spid_menu_func() {
           <label for="sp_org_display_name">sp_org_display_name</label>
         </th>
         <td>
-          <input id="sp_org_display_name" name="spid[sp_org_display_name]" type="text" value="<?php echo $options['sp_org_display_name']; ?>" /> your organization display name
+          <input id="sp_org_display_name" name="spid[sp_org_display_name]" type="text" value="<?php echo $options['sp_org_display_name']; ?>" maxlength="60"/> your organization display name
         </td>
       </tr>
       <tr valign="top">
