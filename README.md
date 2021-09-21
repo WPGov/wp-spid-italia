@@ -13,11 +13,13 @@ Sviluppato da **Marco Milesi** nell'ambito del progetto [WPGov.it - WordPress pe
 [www.marcomilesi.com](https://www.marcomilesi.com)
 
 ### Ringraziamenti
-* **Italian Linux Society** per il contributo economico
 * **Christian Ghellere, Andrea Smith**: beta testing
 * **Paolo Bozzo**: sviluppo libreria Drupal-PASW
 * **Nadia Caprotti**: condivisione know-how Drupal-PASW
 * **Comune di Firenze**: sviluppo libreria SimpleSaml riadattata da Paolo
 * **Porte Aperte sul Web**
+
+### Sponsor
+* **Italian Linux Society**
 
 Copyright © 2017-2021 Marco Milesi
