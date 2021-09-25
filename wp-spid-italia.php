@@ -3,7 +3,7 @@
 Plugin Name: WP SPID Italia
 Description: SPID - Sistema Pubblico di Identità Digitale
 Author: Marco Milesi
-Version: 2.0.BETA
+Version: 2.0.1
 Author URI: http://www.marcomilesi.com
 */
 
@@ -89,60 +89,61 @@ add_action( 'login_form', function() {
 			<?php endif; ?>
 
 
-    <div id="spid-sso-wrap__action">
-        <p>
-    
-    <?php
-                            
-    $plugin_dir = plugin_dir_url( __FILE__ );
-    $spid_ico_circle_svg = $plugin_dir . '/img/spid-ico-circle-bb.svg';
-    $spid_ico_circle_png = $plugin_dir . '/img/spid-ico-circle-bb.png';
+        <div id="spid-sso-wrap__action">
+            <p>
+                <?php                     
+                $plugin_dir = plugin_dir_url( __FILE__ );
+                $spid_ico_circle_svg = $plugin_dir . '/img/spid-ico-circle-bb.svg';
+                $spid_ico_circle_png = $plugin_dir . '/img/spid-ico-circle-bb.png';
 
-    if ( spid_option('enable_validator') ) {
-        $provider = array(
-            array(
-                'SPID validator',
-                'https://validator.spid.gov.it',
-                'test',
-                0
-            )
-        );
-        $provider[] = array( 'SPID Local', 'http://localhost:8088', 'localhost', 'local' );
-        $provider[] = array( 'SPID TEST', 'https://idptest.spid.gov.it/', 'idptest', 'test' );
-    } else {
-        $provider = array();
-    }
-    $shuffle = array();
-    $shuffle[] = array( 'Infocert ID', 'https://identity.infocert.it', 'infocertid', 1 );
-    $shuffle[] = array( 'Tim ID', 'https://login.id.tim.it/affwebservices/public/saml2sso', 'timid', 3 );
-    $shuffle[] = array( 'Poste ID', 'https://posteid.poste.it', 'posteid', 2 );
-    $shuffle[] = array( 'Sielte ID', 'https://identity.sieltecloud.it', 'sielteid', 4 );
-    $shuffle[] = array( 'Aruba ID', 'https://loginspid.aruba.it', 'arubaid', 5 );
-    $shuffle[] = array( 'Namirial ID', 'https://idp.namirialtsp.com/idp', 'namirialid', 6 );
-    $shuffle[] = array( 'SpidItalia ID', 'https://spid.register.it', 'spiditalia', 7 );
-    $shuffle[] = array( 'Intesa ID', 'https://spid.intesa.it', 'intesaid', 8 );
-    $shuffle[] = array( 'Lepida ID', 'https://id.lepida.it/idp/shibboleth', 'lepidaid', 9 );
-    shuffle( $shuffle );
-    $provider = array_merge( $provider, $shuffle );
+                if ( spid_option('enable_validator') ) {
+                    $provider = array(
+                        array(
+                            'SPID validator',
+                            'https://validator.spid.gov.it',
+                            'test',
+                            0
+                        )
+                    );
+                    $provider[] = array( 'SPID Local', 'http://localhost:8080', 'localhost', 'local' );
+                    $provider[] = array( 'SPID TEST', 'https://demo.spid.gov.it/samlsso', 'demo', 'demo' );
+                } else {
+                    $provider = array();
+                }
+                $shuffle = array();
+                $shuffle[] = array( 'Infocert ID', 'https://identity.infocert.it', 'infocertid', 1 );
+                $shuffle[] = array( 'Tim ID', 'https://login.id.tim.it/affwebservices/public/saml2sso', 'timid', 3 );
+                $shuffle[] = array( 'Poste ID', 'https://posteid.poste.it', 'posteid', 2 );
+                $shuffle[] = array( 'Sielte ID', 'https://identity.sieltecloud.it', 'sielteid', 4 );
+                $shuffle[] = array( 'Aruba ID', 'https://loginspid.aruba.it', 'arubaid', 5 );
+                $shuffle[] = array( 'Namirial ID', 'https://idp.namirialtsp.com/idp', 'namirialid', 6 );
+                $shuffle[] = array( 'SpidItalia ID', 'https://spid.register.it', 'spiditalia', 7 );
+                $shuffle[] = array( 'Intesa ID', 'https://spid.intesa.it', 'intesaid', 8 );
+                $shuffle[] = array( 'Lepida ID', 'https://id.lepida.it/idp/shibboleth', 'lepidaid', 9 );
+                shuffle( $shuffle );
+                $provider = array_merge( $provider, $shuffle );
 
 
-    echo '<div style="text-align:center;">';
-    foreach ( $provider as $p ) {
-        echo '<a href="?spid_sso=in&spid_idp='.$p[3].'" alt="'.$p[0].'"><img class="spid-provider" src="'.$plugin_dir.'img/idp/spid-idp-'.$p[2].'.svg" alt="'.$p[0].'" />';
-    }
-    echo '</div>';
-    ?>
-    <div style="margin-top:30px;text-align:center;">
-        <a href="http://www.spid.gov.it/#registrati">Non hai SPID?</a> &bull; <a href="http://www.spid.gov.it">Maggiori info</a>
-    </div>
-	</p>
+                echo '<div style="text-align:center;">';
+                foreach ( $provider as $p ) {
+                    echo '<a href="?spid_sso=in&spid_idp='.$p[3].'" alt="'.$p[0].'"><img class="spid-provider" src="'.$plugin_dir.'img/idp/spid-idp-'.$p[2].'.svg" alt="'.$p[0].'" /></a>';
+                }
+                echo '</div>';
+                
+                ?>
+                <div class="spid-sso-or">
+                    <span><?php esc_html_e( apply_filters( 'spid_filter_login_or_after', __( 'Oppure', 'spid' ) ) ); ?></span>
+                </div>
+            </p>
         </div>
-        <div class="spid-sso-or">
-            <span>OPPURE</span>
+
+        <div class="spid-sso-or spid-sso-toggle default">
+            <span><?php esc_html_e( apply_filters( 'spid_filter_login_or_pre', __( 'Oppure', 'spid' ) ) ); ?></span>
         </div>
+        
 
         <a href="<?php echo esc_url( add_query_arg( 'spid-sso-show-default-form', '1' ) ); ?>" class="spid-sso-toggle wpcom">
-            <?php esc_html_e( 'Log in with username and password', 'spid' ); ?>
+            <?php esc_html_e( apply_filters( 'spid_filter_loginbutton_footer', __( 'Log in with username and password', 'spid' ) ) ); ?>
         </a>
         <div class="spid-sso-toggle default">
             <?php echo spid_get_button(); ?>
@@ -151,6 +152,30 @@ add_action( 'login_form', function() {
 <?php
 } );
 
+function tp_custom_logout() {
+    if ( isset( $_GET['LO'] ) ) {
+        $sp = spid_load();
+        echo $sp->isAuthenticated();
+        echo '<hr>';
+        echo $sp->logout( 0, get_site_url() . '/wp-login.php?spid_sso=out', false );
+        die();
+    }
+    if ( isset( $_GET['LOA'] ) ) {
+        $sp = spid_load();
+        $sp->logout( 0, get_site_url() . '/wp-login.php?spid_sso=out' );
+        die();
+    }
+}
+
+add_action( 'template_redirect', 'tp_custom_logout' );
+
+add_filter( 'logout_url', function( $logout_url ) {
+    $sp = spid_load();
+    if ( $sp->isAuthenticated() ) {
+        return get_site_url() . '/wp-login.php?spid_sso=out';
+    }
+    return $logout_url;
+}, 10, 2 );
 
 add_action( 'init', function() {
     if ( isset( $_GET['spid_metadata'] ) && $_GET['spid_metadata'] == spid_get_metadata_token()  ) {
@@ -177,7 +202,10 @@ function spid_get_metadata_token() {
 
 add_filter( 'login_message', function( $message ) {
     
-    if ( WP_DEBUG === true ) {
+    $internal_debug = false;
+    $spid_debug = ( WP_DEBUG === true ) || $internal_debug;
+
+    if ( $internal_debug ) {
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
@@ -188,9 +216,8 @@ add_filter( 'login_message', function( $message ) {
         $sp->isAuthenticated();
     } catch ( Exception  $e) {
 
-        if ( WP_DEBUG === true ) {
-            echo '<br><br><pre><small style="color:yellow;">'.$e->getMessage().'</small></pre>';
-            echo $_SESSION['idpEntityId'];
+        if ( $internal_debug ) {
+            echo '<br><br><pre><small style="color:darkred;">'.$e->getMessage().'</small></pre>';
         }
 
         function spid_errors( $errorMsg2 ){
@@ -204,14 +231,15 @@ add_filter( 'login_message', function( $message ) {
                     case stripos( $xmlResp->textContent, 'nr19') !== false:
                         return '<b>SPID errore 19</b> - Ripetuta sottomissione di credenziali errate';
                     case stripos( $xmlResp->textContent, 'nr20') !== false:
-                        return '<b>SPID errore 20</b> - Utente privo di credenziali compatibili';
+                        return '<b>SPID errore 20</b> - Utente privo di credenziali compatibili con il livello richiesto dal fornitore del servizio';
                     case stripos( $xmlResp->textContent, 'nr21') !== false:
                         return '<b>SPID errore 21</b> - Timeout';
                     case stripos( $xmlResp->textContent, 'nr22') !== false:
-                    case stripos( $xmlResp->textContent, 'nr25') !== false:
-                        return '<b>SPID errore 22</b> - Autenticazione annullata';
+                        return '<b>SPID errore 22</b> - Utente nega il consenso all\'invio di dati al SP in caso di sessione vigente';
                     case stripos( $xmlResp->textContent, 'nr23') !== false:
-                        return '<b>SPID errore 23</b> - Credenziali bloccate';
+                        return '<b>SPID errore 23</b> - Credenziali sospese o revocate';
+                    case stripos( $xmlResp->textContent, 'nr25') !== false:
+                        return '<b>SPID errore 25</b> - Processo di autenticazione annullato dall\'utente';
                     default: 
                         return 'Si è verificato un errore durante l\'accesso SPID. Contattare l\'amministratore per maggiori informazioni.';
                 }
@@ -222,19 +250,36 @@ add_filter( 'login_message', function( $message ) {
         return;
     }
 
-    if ( isset( $_GET['spid_sso'] ) && $_GET['spid_sso'] == 'out' ) {
-        add_filter( 'login_errors', function() { return 'Disconnesso'; } );
-        $sp->logout( 0, wp_logout_url() );
-        //wp_logout();
+    if ( $internal_debug ) {
+        echo '<div class="login"><form>';
+        echo '<b>SPID Debug</b><br>';
+        echo '<small>';
+        echo '<br>Auth state: '.( $sp->isAuthenticated() ? 'authenticated' : 'not authenticated' );
+        echo '<br>idpEntityId: '. ( isset( $_SESSION['idpEntityId'] ) ? $_SESSION['idpEntityId'] : '(not set)' );
+        echo '</small>';
+        echo '</form></div>';
     }
 
-    if ( isset( $_GET['spid_sso'] ) && $_GET['spid_sso'] == 'in' ) {
+    if ( isset( $_GET['spid_sso'] ) && $_GET['spid_sso'] == 'out' ) {
+        
+        wp_clear_auth_cookie();
+        remove_action('login_footer', 'wp_shake_js', 12);
+        add_filter( 'login_errors', function() { return 'Disconnesso da SPID'; } );
+        $sp->logout( 0, get_site_url() . '/wp-login.php?spid_sso=out' );
+        //$sp->logout( 0, wp_logout_url() );
+    } else if (isset($_POST) && isset($_POST['selected_idp'])) {
+        $idp = $_POST['selected_idp'];
+    } else if ( isset( $_GET['spid_sso'] ) && $_GET['spid_sso'] == 'in' ) {
         
         if ( is_user_logged_in() ) {
             wp_logout();
         }
-        
+
         if ( isset( $_GET['spid_idp'] ) && $_GET['spid_idp'] != '' ) {
+            if ( $sp->isAuthenticated() ) {
+                session_destroy();
+                #$sp->logout( 0, get_site_url() . '/wp-login.php?spid_sso=out&' );
+            }
             $assertId = 0; // index of assertion consumer service as per the SP metadata (sp_assertionconsumerservice in settings array)
             $attrId = 0; // index of attribute consuming service as per the SP metadata (sp_attributeconsumingservice in settings array)
             $sp->login( 'idp_'.$_GET['spid_idp'], $assertId, $attrId); // Generate the login URL and redirect to the IdP login page
@@ -258,7 +303,8 @@ add_filter( 'login_message', function( $message ) {
                 }
             }
             if ( !is_wp_error( $user ) && !empty( $user ) ) {
-                update_user_meta( $user->ID, 'spid_attributes', $attributes);
+                
+				update_user_meta( $user->ID, 'spid_attributes', $attributes);
                 update_user_meta( $user->ID, 'codice_fiscale', $cf);
                 wp_clear_auth_cookie();
                 wp_set_current_user ( $user->ID );
@@ -360,15 +406,21 @@ function spid_get_button() {
     $plugin_dir = plugin_dir_url( __FILE__ );
     $spid_ico_circle_svg = $plugin_dir . '/img/spid-ico-circle-bb.svg';
     $spid_ico_circle_png = $plugin_dir . '/img/spid-ico-circle-bb.png';
+    echo '<!-- Generato con WP SPID Italia v.' . sanitize_text_field( get_option('spid_version') ) . '-->';
 ?>
-    
+
+
     <div style="text-align:center;">
         <a href="#" class="italia-it-button italia-it-button-size-m button-spid" aria-haspopup="true" aria-expanded="false" id="spid-toggle">
             <span class="italia-it-button-icon"><img src="<?php echo $spid_ico_circle_svg; ?>" onerror="this.src='<?php echo $spid_ico_circle_png; ?>'; this.onerror=null;" alt="" /></span>
             <span class="italia-it-button-text">Entra con SPID</span>
         </a>
-        <br>
-        <br>
+        <div style="font-size:0.8em;margin:10px 0 5px 0;">
+            SPID è il sistema di accesso che consente di utilizzare, con un'identità digitale unica, i servizi online della Pubblica Amministrazione e dei privati accreditati.
+        </div>
+        <div style="font-size:0.8em;margin:0 0 10px 0;font-weight:bold;">
+            <a href="http://www.spid.gov.it/#registrati">Non hai SPID?</a> &bull; <a href="http://www.spid.gov.it">Maggiori info</a>
+        </div>
         <img src="<?php echo $plugin_dir . '/img/spid-agid-logo-lb.png'; ?>" width="200px" alt="Agenzia per l'Italia Digitale" />
     </div>
 <?php }
