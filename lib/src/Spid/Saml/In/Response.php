@@ -21,6 +21,8 @@ class Response implements ResponseInterface
         $accepted_clock_skew_seconds = isset($this->saml->settings['accepted_clock_skew_seconds']) ?
             $this->saml->settings['accepted_clock_skew_seconds'] : 0;
 
+        $accepted_clock_skew_seconds = 7200; // MM 20210915
+        
         $root = $xml->getElementsByTagName('Response')->item(0);
 
         if ($root->getAttribute('Version') == "") {
