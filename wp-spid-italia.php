@@ -387,9 +387,7 @@ function spid_load() {
                 'emailAddress' => spid_option( 'emailAddress' ),
             ],
             'idp_metadata_folder' => plugin_dir_path( __FILE__ ) . 'metadata/',
-            'sp_attributeconsumingservice' => [
-                ["name", "fiscalNumber", "email"]
-            ]
+            'sp_attributeconsumingservice' => [ apply_filters( 'spid_filter_sp_attributeconsumingservice', ["name", "fiscalNumber", "email"] ) ]
         ), null, true
     );
 }
