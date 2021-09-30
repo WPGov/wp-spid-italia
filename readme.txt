@@ -5,7 +5,7 @@ Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubbl
 Requires at least: 4.8
 Requires PHP: 7
 Tested up to: 5.9
-Version: 2.0.1
+Version: 2.1
 Stable tag: trunk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -49,6 +49,15 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
 > Always backup your data before proceed!
+
+= 2.1 20210930 =
+* [NEW] Shortcode for f/e Spid button display
+* [NEW] Added familyName (last_name) as default field to generate SPID crt (note: requires AGID metadata resubmission, if you want to use it)
+* [NEW] Added name and familyName mapping to wp first_name and last_name
+* [IMPROVEMENT] Improved WP enqueue logic
+* [IMPROVEMENT] Code refactoring for html/css/js styling on both f/e and login form
+* [BUGFIX] Added sp_org limit lenght
+* [BUGFIX] Minor bugfix
 
 = 2.0 =
 * **Improved** graphic design
