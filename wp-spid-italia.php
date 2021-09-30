@@ -8,6 +8,7 @@ Author URI: http://www.marcomilesi.com
 */
 
 include( plugin_dir_path( __FILE__ ) . 'constants.php');
+include( plugin_dir_path( __FILE__ ) . 'frontend-ui.php');
 
 add_action( 'admin_menu', function() {
   add_submenu_page(
@@ -48,7 +49,26 @@ add_action( 'init', function() {
     if ( session_status() == PHP_SESSION_NONE ) {
         session_start();
     }
+
+    if ( isset( $_GET['spid_metadata'] ) && $_GET['spid_metadata'] == spid_get_metadata_token()  ) {
+		header( 'Content-type: text/xml' );
+        $sp = spid_load();
+        echo $sp->getSPMetadata();
+        die();
+    }
 } );
+
+add_shortcode( 'spid_login_button', function( $atts ) {
+    wp_enqueue_style( 'spid-css', plugins_url( 'css/spid-sp-access-button.min.css', __FILE__ ), false );
+    wp_enqueue_script( 'spid-js', plugins_url( 'js/spid-sp-access-button.min.js', __FILE__ ), array( 'jquery' )  );
+
+    $button = '';
+
+    $button .= spid_get_login_button();
+
+    return $button;
+} );
+
 
 add_action( 'login_form', function() {
 
@@ -91,49 +111,11 @@ add_action( 'login_form', function() {
 
         <div id="spid-sso-wrap__action">
             <p>
-                <?php                     
-                $plugin_dir = plugin_dir_url( __FILE__ );
-                $spid_ico_circle_svg = $plugin_dir . '/img/spid-ico-circle-bb.svg';
-                $spid_ico_circle_png = $plugin_dir . '/img/spid-ico-circle-bb.png';
-
-                if ( spid_option('enable_validator') ) {
-                    $provider = array(
-                        array(
-                            'SPID validator',
-                            'https://validator.spid.gov.it',
-                            'test',
-                            0
-                        )
-                    );
-                    $provider[] = array( 'SPID Local', 'http://localhost:8080', 'localhost', 'local' );
-                    $provider[] = array( 'SPID TEST', 'https://demo.spid.gov.it/samlsso', 'demo', 'demo' );
-                } else {
-                    $provider = array();
-                }
-                $shuffle = array();
-                $shuffle[] = array( 'Infocert ID', 'https://identity.infocert.it', 'infocertid', 1 );
-                $shuffle[] = array( 'Tim ID', 'https://login.id.tim.it/affwebservices/public/saml2sso', 'timid', 3 );
-                $shuffle[] = array( 'Poste ID', 'https://posteid.poste.it', 'posteid', 2 );
-                $shuffle[] = array( 'Sielte ID', 'https://identity.sieltecloud.it', 'sielteid', 4 );
-                $shuffle[] = array( 'Aruba ID', 'https://loginspid.aruba.it', 'arubaid', 5 );
-                $shuffle[] = array( 'Namirial ID', 'https://idp.namirialtsp.com/idp', 'namirialid', 6 );
-                $shuffle[] = array( 'SpidItalia ID', 'https://spid.register.it', 'spiditalia', 7 );
-                $shuffle[] = array( 'Intesa ID', 'https://spid.intesa.it', 'intesaid', 8 );
-                $shuffle[] = array( 'Lepida ID', 'https://id.lepida.it/idp/shibboleth', 'lepidaid', 9 );
-                shuffle( $shuffle );
-                $provider = array_merge( $provider, $shuffle );
-
-
-                echo '<div style="text-align:center;">';
-                foreach ( $provider as $p ) {
-                    echo '<a href="?spid_sso=in&spid_idp='.$p[3].'" alt="'.$p[0].'"><img class="spid-provider" src="'.$plugin_dir.'img/idp/spid-idp-'.$p[2].'.svg" alt="'.$p[0].'" /></a>';
-                }
-                echo '</div>';
-                
-                ?>
-                <div class="spid-sso-or">
-                    <span><?php esc_html_e( apply_filters( 'spid_filter_login_or_after', __( 'Oppure', 'spid' ) ) ); ?></span>
+                <div style="text-align:center;margin:40px 0;">
+                    <?php echo spid_get_idp_list(); ?>
                 </div>
+                
+                <div class="spid-sso-or"><span><?php esc_html_e( apply_filters( 'spid_filter_login_or_after', __( 'Oppure', 'spid' ) ) ); ?></span></div>
             </p>
         </div>
 
@@ -146,7 +128,7 @@ add_action( 'login_form', function() {
             <?php esc_html_e( apply_filters( 'spid_filter_loginbutton_footer', __( 'Log in with username and password', 'spid' ) ) ); ?>
         </a>
         <div class="spid-sso-toggle default">
-            <?php echo spid_get_button(); ?>
+            <?php echo spid_get_loginform_button(); ?>
         </div>
     </div>
 <?php
@@ -176,15 +158,6 @@ add_filter( 'logout_url', function( $logout_url ) {
     }
     return $logout_url;
 }, 10, 2 );
-
-add_action( 'init', function() {
-    if ( isset( $_GET['spid_metadata'] ) && $_GET['spid_metadata'] == spid_get_metadata_token()  ) {
-		header( 'Content-type: text/xml' );
-        $sp = spid_load();
-        echo $sp->getSPMetadata();
-        die();
-    }
-} );
 
 function spid_get_metadata_url() {
     return add_query_arg( 'spid_metadata', spid_get_metadata_token(), get_home_url() );
@@ -304,6 +277,12 @@ add_filter( 'login_message', function( $message ) {
             }
             if ( !is_wp_error( $user ) && !empty( $user ) ) {
                 
+                if ( isset( $attributes['name'] ) ) {
+                    update_user_meta( $user->ID, 'first_name', ucwords( strtolower( $attributes['name'] ) ) );
+                }
+                if ( isset( $attributes['familyName'] ) ) {
+                    update_user_meta( $user->ID, 'last_name', ucwords( strtolower( $attributes['familyName'] ) ) );
+                }
 				update_user_meta( $user->ID, 'spid_attributes', $attributes);
                 update_user_meta( $user->ID, 'codice_fiscale', $cf);
                 wp_clear_auth_cookie();
@@ -332,12 +311,17 @@ add_filter( 'login_message', function( $message ) {
     }
 });
 
-add_action( 'login_enqueue_scripts', function() {
-    wp_enqueue_style( 'core', plugins_url( 'css/spid-sp-access-button.min.css', __FILE__ ), false );
-}, 10 );
+
+ 
+add_action('wp_enqueue_scripts', function(){
+    wp_dequeue_style('spid-css');
+    wp_dequeue_style('spid-js');
+} );
 
 add_action( 'login_enqueue_scripts', function() {
-    wp_enqueue_script( 'spid-js', plugins_url( 'js/spid-sp-access-button.min.js', __FILE__ ), array( 'jquery' )  );
+    wp_enqueue_style( 'spid-css', plugins_url( 'css/spid-sp-access-button.min.css', __FILE__ ), false );
+    wp_enqueue_script( 'spid-js-button', plugins_url( 'js/spid-sp-access-button.min.js', __FILE__ ), array( 'jquery' )  );
+    wp_enqueue_script( 'spid-js-loginform', plugins_url( 'js/spid-sp-loginform.js', __FILE__ ), array( 'jquery' )  );
 }, 1 );
 
 function is_spid_enabled() {
@@ -387,7 +371,7 @@ function spid_load() {
                 'emailAddress' => spid_option( 'emailAddress' ),
             ],
             'idp_metadata_folder' => plugin_dir_path( __FILE__ ) . 'metadata/',
-            'sp_attributeconsumingservice' => [ apply_filters( 'spid_filter_sp_attributeconsumingservice', ["name", "fiscalNumber", "email"] ) ]
+            'sp_attributeconsumingservice' => [ apply_filters( 'spid_filter_sp_attributeconsumingservice', [ "name", "familyName", "fiscalNumber", "email" ] ) ]
         ), null, true
     );
 }
@@ -399,29 +383,6 @@ function spid_option($name) {
 	}
 	return false;
 }
-
-function spid_get_button() {
-    $plugin_dir = plugin_dir_url( __FILE__ );
-    $spid_ico_circle_svg = $plugin_dir . '/img/spid-ico-circle-bb.svg';
-    $spid_ico_circle_png = $plugin_dir . '/img/spid-ico-circle-bb.png';
-    echo '<!-- Generato con WP SPID Italia v.' . sanitize_text_field( get_option('spid_version') ) . '-->';
-?>
-
-
-    <div style="text-align:center;">
-        <a href="#" class="italia-it-button italia-it-button-size-m button-spid" aria-haspopup="true" aria-expanded="false" id="spid-toggle">
-            <span class="italia-it-button-icon"><img src="<?php echo $spid_ico_circle_svg; ?>" onerror="this.src='<?php echo $spid_ico_circle_png; ?>'; this.onerror=null;" alt="" /></span>
-            <span class="italia-it-button-text">Entra con SPID</span>
-        </a>
-        <div style="font-size:0.8em;margin:10px 0 5px 0;">
-            SPID è il sistema di accesso che consente di utilizzare, con un'identità digitale unica, i servizi online della Pubblica Amministrazione e dei privati accreditati.
-        </div>
-        <div style="font-size:0.8em;margin:0 0 10px 0;font-weight:bold;">
-            <a href="http://www.spid.gov.it/#registrati">Non hai SPID?</a> &bull; <a href="http://www.spid.gov.it">Maggiori info</a>
-        </div>
-        <img src="<?php echo $plugin_dir . '/img/spid-agid-logo-lb.png'; ?>" width="200px" alt="Agenzia per l'Italia Digitale" />
-    </div>
-<?php }
 
 if ( ! function_exists( 'wsi_fs' ) ) {
     // Create a helper function for easy SDK access.
