@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:400,600);
+
 .italia-it-button {
 	display: inline-block;
 	position: relative;
@@ -29,7 +30,8 @@
 .italia-it-button-text {
 	padding: .95em 1em .85em 1em;
 	font-size: 1.15em;
-	text-align: center
+	text-align: center;
+	color: #fff;
 }
 
 svg {
@@ -44,7 +46,7 @@ svg {
 
 .italia-it-button-size-s {
 	font-size: 14px;
-	width: 100%;
+	width: 150px;
 }
 
 .italia-it-button-size-s>span img {
@@ -113,13 +115,18 @@ svg {
 
 .spid-idp-button .spid-idp-button-menu,
 .spid-idp-button .spid-idp-button-panel {
+	list-style-type: none;
 	list-style: none;
 	background: white;
 	border: solid 1px #ddd;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 	overflow: visible;
 	padding: 0;
-	margin: 0
+	margin: 0;
+}
+
+.spid-idp-button-menu {
+	list-style-type: none;
 }
 
 #spid-idp-button-small-get,
@@ -214,7 +221,7 @@ svg {
 }
 
 .spid-idp-button .spid-idp-button-menu li>a img {
-	height: 25px;
+	/* height: 25px; */
 	padding: 10px 0 10px 10px;
 	border: 0
 }
@@ -270,7 +277,11 @@ svg {
 
 
 
-
+#spid-login-desc {
+	font-size:0.8em;
+	margin:10px 0 5px 0;
+	line-height: initial;
+}
 
 
 
