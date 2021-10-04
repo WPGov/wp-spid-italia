@@ -152,9 +152,13 @@ function tp_custom_logout() {
 add_action( 'template_redirect', 'tp_custom_logout' );
 
 add_filter( 'logout_url', function( $logout_url ) {
-    $sp = spid_load();
-    if ( $sp->isAuthenticated() ) {
-        return get_site_url() . '/wp-login.php?spid_sso=out';
+    try {
+        $sp = spid_load();
+        if ( $sp->isAuthenticated() ) {
+            return get_site_url() . '/wp-login.php?spid_sso=out';
+        }
+    } catch ( Exception  $e) {
+	    
     }
     return $logout_url;
 }, 10, 2 );
