@@ -59,8 +59,6 @@ add_action( 'init', function() {
 } );
 
 add_shortcode( 'spid_login_button', function( $atts ) {
-    wp_enqueue_style( 'spid-css', plugins_url( 'css/spid-sp-access-button.min.css', __FILE__ ), false );
-    wp_enqueue_script( 'spid-js', plugins_url( 'js/spid-sp-access-button.min.js', __FILE__ ), array( 'jquery' )  );
 
     $button = '';
 
@@ -275,51 +273,76 @@ add_filter( 'login_message', function( $message ) {
                         'count_total' => false,
                     )
                 );
-                if ( !empty( $user ) ) {
+                if ( !empty( $users ) ) {
                     $user = reset( $users );
+                } else {
+                    apply_filters( 'spid_registration_filter_new_user', $attributes );
                 }
             }
             if ( !is_wp_error( $user ) && !empty( $user ) ) {
                 
-                if ( isset( $attributes['name'] ) ) {
-                    update_user_meta( $user->ID, 'first_name', ucwords( strtolower( $attributes['name'] ) ) );
-                }
-                if ( isset( $attributes['familyName'] ) ) {
-                    update_user_meta( $user->ID, 'last_name', ucwords( strtolower( $attributes['familyName'] ) ) );
-                }
-				update_user_meta( $user->ID, 'spid_attributes', $attributes);
-                update_user_meta( $user->ID, 'codice_fiscale', $cf);
+                apply_filters( 'spid_registration_filter_existing_user', $attributes, $user );
+                
+                spid_update_user( $user, $attributes );
+
                 wp_clear_auth_cookie();
                 wp_set_current_user ( $user->ID );
                 wp_set_auth_cookie  ( $user->ID );
             
-                wp_safe_redirect( user_admin_url() );
+                wp_safe_redirect( apply_filters( 'spid_registration_default_login_redirect', user_admin_url() ) );
                 exit();
+
             } else {
-                #$sp->logout( 0, add_query_arg( 'spid', 'nouser', wp_login_url() ) );
-                //$sp->logout( add_query_arg( 'spid', 'nouser', wp_login_url() ) );
+                
                 echo '<img src="'.plugin_dir_url( __FILE__ ). '/img/spid.jpg" width="100%" />';
                 echo '<style>body { background-color: #0066cb; }</style>';
                 echo '<p style="color:#fff;font-size:1.2em;text-align:center;">';
                 $attributes = $sp->getAttributes();
                 echo 'Gentile '.$attributes['name'].',<br>il tuo account non è abilitato su questo sito.';
-                //echo '<br><br><a class="button button-secondary button-hero" href="'.esc_url( wp_login_url() ).'" alt="Accedi">Accedi</a>';
+                
                 echo '<br><br><a class="button button-secondary button-large" href="'.esc_url( get_site_url() . '/wp-login.php?spid_sso=out' ).'" alt="Logout">Disconnetti SPID</a>';
                 echo '</p>';
-                die();
-                return '<p class="error">' . __( 'SPID | You don\'t have an account on this site', 'wp_spid_italia' ) . '</p>';
-                #exit();
+                die();           
             }
+        } else {
+            remove_action('login_footer', 'wp_shake_js', 12);
+            add_filter( 'login_errors', function() { return 'SPID - Riprovare'; } );
         }
 
     }
 });
 
+function spid_update_user( $user, $attributes ) {
+    
+    $cf = str_replace( 'TINIT-', '', $attributes['fiscalNumber']);
+
+    $first_name = '';
+    $last_name = '';
+    
+    if ( isset( $attributes['name'] ) ) {
+        $first_name = ucwords( strtolower( $attributes['name'] ) );
+        update_user_meta( $user->ID, 'first_name', ucwords( strtolower( $attributes['name'] ) ) );
+    }
+    if ( isset( $attributes['familyName'] ) ) {
+        $last_name = ucwords( strtolower( $attributes['familyName'] ) );
+        update_user_meta( $user->ID, 'last_name', $last_name );
+    }
+
+    if ( $first_name && $last_name ) {
+        wp_update_user( array( 'ID' => $user->ID, 'display_name' => $first_name.' '.$last_name ) );
+    }
+    
+    update_user_meta( $user->ID, 'spid_attributes', $attributes);
+    update_user_meta( $user->ID, 'codice_fiscale', $cf);
+
+    return;
+}
+
 
  
 add_action('wp_enqueue_scripts', function(){
-    wp_dequeue_style('spid-css');
-    wp_dequeue_style('spid-js');
+    wp_enqueue_style( 'spid-css', plugins_url( 'css/spid-sp-access-button.min.css', __FILE__ ), false );
+    wp_enqueue_script( 'spid-js-button', plugins_url( 'js/spid-sp-access-button.min.js', __FILE__ ), array( 'jquery' )  );
 } );
 
 add_action( 'login_enqueue_scripts', function() {
@@ -388,45 +411,41 @@ function spid_option($name) {
 	return false;
 }
 
-if ( ! function_exists( 'wsi_fs' ) ) {
+if ( ! function_exists( 'spid_fs' ) ) {
     // Create a helper function for easy SDK access.
-    function wsi_fs() {
-        global $wsi_fs;
+    function spid_fs() {
+        global $spid_fs;
 
-        if ( ! isset( $wsi_fs ) ) {
+        if ( ! isset( $spid_fs ) ) {
             // Include Freemius SDK.
             require_once dirname(__FILE__) . '/freemius/start.php';
 
-            $wsi_fs = fs_dynamic_init( array(
+            $spid_fs = fs_dynamic_init( array(
                 'id'                  => '7763',
                 'slug'                => 'wp-spid-italia',
                 'type'                => 'plugin',
                 'public_key'          => 'pk_60022b74a2ac02d5ea215998e8671',
-                'is_premium'          => true,
-                // If your plugin is a serviceware, set this option to false.
-                'has_premium_version' => true,
-                'has_addons'          => false,
-                'has_paid_plans'      => true,
+                'is_premium'          => false,
+                'has_addons'          => true,
+                'has_paid_plans'      => false,
                 'menu'                => array(
                     'slug'           => 'spid_menu',
+                    'contact'        => false,
                     'support'        => false,
                     'parent'         => array(
                         'slug' => 'options-general.php',
                     ),
                 ),
-                // Set the SDK to work in a sandbox mode (for development & testing).
-                // IMPORTANT: MAKE SURE TO REMOVE SECRET KEY BEFORE DEPLOYMENT.
-                'secret_key'          => 'sk_E0FP^f%CDVXJ)8K3XAJBruh;{Lhy8',
             ) );
         }
 
-        return $wsi_fs;
+        return $spid_fs;
     }
 
     // Init Freemius.
-    wsi_fs();
+    spid_fs();
     // Signal that SDK was initiated.
-    do_action( 'wsi_fs_loaded' );
+    do_action( 'spid_fs_loaded' );
 }
 
 ?>
