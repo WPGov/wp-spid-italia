@@ -48,7 +48,7 @@ https://www.youtube.com/watch?v=w1jf8GgF1OQ
 https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
-> Always backup your data before every upgrade.
+> Backup your data before upgrade.
 
 = 2.2 20211017 =
 * [NEW] Frontend button UI
