@@ -45,8 +45,8 @@ svg {
 }
 
 .italia-it-button-size-s {
-	font-size: 14px;
-	width: 150px;
+	font-size: 12px;
+	/*width: 150px;*/
 }
 
 .italia-it-button-size-s>span img {
@@ -221,7 +221,7 @@ svg {
 }
 
 .spid-idp-button .spid-idp-button-menu li>a img {
-	/* height: 25px; */
+	position: relative!important;
 	padding: 10px 0 10px 10px;
 	border: 0
 }
@@ -260,7 +260,8 @@ svg {
 }
 
 .spid-idp-support-link>a {
-	padding: 5px 0 10px 10px
+	padding: 5px 0 10px 10px;
+	color: #06C!important;
 }
 
 .spid-sr-only {
@@ -457,7 +458,7 @@ svg {
 }
 
 .spid-provider {
-    width: 120px;
+    width: 120px!important;
     text-align:center;
     padding: 10px;
     display:block;
