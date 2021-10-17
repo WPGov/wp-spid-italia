@@ -5,8 +5,8 @@ Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubbl
 Requires at least: 4.8
 Requires PHP: 7
 Tested up to: 5.9
-Version: 2.1
-Stable tag: trunk
+Version: 2.2
+Stable tag: 2.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -35,7 +35,7 @@ Sviluppo a cura di **Marco Milesi** nell'ambito del progetto [WPGov.it - WordPre
 * **Italian Linux Society** per il contributo economico
 * **Porte Aperte sul Web**
 
-Copyright © 2017-2020 Marco Milesi
+Copyright © 2017-2021 Marco Milesi
 
 == Installation ==
 
@@ -48,7 +48,13 @@ https://www.youtube.com/watch?v=w1jf8GgF1OQ
 https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
-> Always backup your data before proceed!
+> Always backup your data before every upgrade.
+
+= 2.2 20211017 =
+* [NEW] Frontend button UI
+* [NEW] Added various filters - check [wiki](https://github.com/WPGov/wp-spid-italia/wiki)
+* [IMPROVEMENT] Various code refactoring
+* [BUGFIX] Minor bugfix
 
 = 2.1 20210930 =
 * [NEW] Shortcode for f/e Spid button display
