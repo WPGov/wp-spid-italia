@@ -73,6 +73,26 @@ function spid_get_loginform_button() {
         return $return;
 }
 
+function spid_get_login_button_link( $size = 's' ) {
+    
+    $return = '';
+
+    $plugin_dir = plugin_dir_url( __FILE__ );
+    $spid_ico_circle_svg = $plugin_dir . '/img/spid-ico-circle-bb.svg';
+    $spid_ico_circle_png = $plugin_dir . '/img/spid-ico-circle-bb.png';
+
+    $return .= '<!-- Generato con WP SPID Italia v.' . sanitize_text_field( get_option('spid_version') ) . '-->';
+
+    $return .= '<div class="spid-login-button">';
+    $return .= '<a href="'.esc_url( wp_login_url() ).'" class="italia-it-button italia-it-button-size-'.$size.' button-spid">';
+    $return .= '<span class="italia-it-button-icon"><img src="'.$spid_ico_circle_svg.'" onerror="this.src=\''.$spid_ico_circle_png.'\'; this.onerror=null;" alt="" /></span>';
+    $return .= '<span class="italia-it-button-text">Entra con SPID</span>';
+    $return .= '</a>';
+    $return .= '</div>';
+
+    return $return;
+}
+
 function spid_get_login_button( $size = 's' ) {
 
     $return = '';
@@ -83,10 +103,12 @@ function spid_get_login_button( $size = 's' ) {
 
     $return .= '<!-- Generato con WP SPID Italia v.' . sanitize_text_field( get_option('spid_version') ) . '-->';
 
+    $return .= '<div class="spid-login-button">';
     $return .= '<a href="#" class="italia-it-button italia-it-button-size-'.$size.' button-spid" spid-idp-button="#spid-idp-button-small-get" aria-haspopup="true" aria-expanded="false">';
     $return .= '<span class="italia-it-button-icon"><img src="'.$spid_ico_circle_svg.'" onerror="this.src=\''.$spid_ico_circle_png.'\'; this.onerror=null;" alt="" /></span>';
     $return .= '<span class="italia-it-button-text">Entra con SPID</span>';
     $return .= '</a>';
+    $return .= '</div>';
 
     $return .= '<div id="spid-idp-button-small-get" class="spid-idp-button spid-idp-button-tip spid-idp-button-relative">';
     $return .= '<ul id="spid-idp-list-small-root-get" class="spid-idp-button-menu" aria-labelledby="spid-idp">';
