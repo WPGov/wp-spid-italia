@@ -51,7 +51,7 @@ add_action( 'init', function() {
     }
 
     if ( isset( $_GET['spid_metadata'] ) && $_GET['spid_metadata'] == spid_get_metadata_token()  ) {
-		header( 'Content-type: text/xml' );
+	header( 'Content-type: text/xml' );
         $sp = spid_load();
         echo $sp->getSPMetadata();
         die();
@@ -131,23 +131,6 @@ add_action( 'login_form', function() {
     </div>
 <?php
 } );
-
-function tp_custom_logout() {
-    if ( isset( $_GET['LO'] ) ) {
-        $sp = spid_load();
-        echo $sp->isAuthenticated();
-        echo '<hr>';
-        echo $sp->logout( 0, get_site_url() . '/wp-login.php?spid_sso=out', false );
-        die();
-    }
-    if ( isset( $_GET['LOA'] ) ) {
-        $sp = spid_load();
-        $sp->logout( 0, get_site_url() . '/wp-login.php?spid_sso=out' );
-        die();
-    }
-}
-
-add_action( 'template_redirect', 'tp_custom_logout' );
 
 add_filter( 'logout_url', function( $logout_url ) {
     try {
