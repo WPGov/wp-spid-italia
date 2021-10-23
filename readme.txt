@@ -18,14 +18,14 @@ Plugin WordPress per l'interfacciamento con il Sistema Pubblico di Identità Dig
 
 https://www.youtube.com/watch?v=w5Z5EBG1R1M
 
-* Repository: [wordpress.org/plugins/wp-spid-italia/](https://wordpress.org/plugins/wp-spid-italia/)
-* Segnalazioni GitHub: [github.com/WPGov/wp-spid-italia/issues](https://github.com/WPGov/wp-spid-italia/issues)
-* Pull requests: [github.com/WPGov/wp-spid-italia/pulls](https://github.com/WPGov/wp-spid-italia/pulls)
-* Documentazione: [github.com/WPGov/wp-spid-italia/wiki](https://github.com/WPGov/wp-spid-italia/wiki)
+* Repository: https://wordpress.org/plugins/wp-spid-italia
+* Segnalazioni GitHub: https://github.com/WPGov/wp-spid-italia/issues
+* Documentazione: https://github.com/WPGov/wp-spid-italia/wiki
+* Servizi di consulenza: https://github.com/WPGov/wp-spid-italia/wiki/Supporto
 
 https://www.youtube.com/watch?v=i2eTL_Q2xfM
 
-Sviluppo a cura di **Marco Milesi** nell'ambito del progetto [WPGov.it - WordPress per la Pubblica Amministrazione](https://wpgov.it/)
+Copyright © 2017-2021 **Marco Milesi** - [www.marcomilesi.com](https://www.marcomilesi.com) - [www.wpgov.it](https://www.wpgov.it)
 
 ### Ringraziamenti
 * **Christian Ghellere, Andrea Smith**: beta testing
