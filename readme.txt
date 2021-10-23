@@ -28,14 +28,14 @@ https://www.youtube.com/watch?v=i2eTL_Q2xfM
 Copyright © 2017-2021 **Marco Milesi** - [www.marcomilesi.com](https://www.marcomilesi.com) - [www.wpgov.it](https://www.wpgov.it)
 
 ### Ringraziamenti
-* **Christian Ghellere, Andrea Smith**: beta testing
+* **Christian Ghellere, Andrea Smith**: attività di software testing
 * **Paolo Bozzo**: sviluppo libreria Drupal-PASW
 * **Nadia Caprotti**: condivisione know-how Drupal-PASW
 * **Comune di Firenze**: sviluppo libreria SimpleSaml riadattata da Paolo
-* **Italian Linux Society** per il contributo economico
 * **Porte Aperte sul Web**
 
-Copyright © 2017-2021 Marco Milesi
+### Sponsor
+* **Italian Linux Society**
 
 == Installation ==
 
