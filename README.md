@@ -8,7 +8,8 @@ Plugin WordPress per l'interfacciamento con il Sistema Pubblico di Identità Dig
 * Servizi di consulenza: https://github.com/WPGov/wp-spid-italia/wiki/Supporto
 
 ## Credits
-Sviluppato da **[Marco Milesi](https://www.marcomilesi.com)** nell'ambito del progetto [WPGov.it - WordPress per la Pubblica Amministrazione](https://wpgov.it/).
+
+Copyright © 2017-2021 **Marco Milesi** - www.marcomilesi.com - www.wpgov.it
 
 ### Ringraziamenti
 * **Christian Ghellere, Andrea Smith**: attività di software testing
@@ -19,7 +20,3 @@ Sviluppato da **[Marco Milesi](https://www.marcomilesi.com)** nell'ambito del pr
 
 ### Sponsor
 * **Italian Linux Society**
-
-***
-
-Copyright © 2017-2021 Marco Milesi - www.marcomilesi.com - www.wpgov.it
