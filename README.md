@@ -20,4 +20,4 @@ Sviluppato da **[Marco Milesi](https://www.marcomilesi.com)** nell'ambito del pr
 ### Sponsor
 * **Italian Linux Society**
 
-Copyright © 2017-2021 Marco Milesi](https://www.marcomilesi.com)
+Copyright © 2017-2021 [Marco Milesi](https://www.marcomilesi.com)
