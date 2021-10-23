@@ -2,10 +2,10 @@
 
 Plugin WordPress per l'interfacciamento con il Sistema Pubblico di Identità Digitale (SPID)
 
-* Repository: https://wordpress.org/plugins/wp-spid-italia/
+* Repository: https://wordpress.org/plugins/wp-spid-italia
 * Segnalazioni GitHub: https://github.com/WPGov/wp-spid-italia/issues
-* Pull requests: https://github.com/WPGov/wp-spid-italia/pulls
 * Documentazione: https://github.com/WPGov/wp-spid-italia/wiki
+* Servizi di consulenza: https://github.com/WPGov/wp-spid-italia/wiki/Supporto
 
 ## Credits
 Sviluppato da **[Marco Milesi](https://www.marcomilesi.com)** nell'ambito del progetto [WPGov.it - WordPress per la Pubblica Amministrazione](https://wpgov.it/).
@@ -20,4 +20,4 @@ Sviluppato da **[Marco Milesi](https://www.marcomilesi.com)** nell'ambito del pr
 ### Sponsor
 * **Italian Linux Society**
 
-Copyright © 2017-2021 Marco Milesi
+Copyright © 2017-2021 Marco Milesi](https://www.marcomilesi.com)
