@@ -11,7 +11,7 @@ Plugin WordPress per l'interfacciamento con il Sistema Pubblico di Identità Dig
 Sviluppato da **[Marco Milesi](https://www.marcomilesi.com)** nell'ambito del progetto [WPGov.it - WordPress per la Pubblica Amministrazione](https://wpgov.it/).
 
 ### Ringraziamenti
-* **Christian Ghellere, Andrea Smith**: beta testing
+* **Christian Ghellere, Andrea Smith**: attività di software testing
 * **Paolo Bozzo**: sviluppo libreria Drupal-PASW
 * **Nadia Caprotti**: condivisione know-how Drupal-PASW
 * **Comune di Firenze**: sviluppo libreria SimpleSaml riadattata da Paolo
@@ -20,4 +20,6 @@ Sviluppato da **[Marco Milesi](https://www.marcomilesi.com)** nell'ambito del pr
 ### Sponsor
 * **Italian Linux Society**
 
-Copyright © 2017-2021 [Marco Milesi](https://www.marcomilesi.com)
+***
+
+Copyright © 2017-2021 Marco Milesi - www.marcomilesi.com - www.wpgov.it
