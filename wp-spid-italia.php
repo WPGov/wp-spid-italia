@@ -171,7 +171,9 @@ add_filter( 'login_message', function( $message ) {
 
     try {
         $sp = spid_load();
-        $sp->isAuthenticated();
+	if ( $sp ) {
+		$sp->isAuthenticated();
+	}
     } catch ( Exception  $e) {
 
         if ( $internal_debug ) {
