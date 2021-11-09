@@ -238,6 +238,7 @@ add_filter( 'login_message', function( $message ) {
         if ( isset( $_GET['spid_idp'] ) && $_GET['spid_idp'] != '' ) {
             if ( $sp->isAuthenticated() ) {
                 session_destroy();
+		$_SESSION = NULL;
                 #$sp->logout( 0, get_site_url() . '/wp-login.php?spid_sso=out&' );
             }
             $assertId = 0; // index of assertion consumer service as per the SP metadata (sp_assertionconsumerservice in settings array)
