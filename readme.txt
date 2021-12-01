@@ -5,8 +5,8 @@ Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubbl
 Requires at least: 4.8
 Requires PHP: 7
 Tested up to: 5.9
-Version: 2.2.3
-Stable tag: 2.2.3
+Version: 2.2.4
+Stable tag: 2.2.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -25,7 +25,7 @@ https://www.youtube.com/watch?v=w5Z5EBG1R1M
 
 https://www.youtube.com/watch?v=i2eTL_Q2xfM
 
-Copyright © 2017-2021 **Marco Milesi** - [www.marcomilesi.com](https://www.marcomilesi.com) - [www.wpgov.it](https://www.wpgov.it)
+Copyright © 2017-2022 **Marco Milesi** - [www.marcomilesi.com](https://www.marcomilesi.com) - [www.wpgov.it](https://www.wpgov.it)
 
 ### Ringraziamenti
 * **Christian Ghellere, Andrea Smith**: attività di software testing
@@ -49,6 +49,9 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
 > Backup your data before upgrade.
+
+= 2.2.4 20211201 =
+* [BUGFIX] Minor bugfix - https://github.com/WPGov/wp-spid-italia/releases
 
 = 2.2.3 20211016 =
 * [BUGFIX] Minor bugfix - https://github.com/WPGov/wp-spid-italia/releases
