@@ -9,6 +9,7 @@ Author URI: http://www.marcomilesi.com
 
 include( plugin_dir_path( __FILE__ ) . 'constants.php');
 include( plugin_dir_path( __FILE__ ) . 'frontend-ui.php');
+include( plugin_dir_path( __FILE__ ) . 'user.php');
 
 add_action( 'admin_menu', function() {
   add_submenu_page(
@@ -27,8 +28,6 @@ add_action( 'admin_init', function() {
       update_option( 'spid_version', $nuova_versione );
     }
 });
-
-include( plugin_dir_path( __FILE__ ) . 'user.php');
 
 add_filter( 'plugin_action_links_'.plugin_basename( __FILE__ ), function( $links ) {
     $settings_link = '<a href="options-general.php?page=spid_menu">Impostazioni</a>';
@@ -59,11 +58,8 @@ add_action( 'init', function() {
 } );
 
 add_shortcode( 'spid_login_button', function( $atts ) {
-
     $button = '';
-
     $button .= spid_get_login_button();
-
     return $button;
 } );
 
