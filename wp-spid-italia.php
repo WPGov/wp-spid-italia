@@ -3,7 +3,7 @@
 Plugin Name: WP SPID Italia
 Description: SPID - Sistema Pubblico di Identità Digitale
 Author: Marco Milesi
-Version: 2.2.4
+Version: 2.3
 Author URI: http://www.marcomilesi.com
 */
 
@@ -132,7 +132,7 @@ add_filter( 'logout_url', function( $logout_url ) {
     try {
         $sp = spid_load();
         if ( $sp && $sp->isAuthenticated() ) {
-            return get_site_url() . '/wp-login.php?spid_sso=out';
+            return wp_spid_italia_get_login_url( 'out' ) .'?spid_sso=out';
         }
     } catch ( Exception  $e) {
 	    
@@ -221,8 +221,7 @@ add_filter( 'login_message', function( $message ) {
         wp_clear_auth_cookie();
         remove_action('login_footer', 'wp_shake_js', 12);
         add_filter( 'login_errors', function() { return 'Disconnesso da SPID'; } );
-        $sp->logout( 0, get_site_url() . '/wp-login.php?spid_sso=out' );
-        //$sp->logout( 0, wp_logout_url() );
+        $sp->logout( 0, wp_spid_italia_get_login_url( 'out' ) .'?spid_sso=out' );
     } else if (isset($_POST) && isset($_POST['selected_idp'])) {
         $idp = $_POST['selected_idp'];
     } else if ( isset( $_GET['spid_sso'] ) && $_GET['spid_sso'] == 'in' ) {
@@ -234,8 +233,7 @@ add_filter( 'login_message', function( $message ) {
         if ( isset( $_GET['spid_idp'] ) && $_GET['spid_idp'] != '' ) {
             if ( $sp->isAuthenticated() ) {
                 session_destroy();
-		$_SESSION = NULL;
-                #$sp->logout( 0, get_site_url() . '/wp-login.php?spid_sso=out&' );
+		        $_SESSION = NULL;
             }
             $assertId = 0; // index of assertion consumer service as per the SP metadata (sp_assertionconsumerservice in settings array)
             $attrId = 0; // index of attribute consuming service as per the SP metadata (sp_attributeconsumingservice in settings array)
@@ -282,7 +280,7 @@ add_filter( 'login_message', function( $message ) {
                 $attributes = $sp->getAttributes();
                 echo 'Gentile '.$attributes['name'].',<br>il tuo account non è abilitato su questo sito.';
                 
-                echo '<br><br><a class="button button-secondary button-large" href="'.esc_url( get_site_url() . '/wp-login.php?spid_sso=out' ).'" alt="Logout">Disconnetti SPID</a>';
+                echo '<br><br><a class="button button-secondary button-large" href="'.esc_url( wp_spid_italia_get_login_url( 'out' ) .'?spid_sso=out' ).'" alt="Logout">Disconnetti SPID</a>';
                 echo '</p>';
                 die();           
             }
@@ -333,6 +331,19 @@ add_action( 'login_enqueue_scripts', function() {
     wp_enqueue_script( 'spid-js-loginform', plugins_url( 'js/spid-sp-loginform.js', __FILE__ ), array( 'jquery' )  );
 }, 1 );
 
+function wp_spid_italia_get_login_url( $dir = 'default' ) {
+    $default_url = wp_login_url();
+
+    if ( $default_url != apply_filters( 'spid_filter_login_url_dir_default', $default_url ) ) {
+        return apply_filters( 'spid_filter_login_url_dir_default', $default_url );
+    } else if ( $dir == 'in' ) {
+        return apply_filters( 'spid_filter_login_url_dir_in', $default_url );
+    } else if ( $dir == 'out' ) {
+        return apply_filters( 'spid_filter_login_url_dir_out', $default_url );
+    }
+    return $default_url;
+}
+
 function is_spid_enabled() {
     return spid_option('enabled');
 }
@@ -363,9 +374,9 @@ function spid_load() {
             'sp_cert_file' => SPID__CERT_DIR.'sp.crt',
             'sp_comparison' => 'minimum', // one of: "exact", "minimum", "better" or "maximum"
             'sp_assertionconsumerservice' => [
-                get_site_url() . '/wp-login.php?spid_sso=in', // Servizio standard
+                wp_spid_italia_get_login_url( 'in' ) .'?spid_sso=in', // Servizio standard
             ],
-			'sp_singlelogoutservice'       => [ [ get_site_url() . '/wp-login.php?spid_sso=out', '' ] ],
+			'sp_singlelogoutservice'       => [ [ wp_spid_italia_get_login_url( 'out' ) .'?spid_sso=out', '' ] ],
             'sp_org_name' => spid_option( 'sp_org_name' ),
             'sp_org_display_name' => spid_option( 'sp_org_display_name' ),
             'sp_contact_ipa_code' => spid_option( 'sp_contact_ipa_code' ),
@@ -412,6 +423,7 @@ if ( ! function_exists( 'spid_fs' ) ) {
                 'has_paid_plans'      => false,
                 'menu'                => array(
                     'slug'           => 'spid_menu',
+                    'account'        => false,
                     'contact'        => false,
                     'support'        => false,
                     'parent'         => array(
