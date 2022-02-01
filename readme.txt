@@ -51,6 +51,10 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 == Changelog ==
 > Backup your data before upgrade.
 
+= 2.3.2 20220201 =
+* [IMPROVEMENT] Minor changes
+* [BUGFIX] Updated Inforcert metadata
+
 = 2.3 20211230 =
 * [NEW] Added compatibility with third party login URL modifiers and custom filters - check [wiki](https://github.com/WPGov/wp-spid-italia/wiki)
 * [IMPROVEMENT] Performance boost
