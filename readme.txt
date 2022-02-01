@@ -4,9 +4,9 @@ Donate link: https://www.paypal.me/milesimarco
 Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubblico di identità digitale, wpgov, marco, milesi, marco milesi
 Requires at least: 4.8
 Requires PHP: 7
-Tested up to: 5.9
-Version: 2.3.1
-Stable tag: 2.3.1
+Tested up to: 6.0
+Version: 2.3.3
+Stable tag: 2.3.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -51,8 +51,9 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 == Changelog ==
 > Backup your data before upgrade.
 
-= 2.3.2 20220201 =
+= 2.3.3 20220201 =
 * [IMPROVEMENT] Minor changes
+* [IMPROVEMENT] WP 5.9+6.0 compatibility check
 * [BUGFIX] Updated Inforcert metadata
 
 = 2.3 20211230 =
