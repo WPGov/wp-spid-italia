@@ -63,15 +63,24 @@ class Saml implements SAMLInterface
         return $this->loadIdpFromFile($filename);
     }
 
-    public function getSPMetadata(): string
+    public function getSPMetadata( $type = NULL ): string
     {
+        $entityID = htmlspecialchars($this->settings['sp_entityid'], ENT_XML1);
+
+        switch ( $type ) {
+            case 'aggregator':
+                $entityID = $entityID.'/pub-ag-full/spid';
+                break;
+            default:
+            
+        }
+        
         if (!is_readable($this->settings['sp_cert_file'])) {
             return <<<XML
             <error>Your SP certificate file is not readable. Please check file permissions.</error>
 XML;
         }
         
-        $entityID = htmlspecialchars($this->settings['sp_entityid'], ENT_XML1);
         $id = preg_replace('/[^a-z0-9_-]/', '_', $entityID);
         $cert = Settings::cleanOpenSsl($this->settings['sp_cert_file']);
 

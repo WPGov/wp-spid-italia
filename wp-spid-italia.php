@@ -3,7 +3,7 @@
 Plugin Name: WP SPID Italia
 Description: SPID - Sistema Pubblico di Identità Digitale
 Author: Marco Milesi
-Version: 2.3.3
+Version: 2.3.4
 Author URI: http://www.marcomilesi.com
 */
 
@@ -45,16 +45,18 @@ add_filter('wp_login_errors', function($errors) {
 } );
   
 add_action( 'init', function() {
+    
     if ( session_status() == PHP_SESSION_NONE ) {
         session_start();
     }
-
+    
     if ( isset( $_GET['spid_metadata'] ) && $_GET['spid_metadata'] == spid_get_metadata_token()  ) {
-	header( 'Content-type: text/xml' );
+	    header( 'Content-type: text/xml' );
         $sp = spid_load();
-        echo $sp->getSPMetadata();
+        echo $sp->getSPMetadata( isset( $_GET['type'] ) ? sanitize_title( $_GET['type'] ) : NULL );
         die();
     }
+    
 } );
 
 add_shortcode( 'spid_login_button', function( $atts ) {
@@ -140,8 +142,19 @@ add_filter( 'logout_url', function( $logout_url ) {
     return $logout_url;
 }, 10, 2 );
 
-function spid_get_metadata_url() {
-    return add_query_arg( 'spid_metadata', spid_get_metadata_token(), get_home_url() );
+function spid_get_metadata_url( $type = NULL ) {
+    $url = '';
+    switch ( $type ) {
+        case 'aggregator':
+            $url = add_query_arg( 'spid_metadata', spid_get_metadata_token(), trailingslashit( get_home_url() ) );
+            $url = add_query_arg( 'type', sanitize_text_field( $type ), $url );
+            break;
+        default:
+            $url = add_query_arg( 'spid_metadata', spid_get_metadata_token(), trailingslashit( get_home_url() ) );
+            break;
+
+    }
+    return $url;
 }
 
 function spid_get_metadata_token() {

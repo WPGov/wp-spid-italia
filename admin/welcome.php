@@ -4,13 +4,12 @@
     <p class="lead-description">
 	Servizi e soluzioni per privati, aziende e pubbliche amministrazioni<br>grazie a un'esperienza di sviluppo su WordPress dal 2011
     <br>
-	<a href="https://www.wpgov.it/servizi/">Servizi</a> &bull; <a href="https://www.wpgov.it/category/news/">Blog</a> &bull; <a href="https://www.wpgov.it/contatti/">Contatti</a></p>
+	<a href="https://www.wpgov.it/about/">Progetto</a> &bull; <a href="https://www.wpgov.it/category/news/">Notizie</a> &bull; <a href="https://www.wpgov.it/contatti/">Contatti</a></p>
   </div>
 </div>
+
+<h2>🤝</h2>
 <div class="changelog">
-			<h2>Dai una mano!</h2>
-      <p>
-    Contribuisci a migliorare questo prodotto: la tua opinione è importante!</p>
 			<div class="under-the-hood two-col">
 				<div class="col">
 					<h3><a href="https://wordpress.org/plugins/wp-spid-italia/">Repository WordPress</a> &bull; <a href="https://github.com/WPGov/wp-spid-italia">Repository (GitHub)</a></h3>
@@ -33,6 +32,7 @@
     
     <h2>🤝</h2>
 <h3 class="wp-people-group">Credits</h3>
+<br><br>
 <ul class="wp-people-group " id="wp-people-group-project-leaders">
 <li class="wp-person">
 <a href="https://www.marcomilesi.com" class="web"><img src="https://www.gravatar.com/avatar/c70b8e378aa035f77ab7a3ddee83b892" class="gravatar" alt="">
@@ -51,36 +51,36 @@ Andrea Smith</a>
 </li>
 </ul>
 
-<h3 class="wp-people-group">Ringraziamenti</h3>
-<ul class="wp-people-group " id="wp-people-group-core-developers">
-<li class="wp-person">
-	<a href="" class="web" style="pointer-events: none; cursor: default;"><img src="https://www.gravatar.com/avatar/0" class="gravatar" alt="">
-Paolo Bozzo</a>
-	<span class="title">Sviluppo libreria Drupal</span>
-</li>
-<li class="wp-person">
-<a href="" class="web" style="pointer-events: none; cursor: default;"><img src="https://www.gravatar.com/avatar/0" class="gravatar" alt="">
-Nadia Caprotti</a>
-<span class="title">Condivisione know-how Drupal</span>
-</li>
-<li class="wp-person">
-<a href="http://www.comune.fi.it" class="web"><img src="https://www.gravatar.com/avatar/0" class="gravatar" alt="">
-Comune di Firenze</a>
-<span class="title">Condivisione libreria</span>
-</li>
-<li class="wp-person">
-<a href="https://www.ils.org/" class="web"><img src="<?php echo plugins_url( '../img/ils.png', __FILE__ ); ?>" class="gravatar" alt="">
-Italian Linux Society</a>
-<span class="title">Contributo economico</span>
-</li>
-<li class="wp-person">
-<a href="http://www.porteapertesulweb.it/" class="web"><img src="https://avatars0.githubusercontent.com/u/7440334?s=50&v=4" class="gravatar" alt="">
-Porte Aperte sul Web</a>
-<span class="title">Spazio di confronto</span>
-</li>
-</ul>
-
-<h3 class="wp-people-group">Hanno collaborato alla fase di testing</h3>
 <p class="wp-credits-list">
-Gabriele Sonzogni
+Hanno collaborato alla fase di test: Gabriele Sonzogni
 </p>
+
+<h3 class="wp-people-group">Ringraziamenti</h3>
+<br><br>
+<ul class="wp-people-group " id="wp-people-group-core-developers">
+	<li class="wp-person">
+		<a href="" class="web" style="pointer-events: none; cursor: default;"><img src="https://www.gravatar.com/avatar/0" class="gravatar" alt="">
+	Paolo Bozzo</a>
+		<span class="title">Sviluppo libreria Drupal</span>
+	</li>
+	<li class="wp-person">
+		<a href="" class="web" style="pointer-events: none; cursor: default;"><img src="https://www.gravatar.com/avatar/0" class="gravatar" alt="">
+		Nadia Caprotti</a>
+		<span class="title">Condivisione know-how Drupal</span>
+	</li>
+	<li class="wp-person">
+		<a href="http://www.comune.fi.it" class="web"><img src="https://www.gravatar.com/avatar/0" class="gravatar" alt="">
+		Comune di Firenze</a>
+		<span class="title">Condivisione libreria</span>
+	</li>
+	<li class="wp-person">
+		<a href="https://www.ils.org/" class="web"><img src="<?php echo plugins_url( '../img/ils.png', __FILE__ ); ?>" class="gravatar" alt="">
+		Italian Linux Society</a>
+		<span class="title">Contributo economico</span>
+	</li>
+	<li class="wp-person">
+		<a href="http://www.porteapertesulweb.it/" class="web"><img src="https://avatars0.githubusercontent.com/u/7440334?s=50&v=4" class="gravatar" alt="">
+		Porte Aperte sul Web</a>
+		<span class="title">Spazio di confronto</span>
+	</li>
+</ul>

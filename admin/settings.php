@@ -25,9 +25,9 @@ function spid_get_tabs( $id ) {
 function spid_menu_func() {
   echo '
 
-  <div id="welcome-panel" class="welcome-panel" style="text-align: center; padding: 30px;">
+  <div id="welcome-panel" style="text-align: center; padding: 30px;">
     <a href="?page=spid_menu"><img src="'.plugins_url( '../img/spid-logo-wp.png', __FILE__ ).'" width="200px" style="padding:20px;" /></a>
-    <h2>Benvenuto in SPID | Sistema Pubblico di Identità Digitale</h2>
+    <h2>SPID | Sistema Pubblico di Identità Digitale</h2>
 	  <p class="about-description">La soluzione che ti permette di accedere a tutti i servizi online della Pubblica Amministrazione con un\'unica Identità Digitale (username e password) utilizzabile da computer, tablet e smartphone.</p>
 	</div>
   <div class="wrap about-wrap">';
@@ -155,8 +155,9 @@ function spid_menu_func() {
   echo '</form>';
   } else if ( isset($_GET['spid_action']) && $_GET['spid_action'] == 'metadata' ) {
     echo spid_get_tabs( 2 );
-    echo '<p">Attenzione! Questo URL è riservato e deve essere conservato con cura. Non comunicarlo a terzi e non indicarlo su siti o forum di supporto.</p>';
-    echo '<p class="about-description">URL metadata: <a href="'.spid_get_metadata_url().'" target="_blank">'.spid_get_metadata_url().'</a></p>';
+    echo '<p>Attenzione! Questi URL devono essere conservati con cura.</p><p>Non comunicare a terzi le informazioni di questa pagina e non indicarle su siti o forum di supporto.</p>';
+    echo '<p class="about-description">URL metadata (service provider): <a href="'.spid_get_metadata_url().'" target="_blank">'.spid_get_metadata_url().'</a></p>';
+    echo '<p class="about-description">URL metadata (aggregator) [beta]: <a href="'.spid_get_metadata_url( 'aggregator' ).'" target="_blank">'.spid_get_metadata_url( 'aggregator' ).'</a></p>';
   } else {
     echo spid_get_tabs( 0 );
     

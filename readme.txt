@@ -5,8 +5,8 @@ Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubbl
 Requires at least: 4.8
 Requires PHP: 7
 Tested up to: 6.0
-Version: 2.3.3
-Stable tag: 2.3.3
+Version: 2.3.4
+Stable tag: 2.3.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,6 +50,11 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
 > Backup your data before upgrade.
+
+= 2.3.4 20220213 =
+* [IMPROVEMENT] Added beta support for aggregator XML (enterprise light/full service aggregator)
+* [IMPROVEMENT] Minor changes
+* [BUGFIX] Added final trailing slash on XML metadata (stripped from WP 5.9) - Thanks to C. Lentini
 
 = 2.3.3 20220201 =
 * [IMPROVEMENT] Minor changes
