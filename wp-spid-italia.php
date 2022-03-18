@@ -3,7 +3,7 @@
 Plugin Name: WP SPID Italia
 Description: SPID - Sistema Pubblico di Identità Digitale
 Author: Marco Milesi
-Version: 2.3.4
+Version: 2.3.5
 Author URI: http://www.marcomilesi.com
 */
 
@@ -12,12 +12,12 @@ include( plugin_dir_path( __FILE__ ) . 'frontend-ui.php');
 include( plugin_dir_path( __FILE__ ) . 'user.php');
 
 add_action( 'admin_menu', function() {
-  add_submenu_page(
-    'options-general.php',
-    'SPID', 'SPID',
-    'manage_options', 'spid_menu',
-    function() { include( plugin_dir_path( __FILE__ ) . 'admin/settings.php'); spid_menu_func(); }
-  );
+    add_submenu_page(
+        'options-general.php',
+        'SPID', 'SPID',
+        'manage_options', 'spid_menu',
+        function() { include( plugin_dir_path( __FILE__ ) . 'admin/settings.php'); spid_menu_func(); }
+    );
 } );
 
 add_action( 'admin_init', function() {
@@ -158,7 +158,6 @@ function spid_get_metadata_url( $type = NULL ) {
 }
 
 function spid_get_metadata_token() {
-    //delete_option( 'spid_metadata_token' );
     $token = get_option( 'spid_metadata_token');
     if ( !$token ) {
         update_option( 'spid_metadata_token', substr(str_shuffle(str_repeat($x='0123456789-abcdefghijklmnopqrstuvwxyz', ceil( 15 / strlen($x)) )), 1, 15 ) );

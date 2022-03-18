@@ -5,8 +5,8 @@ Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubbl
 Requires at least: 4.8
 Requires PHP: 7
 Tested up to: 6.0
-Version: 2.3.4
-Stable tag: 2.3.4
+Version: 2.3.5
+Stable tag: 2.3.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,6 +50,11 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
 > Backup your data before upgrade.
+
+= 2.3.5 20220318 =
+* [IMPROVEMENT] Performance boost
+* [SECURITY] Updated libraries with CVE **(!)**
+* [BUGFIX] Minor bugfix
 
 = 2.3.4 20220213 =
 * [IMPROVEMENT] Added beta support for aggregator XML (enterprise light/full service aggregator)

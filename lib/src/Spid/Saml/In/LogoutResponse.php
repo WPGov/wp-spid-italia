@@ -45,7 +45,7 @@ class LogoutResponse implements ResponseInterface
             // Status code != success
             return false;
         }
-        session_unset();
+        //session_unset();
         return true;
     }
 }

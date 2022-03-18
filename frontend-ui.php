@@ -59,15 +59,15 @@ function spid_get_loginform_button() {
     $return .= '<!-- Generato con WP SPID Italia v.' . sanitize_text_field( get_option('spid_version') ) . '-->';
 
     $return .= '<div style="text-align:center;">';
-        $return .= '<a href="#" class="italia-it-button italia-it-button-size-m button-spid" aria-haspopup="true" aria-expanded="false" id="spid-toggle">';
-            $return .= '<span class="italia-it-button-icon"><img src="'.$spid_ico_circle_svg.'" onerror="this.src=\''.$spid_ico_circle_png.'\'; this.onerror=null;" alt="" /></span>';
-            $return .= '<span class="italia-it-button-text">Entra con SPID</span>';
-        $return .= '</a>';
-        $return .= '<div id="spid-login-desc">SPID è il sistema di accesso che consente di utilizzare, con un\'identità digitale unica, i servizi online della Pubblica Amministrazione e dei privati accreditati.</div>';
-        $return .= '<div style="font-size:0.8em;margin:0 0 10px 0;font-weight:bold;">';
-            $return .= '<a href="http://www.spid.gov.it/#registrati">Non hai SPID?</a> &bull; <a href="http://www.spid.gov.it">Maggiori info</a>';
-        $return .= '</div>';
-        $return .= '<img src="'.$plugin_dir . '/img/spid-agid-logo-lb.png" width="200px" alt="Agenzia per l\'Italia Digitale" />';
+    $return .= '<a href="#" class="italia-it-button italia-it-button-size-m button-spid" aria-haspopup="true" aria-expanded="false" id="spid-toggle">';
+    $return .= '<span class="italia-it-button-icon"><img src="'.$spid_ico_circle_svg.'" onerror="this.src=\''.$spid_ico_circle_png.'\'; this.onerror=null;" alt="" /></span>';
+    $return .= '<span class="italia-it-button-text">Entra con SPID</span>';
+    $return .= '</a>';
+    $return .= '<div id="spid-login-desc">SPID è il sistema di accesso che consente di utilizzare, con un\'identità digitale unica, i servizi online della Pubblica Amministrazione e dei privati accreditati.</div>';
+    $return .= '<div style="font-size:0.8em;margin:0 0 10px 0;font-weight:bold;">';
+    $return .= '<a href="http://www.spid.gov.it/#registrati">Non hai SPID?</a> &bull; <a href="http://www.spid.gov.it">Maggiori info</a>';
+    $return .= '</div>';
+    $return .= '<img src="'.$plugin_dir . '/img/spid-agid-logo-lb.png" width="200px" alt="Agenzia per l\'Italia Digitale" />';
     $return .= '</div>';
     
         return $return;
