@@ -5,8 +5,8 @@ Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubbl
 Requires at least: 4.8
 Requires PHP: 7
 Tested up to: 6.0
-Version: 2.3.5
-Stable tag: 2.3.5
+Version: 2.3.6
+Stable tag: 2.3.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,6 +50,9 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
 > Backup your data before upgrade.
+
+= 2.3.6 20220321 =
+* [BUGFIX] Spid validator metadata update
 
 = 2.3.5 20220318 =
 * [IMPROVEMENT] Performance boost
