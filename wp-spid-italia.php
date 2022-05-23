@@ -60,8 +60,13 @@ add_action( 'init', function() {
 } );
 
 add_shortcode( 'spid_login_button', function( $atts ) {
+    $a = shortcode_atts( array(
+		'size' => 's',
+		'redirect_to' => '',
+	), $atts );
+    
     $button = '';
-    $button .= spid_get_login_button();
+    $button .= spid_get_login_button( $a['size'], $a['redirect_to'] );
     return $button;
 } );
 
@@ -167,7 +172,10 @@ function spid_get_metadata_token() {
 }
 
 add_filter( 'login_message', function( $message ) {
-    
+    spid_handle();    
+});
+
+function spid_handle() {
     $internal_debug = false;
     $spid_debug = ( WP_DEBUG === true ) || $internal_debug;
 
@@ -179,9 +187,9 @@ add_filter( 'login_message', function( $message ) {
 
     try {
         $sp = spid_load();
-	if ( $sp ) {
-		$sp->isAuthenticated();
-	}
+        if ( $sp ) {
+            $sp->isAuthenticated();
+        }
 
     } catch ( Exception  $e) {
 
@@ -190,9 +198,7 @@ add_filter( 'login_message', function( $message ) {
         }
 
         function spid_errors( $errorMsg2 ){
-            $xmlString = isset($_GET['SAMLResponse']) ?
-            gzinflate(base64_decode($_GET['SAMLResponse'])) :
-            base64_decode($_POST['SAMLResponse']);
+            $xmlString = isset($_GET['SAMLResponse']) ? gzinflate(base64_decode($_GET['SAMLResponse'])) : base64_decode($_POST['SAMLResponse']);
             $xmlResp = new \DOMDocument();
             $xmlResp->loadXML($xmlString);
             if ( $xmlResp->textContent ) {
@@ -225,6 +231,14 @@ add_filter( 'login_message', function( $message ) {
         echo '<small>';
         echo '<br>Auth state: '.( $sp->isAuthenticated() ? 'authenticated' : 'not authenticated' );
         echo '<br>idpEntityId: '. ( isset( $_SESSION['idpEntityId'] ) ? $_SESSION['idpEntityId'] : '(not set)' );
+        $xmlString = isset($_GET['SAMLResponse']) ? gzinflate(base64_decode($_GET['SAMLResponse'])) : ( isset($_POST['SAMLResponse']) ? base64_decode($_POST['SAMLResponse']) : '');
+        if ( $xmlString ) {
+            $xmlResp = new \DOMDocument();
+            $xmlResp->loadXML($xmlString);
+            echo '<br>SAMLResponse: '. $xmlString;
+        }
+        echo '<br>Session: ';
+        print_r( $_SESSION );
         echo '</small>';
         echo '</form></div>';
     }
@@ -248,9 +262,15 @@ add_filter( 'login_message', function( $message ) {
                 session_destroy();
 		        $_SESSION = NULL;
             }
+            if ( isset( $_GET['spid_redirect_to'] ) ) {
+                $_SESSION['spid_redirect_to'] = $_GET['spid_redirect_to'];
+            }
             $assertId = 0; // index of assertion consumer service as per the SP metadata (sp_assertionconsumerservice in settings array)
             $attrId = 0; // index of attribute consuming service as per the SP metadata (sp_attributeconsumingservice in settings array)
-            $sp->login( 'idp_'.$_GET['spid_idp'], $assertId, $attrId); // Generate the login URL and redirect to the IdP login page
+            $_SESSION['start_login'] = 1;
+            //print_r($_SESSION);
+            //die();
+            $sp->login( 'idp_'.$_GET['spid_idp'], $assertId, $attrId ); // Generate the login URL and redirect to the IdP login page
         } else if ( $sp->isAuthenticated() ) {
             $attributes = $sp->getAttributes();
             $name = $attributes['email'][0];    
@@ -303,7 +323,7 @@ add_filter( 'login_message', function( $message ) {
         }
 
     }
-});
+}
 
 function spid_update_user( $user, $attributes ) {
     
@@ -347,14 +367,28 @@ add_action( 'login_enqueue_scripts', function() {
 function wp_spid_italia_get_login_url( $dir = 'default' ) {
     $default_url = wp_login_url();
 
-    if ( $default_url != apply_filters( 'spid_filter_login_url_dir_default', $default_url ) ) {
-        return apply_filters( 'spid_filter_login_url_dir_default', $default_url );
-    } else if ( $dir == 'in' ) {
-        return apply_filters( 'spid_filter_login_url_dir_in', $default_url );
-    } else if ( $dir == 'out' ) {
-        return apply_filters( 'spid_filter_login_url_dir_out', $default_url );
+    $filter_default = apply_filters( 'spid_filter_login_url_dir_default', $default_url );
+    $filter_in = apply_filters( 'spid_filter_login_url_dir_in', $default_url );
+    $filter_out = apply_filters( 'spid_filter_login_url_dir_out', $default_url );
+
+    /*
+    echo 'def'.$default_url.'<hr>';
+    echo 'f_def'.$filter_default.'<hr>';
+    echo 'f_in'.$filter_in.'<hr>';
+    echo 'f_out'.$filter_out.'<hr>';
+    */
+
+    if ( $dir == 'default' ) {
+        return $filter_default;
     }
-    return $default_url;
+
+    if ( $dir == 'in' && $filter_in != $default_url ) {
+        return $filter_in;
+    } else if ( $dir == 'out' && $filter_out != $default_url ) {
+        return $filter_out;
+    }
+    
+    return $filter_default;
 }
 
 function is_spid_enabled() {
@@ -387,9 +421,9 @@ function spid_load() {
             'sp_cert_file' => SPID__CERT_DIR.'sp.crt',
             'sp_comparison' => 'minimum', // one of: "exact", "minimum", "better" or "maximum"
             'sp_assertionconsumerservice' => [
-                wp_spid_italia_get_login_url( 'in' ) .'?spid_sso=in', // Servizio standard
+                add_query_arg( 'spid_sso', 'in', wp_spid_italia_get_login_url( 'in' ) ) // Servizio standard
             ],
-			'sp_singlelogoutservice'       => [ [ wp_spid_italia_get_login_url( 'out' ) .'?spid_sso=out', '' ] ],
+			'sp_singlelogoutservice' => [ [ add_query_arg( 'spid_sso', 'out', wp_spid_italia_get_login_url( 'out' ) ), '' ] ],
             'sp_org_name' => spid_option( 'sp_org_name' ),
             'sp_org_display_name' => spid_option( 'sp_org_display_name' ),
             'sp_contact_ipa_code' => spid_option( 'sp_contact_ipa_code' ),

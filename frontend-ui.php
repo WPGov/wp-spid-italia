@@ -1,7 +1,6 @@
 <?php
 
-
-function spid_get_idp_list( $showinfo = false ) {
+function spid_get_idp_list( $showinfo = false, $spid_redirect_to = '' ) {
     $return = '';
 
     $plugin_dir = plugin_dir_url( __FILE__ );
@@ -34,10 +33,20 @@ function spid_get_idp_list( $showinfo = false ) {
     $shuffle[] = array( 'Lepida ID', 'https://id.lepida.it/idp/shibboleth', 'lepidaid', 9 );
     shuffle( $shuffle );
     $provider = array_merge( $provider, $shuffle );
-
+    
     $return .= '<ul id="spid-idp-list-small-root-get" class="spid-idp-button-menu" aria-labelledby="spid-idp">';
     foreach ( $provider as $p ) {
-        $return .= '<li class="spid-idp-button-link" data-idp="infocertid"><a href="'.esc_url( wp_login_url().'?spid_sso=in&spid_idp='.$p[3] ).'" alt="'.$p[0].'"><img class="spid-provider" src="'.$plugin_dir.'img/idp/spid-idp-'.$p[2].'.svg" alt="'.$p[0].'" /></a></li>';
+        $url = wp_spid_italia_get_login_url();
+        $url = add_query_arg( 'spid_sso', 'in', $url );
+        $url = add_query_arg( 'spid_idp', $p[3], $url );
+        if ( $spid_redirect_to ) {
+            if ( $spid_redirect_to == 'CURRENT_URL' ) {
+                $spid_redirect_to = $_SERVER['REQUEST_URI'];
+            }
+            $url = add_query_arg( 'spid_redirect_to', $spid_redirect_to, $url );
+        }
+
+        $return .= '<li class="spid-idp-button-link" data-idp="infocertid"><a href="'.esc_url( $url ).'" alt="'.$p[0].'"><img class="spid-provider" src="'.$plugin_dir.'img/idp/spid-idp-'.$p[2].'.svg" alt="'.$p[0].'" /></a></li>';
     }
     if ( $showinfo ) {
         $return .= '<li class="spid-idp-support-link"><a href="https://www.spid.gov.it">Maggiori informazioni</a></li>';
@@ -93,7 +102,7 @@ function spid_get_login_button_link( $size = 's' ) {
     return $return;
 }
 
-function spid_get_login_button( $size = 's' ) {
+function spid_get_login_button( $size = 's', $redirectTo = '' ) {
 
     $return = '';
 
@@ -113,7 +122,7 @@ function spid_get_login_button( $size = 's' ) {
     $return .= '<div id="spid-idp-button-small-get" class="spid-idp-button spid-idp-button-tip spid-idp-button-relative">';
     $return .= '<ul id="spid-idp-list-small-root-get" class="spid-idp-button-menu" aria-labelledby="spid-idp">';
 
-    $return .= spid_get_idp_list( true );
+    $return .= spid_get_idp_list( true, $redirectTo );
 
     $return .= '</ul>';
     $return .= '</div>';
