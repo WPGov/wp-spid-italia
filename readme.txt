@@ -5,8 +5,8 @@ Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubbl
 Requires at least: 4.8
 Requires PHP: 7
 Tested up to: 6.0
-Version: 2.3.6
-Stable tag: 2.3.6
+Version: 2.4
+Stable tag: 2.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,6 +50,13 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
 > Backup your data before upgrade.
+
+= 2.4 20220529 =
+* [NEW] Added low-level support for digitalAddress, digitalAddress, domicileStreetAddress, domicilePostalCode, domicileMunicipality, domicileProvince, domicileNation (avviso 25)
+* [NEW] Added shortcode parameter redirect_to
+* [IMPROVE] WP 6.0 compatibility and best-pratices
+* [IMPROVE] Better filters/api
+* [BUGFIX] Minor bugfix
 
 = 2.3.6 20220321 =
 * [BUGFIX] Spid validator metadata update
