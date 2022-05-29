@@ -54,7 +54,12 @@ class Settings
         "email",
         "address",
         "expirationDate",
-        "digitalAddress"
+        "digitalAddress",
+        'domicileStreetAddress', //Domicilio -avviso.25
+        'domicilePostalCode', //Codice Postale -avviso.25
+        'domicileMunicipality', //Comune -avviso.25
+        'domicileProvince', //Provincia -avviso.25
+        'domicileNation', //Nazione -avviso.25
     ];
 
     public static function validateSettings(array $settings)
