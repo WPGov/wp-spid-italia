@@ -65,6 +65,10 @@ add_shortcode( 'spid_login_button', function( $atts ) {
 		'redirect_to' => '',
 	), $atts );
     
+    if ( isset( $a['redirect_to'] ) && $a['redirect_to'] == 'CURRENT_URL' ) {
+        global $wp;
+        $a['redirect_to'] = home_url( $wp->request );
+    }
     $button = '';
     $button .= spid_get_login_button( $a['size'], $a['redirect_to'] );
     return $button;
