@@ -69,6 +69,7 @@ add_shortcode( 'spid_login_button', function( $atts ) {
         global $wp;
         $a['redirect_to'] = home_url( $wp->request );
     }
+    
     $button = '';
     $button .= spid_get_login_button( $a['size'], $a['redirect_to'] );
     return $button;
