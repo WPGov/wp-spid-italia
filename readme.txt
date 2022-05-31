@@ -5,8 +5,8 @@ Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubbl
 Requires at least: 4.8
 Requires PHP: 7
 Tested up to: 6.0
-Version: 2.4
-Stable tag: 2.4
+Version: 2.4.1
+Stable tag: 2.4.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,6 +50,10 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
 > Backup your data before upgrade.
+
+= 2.4.1 20220531 =
+* [NEW] Added redirect_to shortcode parameter with optional "CURRENT_URL" value (login redirect to current page)
+* [IMPROVE] Added new Intesa logo
 
 = 2.4 20220529 =
 * [NEW] Added low-level support for digitalAddress, digitalAddress, domicileStreetAddress, domicilePostalCode, domicileMunicipality, domicileProvince, domicileNation (avviso 25)
