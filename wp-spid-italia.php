@@ -3,7 +3,7 @@
 Plugin Name: WP SPID Italia
 Description: SPID - Sistema Pubblico di Identità Digitale
 Author: Marco Milesi
-Version: 2.4
+Version: 2.4.1
 Author URI: http://www.marcomilesi.com
 */
 
