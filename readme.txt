@@ -5,8 +5,8 @@ Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubbl
 Requires at least: 4.8
 Requires PHP: 7
 Tested up to: 6.0
-Version: 2.4.1
-Stable tag: 2.4.1
+Version: 2.4.2
+Stable tag: 2.4.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,6 +50,10 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
 > Backup your data before upgrade.
+
+= 2.4.2 20220621 =
+* [BUGFIX] Fixed bug causing login error with Namirial under some server configurations
+* [BUGFIX] Minor bugfix
 
 = 2.4.1 20220531 =
 * [NEW] Added redirect_to shortcode parameter with optional "CURRENT_URL" value (login redirect to current page)

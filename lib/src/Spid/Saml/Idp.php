@@ -57,7 +57,12 @@ class Idp implements IdpInterface
         $metadata['idpEntityId'] = $xml->attributes()->entityID->__toString();
         $metadata['idpSSO'] = $idpSSO;
         $metadata['idpSLO'] = $idpSLO;
-        $metadata['idpCertValue'] = self::formatCert($xml->xpath('//ds:X509Certificate')[0]->__toString());
+        
+        if ( $metadata['idpEntityId'] == 'https://idp.namirialtsp.com/idp' ) {// Namirial / Lepida FIX by Marco Milesi
+            $metadata['idpCertValue'] = self::formatCert($xml->xpath('//md:IDPSSODescriptor//ds:X509Certificate')[0]->__toString());
+        } else {
+            $metadata['idpCertValue'] = self::formatCert($xml->xpath('//ds:X509Certificate')[0]->__toString());
+        }
 
         $this->idpFileName = $xmlFile;
         $this->metadata = $metadata;
