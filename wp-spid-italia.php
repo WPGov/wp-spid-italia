@@ -308,7 +308,9 @@ function spid_handle() {
                 wp_set_current_user ( $user->ID );
                 wp_set_auth_cookie  ( $user->ID );
             
-                wp_safe_redirect( apply_filters( 'spid_registration_default_login_redirect', admin_url() ) );
+		$redirect_to = (isset($_SESSION['spid_redirect_to']) && !empty($_SESSION['spid_redirect_to'])) ? $_SESSION['spid_redirect_to'] : admin_url();
+		    
+                wp_safe_redirect( apply_filters( 'spid_registration_default_login_redirect', $redirect_to ) );
                 exit();
 
             } else {
