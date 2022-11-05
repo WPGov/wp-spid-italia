@@ -4,9 +4,9 @@ Donate link: https://www.paypal.me/milesimarco
 Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubblico di identità digitale, wpgov, marco, milesi, marco milesi
 Requires at least: 4.8
 Requires PHP: 7
-Tested up to: 6.0
-Version: 2.4.3
-Stable tag: 2.4.3
+Tested up to: 6.1
+Version: 2.5
+Stable tag: 2.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,6 +50,11 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
 > Backup your data before upgrade.
+
+= 2.5 20221105 =
+* [NEW] Added TeamSystem IDP
+* [IMPROVE] WP 6.1 compatibility
+* [BUGFIX] Minor bugfix
 
 = 2.4.3 20220621 =
 * [BUGFIX] Fixed bug causing login error with Namirial under some server configurations
