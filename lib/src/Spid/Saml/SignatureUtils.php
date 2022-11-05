@@ -144,9 +144,9 @@ class SignatureUtils
         $csr = openssl_csr_new($dn, $privkey, array('digest_alg' => 'sha256'));
         $myserial = (int) hexdec(bin2hex(openssl_random_pseudo_bytes(8)));
         $configArgs = array("digest_alg" => "sha256");
-        $sscert = openssl_csr_sign($csr, null, $privkey, $numberofdays, $configArgs, $myserial);
-        openssl_x509_export($sscert, $publickey);
-        openssl_pkey_export($privkey, $privatekey);
+        $sscert = @openssl_csr_sign($csr, null, $privkey, $numberofdays, $configArgs, $myserial);
+        @openssl_x509_export($sscert, $publickey);
+        @openssl_pkey_export($privkey, $privatekey);
         return [
             'key' => $privatekey,
             'cert' => $publickey
