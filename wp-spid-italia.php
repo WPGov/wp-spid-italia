@@ -116,10 +116,11 @@ add_action( 'login_form', function() {
 
         <div id="spid-sso-wrap__action">
             <p>
-                <div style="text-align:center;margin:40px 0;">
+                <div class="spid-sso-wrap__inner">
                     <?php echo spid_get_idp_list(); ?>
+                    <div class="clear"></div>
                 </div>
-                
+                <div class="clear"></div>
                 <div class="spid-sso-or"><span><?php esc_html_e( apply_filters( 'spid_filter_login_or_after', __( 'Oppure', 'spid' ) ) ); ?></span></div>
             </p>
         </div>
@@ -307,8 +308,7 @@ function spid_handle() {
                 wp_set_current_user ( $user->ID );
                 wp_set_auth_cookie  ( $user->ID );
             
-		$redirect_to = (isset($_SESSION['spid_redirect_to']) && !empty($_SESSION['spid_redirect_to'])) ? $_SESSION['spid_redirect_to'] : admin_url();
-		    
+                $redirect_to = (isset($_SESSION['spid_redirect_to']) && !empty($_SESSION['spid_redirect_to'])) ? $_SESSION['spid_redirect_to'] : admin_url();
                 wp_safe_redirect( apply_filters( 'spid_registration_default_login_redirect', $redirect_to ) );
                 exit();
 
@@ -456,44 +456,6 @@ function spid_option($name) {
 		return $options[$name];
 	}
 	return false;
-}
-
-if ( ! function_exists( 'spid_fs' ) ) {
-    // Create a helper function for easy SDK access.
-    function spid_fs() {
-        global $spid_fs;
-
-        if ( ! isset( $spid_fs ) ) {
-            // Include Freemius SDK.
-            require_once dirname(__FILE__) . '/freemius/start.php';
-
-            $spid_fs = fs_dynamic_init( array(
-                'id'                  => '7763',
-                'slug'                => 'wp-spid-italia',
-                'type'                => 'plugin',
-                'public_key'          => 'pk_60022b74a2ac02d5ea215998e8671',
-                'is_premium'          => false,
-                'has_addons'          => true,
-                'has_paid_plans'      => false,
-                'menu'                => array(
-                    'slug'           => 'spid_menu',
-                    'account'        => false,
-                    'contact'        => false,
-                    'support'        => false,
-                    'parent'         => array(
-                        'slug' => 'options-general.php',
-                    ),
-                ),
-            ) );
-        }
-
-        return $spid_fs;
-    }
-
-    // Init Freemius.
-    spid_fs();
-    // Signal that SDK was initiated.
-    do_action( 'spid_fs_loaded' );
 }
 
 ?>

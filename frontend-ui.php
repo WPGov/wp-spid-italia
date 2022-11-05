@@ -31,7 +31,7 @@ function spid_get_idp_list( $showinfo = false, $spid_redirect_to = '' ) {
     $shuffle[] = array( 'SpidItalia ID', 'https://spid.register.it', 'spiditalia', 7 );
     $shuffle[] = array( 'Intesa ID', 'https://spid.intesa.it', 'intesaid', 8 );
     $shuffle[] = array( 'Lepida ID', 'https://id.lepida.it/idp/shibboleth', 'lepidaid', 9 );
-    $shuffle[] = array( 'TeamSystem ID', 'https://spid.teamsystem.com/idp', 'teamsystem', 10 );
+    $shuffle[] = array( 'TeamSystem ID', 'https://spid.teamsystem.com/idp', 'teamsystemid', 10 );
     shuffle( $shuffle );
     $provider = array_merge( $provider, $shuffle );
     
@@ -47,7 +47,7 @@ function spid_get_idp_list( $showinfo = false, $spid_redirect_to = '' ) {
             $url = add_query_arg( 'spid_redirect_to', $spid_redirect_to, $url );
         }
 
-        $return .= '<li class="spid-idp-button-link" data-idp="infocertid"><a href="'.esc_url( $url ).'" alt="'.$p[0].'"><img class="spid-provider" src="'.$plugin_dir.'img/idp/spid-idp-'.$p[2].'.svg" alt="'.$p[0].'" /></a></li>';
+        $return .= '<li class="spid-idp-button-link" data-idp="'.$p[2].'"><a href="'.esc_url( $url ).'" alt="'.$p[0].'"><img class="spid-provider" src="'.$plugin_dir.'img/idp/spid-idp-'.$p[2].'.svg" alt="'.$p[0].'" /></a></li>';
     }
     if ( $showinfo ) {
         $return .= '<li class="spid-idp-support-link"><a href="https://www.spid.gov.it">Maggiori informazioni</a></li>';

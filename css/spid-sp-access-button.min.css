@@ -373,7 +373,7 @@ svg {
 }
 
 .spid-sso-form-display #loginform {
-	padding: 26px 24px;
+	padding: 26px 5px;
 }
 
 .spid-sso-or {
@@ -463,4 +463,14 @@ svg {
     padding: 10px;
     display:block;
     margin: 0 auto;
+}
+
+#loginform #spid-idp-list-small-root-get {
+	columns: 2;
+}
+
+#loginform .spid-provider {
+	padding: 0px;
+    max-width: 100%;
+    height: 80px;
 }
