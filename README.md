@@ -2,7 +2,8 @@
 
 Plugin WordPress per l'interfacciamento con il Sistema Pubblico di Identità Digitale (SPID)
 
-* Repo GitHub: https://wordpress.org/plugins/wp-spid-italia
+* GitHub: https://github.com/WPGov/wp-spid-italia
+* WP.org: https://wordpress.org/plugins/wp-spid-italia
 
 ## Credits
 
