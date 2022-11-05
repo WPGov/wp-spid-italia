@@ -53,7 +53,10 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 = 2.5 20221105 =
 * [NEW] Added TeamSystem IDP
+* [NEW] Improved wp-login.php UI/UX with 2 columns-layout
 * [IMPROVE] WP 6.1 compatibility
+* [BUGFIX] Fixed redirect url (thanks Daneel87)
+* [BUGFIX] Minor css/code refactoring
 * [BUGFIX] Minor bugfix
 
 = 2.4.3 20220621 =
