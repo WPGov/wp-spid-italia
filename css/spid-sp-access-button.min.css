@@ -1,11 +1,19 @@
-@import url(https://fonts.googleapis.com/css?family=Titillium+Web:400,600);
+
+@font-face {
+    font-family: "Titillium";
+	src: url('../font/TitilliumWeb-Regular.ttf') format('embedded-opentype'), /* Internet Explorer */
+         url('../font/TitilliumWeb-Regular.ttf') format('woff2'),             /* Super Modern Browsers */
+         url('../font/TitilliumWeb-Regular.ttf') format('woff'),              /* Pretty Modern Browsers */
+         url('../font/TitilliumWeb-Regular.ttf') format('truetype'),          /* Safari, Android, iOS */
+         url('../font/TitilliumWeb-Regular.ttf') format('svg');               /* Legacy iOS */
+}
 
 .italia-it-button {
 	display: inline-block;
 	position: relative;
 	padding: 0;
 	color: #FFF;
-	font-family: "Titillium Web", HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+	font-family: Titillium, Helvetica, Arial, sans-serif;
 	font-weight: 600;
 	line-height: 1em;
 	text-decoration: none;
