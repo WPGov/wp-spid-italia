@@ -32,6 +32,7 @@ function spid_get_idp_list( $showinfo = false, $spid_redirect_to = '' ) {
     $shuffle[] = array( 'Intesa ID', 'https://spid.intesa.it', 'intesaid', 8 );
     $shuffle[] = array( 'Lepida ID', 'https://id.lepida.it/idp/shibboleth', 'lepidaid', 9 );
     $shuffle[] = array( 'TeamSystem ID', 'https://spid.teamsystem.com/idp', 'teamsystemid', 10 );
+    $shuffle[] = array( 'Etna ID', 'https://id.eht.eu/SLS', 'etnaid', 11 );
     shuffle( $shuffle );
     $provider = array_merge( $provider, $shuffle );
     

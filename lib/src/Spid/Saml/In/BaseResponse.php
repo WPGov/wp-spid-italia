@@ -33,6 +33,10 @@ class BaseResponse
             gzinflate(base64_decode($_GET['SAMLResponse'])) :
             base64_decode($_POST['SAMLResponse']);
         
+        if ( !$xmlString ) { // MM 20230304
+            return;
+        }
+
         $this->xml = new \DOMDocument();
         $this->xml->loadXML($xmlString);
 
