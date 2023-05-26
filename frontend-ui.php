@@ -23,16 +23,17 @@ function spid_get_idp_list( $showinfo = false, $spid_redirect_to = '' ) {
     }
     $shuffle = array();
     $shuffle[] = array( 'Infocert ID', 'https://identity.infocert.it', 'infocertid', 1 );
-    $shuffle[] = array( 'Tim ID', 'https://login.id.tim.it/affwebservices/public/saml2sso', 'timid', 3 );
     $shuffle[] = array( 'Poste ID', 'https://posteid.poste.it', 'posteid', 2 );
+    $shuffle[] = array( 'Tim ID', 'https://login.id.tim.it/affwebservices/public/saml2sso', 'timid', 3 );
     $shuffle[] = array( 'Sielte ID', 'https://identity.sieltecloud.it', 'sielteid', 4 );
     $shuffle[] = array( 'Aruba ID', 'https://loginspid.aruba.it', 'arubaid', 5 );
     $shuffle[] = array( 'Namirial ID', 'https://idp.namirialtsp.com/idp', 'namirialid', 6 );
     $shuffle[] = array( 'SpidItalia ID', 'https://spid.register.it', 'spiditalia', 7 );
-    $shuffle[] = array( 'Intesa ID', 'https://spid.intesa.it', 'intesaid', 8 );
+    //$shuffle[] = array( 'Intesa ID', 'https://spid.intesa.it', 'intesaid', 8 );
     $shuffle[] = array( 'Lepida ID', 'https://id.lepida.it/idp/shibboleth', 'lepidaid', 9 );
     $shuffle[] = array( 'TeamSystem ID', 'https://spid.teamsystem.com/idp', 'teamsystemid', 10 );
-    $shuffle[] = array( 'Etna ID', 'https://id.eht.eu/SLS', 'etnaid', 11 );
+    $shuffle[] = array( 'Etna ID', 'https://id.eht.eu', 'etnaid', 11 );
+    $shuffle[] = array( 'InfoCamere ID', 'https://loginspid.infocamere.it', 'infocamereid', 12 );
     shuffle( $shuffle );
     $provider = array_merge( $provider, $shuffle );
     

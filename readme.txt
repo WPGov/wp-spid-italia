@@ -5,8 +5,8 @@ Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubbl
 Requires at least: 4.8
 Requires PHP: 7
 Tested up to: 6.1
-Version: 2.6
-Stable tag: 2.6
+Version: 2.6.1
+Stable tag: 2.6.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -48,6 +48,11 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
 > Backup your data before upgrade.
+
+= 2.6.1 20230527 =
+* [NEW] Added Infocamere IDP
+* [NEW] Removed IntesaID IDP
+* [BUGFIX] Minor bugfix
 
 = 2.6 20230508 =
 * [NEW] Added EtnaID IDP
