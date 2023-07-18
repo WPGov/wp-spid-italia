@@ -206,6 +206,8 @@ function spid_handle() {
 
         if ( $internal_debug ) {
             echo '<br><br><pre><small style="color:darkred;">'.$e->getMessage().'</small></pre>';
+        } else {
+            echo '<br><br><pre><small style="color:darkred;">La configurazione SPID ha generato un errore</small></pre>';
         }
 
         function spid_errors( $errorMsg2 ){
