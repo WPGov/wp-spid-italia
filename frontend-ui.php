@@ -29,7 +29,7 @@ function spid_get_idp_list( $showinfo = false, $spid_redirect_to = '' ) {
     $shuffle[] = array( 'Aruba ID', 'https://loginspid.aruba.it', 'arubaid', 5 );
     $shuffle[] = array( 'Namirial ID', 'https://idp.namirialtsp.com/idp', 'namirialid', 6 );
     $shuffle[] = array( 'SpidItalia ID', 'https://spid.register.it', 'spiditalia', 7 );
-    //$shuffle[] = array( 'Intesa ID', 'https://spid.intesa.it', 'intesaid', 8 );
+    $shuffle[] = array( 'Intesi ID', 'https://idp.intesigroup.com', 'intesigroupspid', 8 );
     $shuffle[] = array( 'Lepida ID', 'https://id.lepida.it/idp/shibboleth', 'lepidaid', 9 );
     $shuffle[] = array( 'TeamSystem ID', 'https://spid.teamsystem.com/idp', 'teamsystemid', 10 );
     $shuffle[] = array( 'Etna ID', 'https://id.eht.eu', 'etnaid', 11 );

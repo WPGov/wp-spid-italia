@@ -4,9 +4,9 @@ Donate link: https://www.paypal.me/milesimarco
 Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubblico di identità digitale, wpgov, marco, milesi, marco milesi
 Requires at least: 4.8
 Requires PHP: 7
-Tested up to: 6.1
-Version: 2.6.1
-Stable tag: 2.6.1
+Tested up to: 6.2
+Version: 2.7
+Stable tag: 2.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -23,7 +23,7 @@ https://www.youtube.com/watch?v=w5Z5EBG1R1M
 
 https://www.youtube.com/watch?v=i2eTL_Q2xfM
 
-Copyright © 2017-2022 **Marco Milesi**
+Copyright © 2017-2023 **Marco Milesi**
 [www.marcomilesi.com](https://www.marcomilesi.com) - [www.wpgov.it](https://www.wpgov.it)
 
 ### Ringraziamenti
@@ -48,6 +48,10 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
 > Backup your data before upgrade.
+
+= 2.7 20230718 =
+* [NEW] Removed IntesiGroup IDP
+* [BUGFIX] Code and orphan resources cleanup
 
 = 2.6.1 20230527 =
 * [NEW] Added Infocamere IDP
