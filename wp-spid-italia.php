@@ -301,7 +301,7 @@ function spid_handle() {
                 if ( !empty( $users ) ) {
                     $user = reset( $users );
                 } else {
-                    apply_filters( 'spid_registration_filter_new_user', $attributes );
+                    $user = apply_filters( 'spid_registration_filter_new_user', $attributes );
                 }
             }
             if ( !is_wp_error( $user ) && !empty( $user ) ) {
