@@ -4,9 +4,9 @@ Donate link: https://www.paypal.me/milesimarco
 Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubblico di identità digitale, wpgov, marco, milesi, marco milesi
 Requires at least: 4.8
 Requires PHP: 7
-Tested up to: 6.2
-Version: 2.7
-Stable tag: 2.7
+Tested up to: 6.3
+Version: 2.7.1
+Stable tag: 2.7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -48,6 +48,10 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
 > Backup your data before upgrade.
+
+= 2.7.1 20231004 =
+* [BUGFIX] Error with missing reset password button with some configurations (thanks to effekt.it)
+* Tested with WP 6.3
 
 = 2.7 20230718 =
 * [NEW] Removed IntesiGroup IDP
