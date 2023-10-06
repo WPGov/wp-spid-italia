@@ -16,7 +16,8 @@ function spid_get_idp_list( $showinfo = false, $spid_redirect_to = '' ) {
                 0
             )
         );
-        $provider[] = array( 'SPID Local', 'http://localhost:8080', 'localhost', 'local' );
+        $provider[] = array( 'SPID Local (testenv2)', 'http://localhost:8088/sso', 'localhost', 'local' );
+        $provider[] = array( 'SPID Local (saml)', 'https://localhost:8443/samlsso', 'localhost-saml', 'localsaml' );
         $provider[] = array( 'SPID TEST', 'https://demo.spid.gov.it/samlsso', 'demo', 'demo' );
     } else {
         $provider = array();
