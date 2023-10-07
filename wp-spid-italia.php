@@ -362,6 +362,10 @@ function spid_update_user( $user, $attributes ) {
     
     update_user_meta( $user->ID, 'spid_attributes', $attributes);
     update_user_meta( $user->ID, 'codice_fiscale', $cf);
+    
+    if( spid_option('add_role') ) {
+        $user->add_role( spid_option('role_name') );
+    }
 
     return;
 }
