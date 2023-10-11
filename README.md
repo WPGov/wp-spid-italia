@@ -7,7 +7,7 @@ Plugin WordPress per l'interfacciamento con il Sistema Pubblico di Identità Dig
 
 ## Credits
 
-Copyright © 2017-2022 **Marco Milesi**
+Copyright © 2017-2024 **Marco Milesi**
 www.marcomilesi.com - www.wpgov.it
 
 ### Ringraziamenti
