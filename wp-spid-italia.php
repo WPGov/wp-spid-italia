@@ -435,7 +435,6 @@ function spid_load() {
             'sp_org_name' => spid_option( 'sp_org_name' ),
             'sp_org_display_name' => spid_option( 'sp_org_display_name' ),
             'sp_contact_ipa_code' => spid_option( 'sp_contact_ipa_code' ),
-            //'sp_contact_fiscal_code' => spid_option( 'sp_contact_fiscal_code' ), // Deprecated - Avviso 29
             'sp_contact_email' => spid_option( 'sp_contact_email' ),
             'sp_contact_phone' => spid_option( 'sp_contact_phone' ),
             'sp_key_cert_values' => [ // Optional: remove this if you want to generate .key & .crt files manually
