@@ -3,7 +3,7 @@
 Plugin Name: WP SPID Italia
 Description: SPID - Sistema Pubblico di Identità Digitale
 Author: Marco Milesi
-Version: 2.7.2
+Version: 2.8
 Author URI: http://www.marcomilesi.com
 */
 
@@ -265,8 +265,8 @@ function spid_handle() {
             $name = $attributes['email'][0];    
             $user = get_user_by( 'email', $attributes['email'] );
             $cf = str_replace( 'TINIT-', '', $attributes['fiscalNumber']);
-            
-            if ( empty( $user ) ) {
+
+            if ( empty( $user ) ) { // If user do not exists, look up by fiscal code
                 $users = get_users(
                     array(
                         'meta_key' => 'codice_fiscale',
@@ -281,8 +281,8 @@ function spid_handle() {
                     $user = apply_filters( 'spid_registration_filter_new_user', $attributes );
                 }
             }
-            if ( !is_wp_error( $user ) && !empty( $user ) ) {
-                
+            if ( is_a( $user, 'WP_User' ) && !is_wp_error( $user ) && !empty( $user ) ) {
+
                 apply_filters( 'spid_registration_filter_existing_user', $attributes, $user );
                 
                 spid_update_user( $user, $attributes );
@@ -296,16 +296,10 @@ function spid_handle() {
                 exit();
 
             } else {
-                
-                echo '<img src="'.plugin_dir_url( __FILE__ ). '/img/spid.jpg" width="100%" />';
-                echo '<style>body { background-color: #0066cb; }</style>';
-                echo '<p style="color:#fff;font-size:1.2em;text-align:center;">';
-                $attributes = $sp->getAttributes();
-                echo 'Gentile '.$attributes['name'].',<br>il tuo account non è abilitato su questo sito.';
-                
-                echo '<br><br><a class="button button-secondary button-large" href="'.esc_url( wp_spid_italia_get_login_url( 'out' ) .'?spid_sso=out' ).'" alt="Logout">Disconnetti SPID</a>';
-                echo '</p>';
-                die();           
+                remove_action('login_footer', 'wp_shake_js', 12);
+                add_filter( 'login_errors', function() {
+                    return 'Il tuo account non è abilitato su questo sito.';
+                 } );    
             }
         } else {
             remove_action('login_footer', 'wp_shake_js', 12);

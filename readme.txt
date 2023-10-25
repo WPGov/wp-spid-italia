@@ -5,8 +5,8 @@ Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubbl
 Requires at least: 4.8
 Requires PHP: 7
 Tested up to: 6.4
-Version: 2.7.2
-Stable tag: 2.7.2
+Version: 2.8
+Stable tag: 2.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -23,7 +23,7 @@ https://www.youtube.com/watch?v=w5Z5EBG1R1M
 
 https://www.youtube.com/watch?v=i2eTL_Q2xfM
 
-Copyright © 2017-2023 **Marco Milesi**
+Copyright © 2017-2024 **Marco Milesi**
 [www.marcomilesi.com](https://www.marcomilesi.com) - [www.wpgov.it](https://www.wpgov.it)
 
 ### Ringraziamenti
@@ -49,10 +49,12 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 == Changelog ==
 > Backup your data before upgrade.
 
-= 2.7.2 20231025 =
-* [BUGFIX] Error with missing reset password button with some configurations
-* [BUGFIX] Better login error handling and prevent errors with some configurations
-* Tested with WP 6.4
+= 2.8 20231025 =
+* [IMPROVE] Nuova gestione degli errori in caso di utenza non registrata (messaggio su standard WP)
+* [IMPROVE] Revisione filtro in caso di nuove utenze con controllo classe WP_User (rif. wp-spid-italia.php:284)
+* [BUGFIX] Corretto errore di mancata possibilità reset password WP in alcune configurazioni
+* [BUGFIX] Migliorata la gestione degli errori in fase di login e errori in alcune configurazioni
+* Testato con WordPress 6.4
 
 = 2.7.1 20231004 =
 * [BUGFIX] Error with missing reset password button with some configurations (thanks to effekt.it)
