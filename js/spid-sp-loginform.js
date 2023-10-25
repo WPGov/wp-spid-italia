@@ -7,6 +7,12 @@ jQuery( document ).ready( function ( $ ) {
 		loginForm = $( '#loginform' ),
 		overflow = $( '<div class="spid-sso-clear"></div>' );
 
+	
+	// No action if page is rp (reset password)
+	if ( body.hasClass( 'login-action-rp' ) ) {
+		return;
+	}
+
 	// The overflow div is a poor man's clearfloat. We reposition the remember me
 	// checkbox and the submit button within that to clear the float on the
 	// remember me checkbox. This is important since we're positioning the SSO
