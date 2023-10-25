@@ -210,26 +210,28 @@ function spid_handle() {
             echo '<br><br><pre><small style="color:darkred;">La configurazione SPID ha generato un errore</small></pre>';
         }
 
-        function spid_errors( $errorMsg2 ){
-            $xmlString = isset($_GET['SAMLResponse']) ? gzinflate(base64_decode($_GET['SAMLResponse'])) : base64_decode($_POST['SAMLResponse']);
-            $xmlResp = new \DOMDocument();
-            $xmlResp->loadXML($xmlString);
-            if ( $xmlResp->textContent ) {
-                switch ( $xmlResp->textContent ) {
-                    case stripos( $xmlResp->textContent, 'nr19') !== false:
-                        return '<b>SPID errore 19</b> - Ripetuta sottomissione di credenziali errate';
-                    case stripos( $xmlResp->textContent, 'nr20') !== false:
-                        return '<b>SPID errore 20</b> - Utente privo di credenziali compatibili con il livello richiesto dal fornitore del servizio';
-                    case stripos( $xmlResp->textContent, 'nr21') !== false:
-                        return '<b>SPID errore 21</b> - Timeout';
-                    case stripos( $xmlResp->textContent, 'nr22') !== false:
-                        return '<b>SPID errore 22</b> - Utente nega il consenso all\'invio di dati al SP in caso di sessione vigente';
-                    case stripos( $xmlResp->textContent, 'nr23') !== false:
-                        return '<b>SPID errore 23</b> - Credenziali sospese o revocate';
-                    case stripos( $xmlResp->textContent, 'nr25') !== false:
-                        return '<b>SPID errore 25</b> - Processo di autenticazione annullato dall\'utente';
-                    default: 
-                        return 'Si è verificato un errore durante l\'accesso SPID. Contattare l\'amministratore per maggiori informazioni.';
+        if( !function_exists('spid_errors') ) {
+            function spid_errors( $errorMsg2 ){
+                $xmlString = isset($_GET['SAMLResponse']) ? gzinflate(base64_decode($_GET['SAMLResponse'])) : base64_decode($_POST['SAMLResponse']);
+                $xmlResp = new \DOMDocument();
+                $xmlResp->loadXML($xmlString);
+                if ( $xmlResp->textContent ) {
+                    switch ( $xmlResp->textContent ) {
+                        case stripos( $xmlResp->textContent, 'nr19') !== false:
+                            return '<b>SPID errore 19</b> - Ripetuta sottomissione di credenziali errate';
+                        case stripos( $xmlResp->textContent, 'nr20') !== false:
+                            return '<b>SPID errore 20</b> - Utente privo di credenziali compatibili con il livello richiesto dal fornitore del servizio';
+                        case stripos( $xmlResp->textContent, 'nr21') !== false:
+                            return '<b>SPID errore 21</b> - Timeout';
+                        case stripos( $xmlResp->textContent, 'nr22') !== false:
+                            return '<b>SPID errore 22</b> - Utente nega il consenso all\'invio di dati al SP in caso di sessione vigente';
+                        case stripos( $xmlResp->textContent, 'nr23') !== false:
+                            return '<b>SPID errore 23</b> - Credenziali sospese o revocate';
+                        case stripos( $xmlResp->textContent, 'nr25') !== false:
+                            return '<b>SPID errore 25</b> - Processo di autenticazione annullato dall\'utente';
+                        default:
+                            return 'Si è verificato un errore durante l\'accesso SPID. Contattare l\'amministratore per maggiori informazioni.';
+                    }
                 }
             }
         }
@@ -301,7 +303,7 @@ function spid_handle() {
                 if ( !empty( $users ) ) {
                     $user = reset( $users );
                 } else {
-                    apply_filters( 'spid_registration_filter_new_user', $attributes );
+                    $user = apply_filters( 'spid_registration_filter_new_user', $attributes );
                 }
             }
             if ( !is_wp_error( $user ) && !empty( $user ) ) {
@@ -433,7 +435,6 @@ function spid_load() {
             'sp_org_name' => spid_option( 'sp_org_name' ),
             'sp_org_display_name' => spid_option( 'sp_org_display_name' ),
             'sp_contact_ipa_code' => spid_option( 'sp_contact_ipa_code' ),
-            //'sp_contact_fiscal_code' => spid_option( 'sp_contact_fiscal_code' ), // Deprecated - Avviso 29
             'sp_contact_email' => spid_option( 'sp_contact_email' ),
             'sp_contact_phone' => spid_option( 'sp_contact_phone' ),
             'sp_key_cert_values' => [ // Optional: remove this if you want to generate .key & .crt files manually
