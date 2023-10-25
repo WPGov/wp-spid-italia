@@ -207,34 +207,9 @@ function spid_handle() {
         if ( $internal_debug ) {
             echo '<br><br><pre><small style="color:darkred;">'.$e->getMessage().'</small></pre>';
         } else {
-            echo '<br><br><pre><small style="color:darkred;">La configurazione SPID ha generato un errore</small></pre>';
+            #echo '<br><br><pre><small style="color:darkred;">La configurazione SPID ha generato un errore</small></pre>';
         }
 
-        if( !function_exists('spid_errors') ) {
-            function spid_errors( $errorMsg2 ){
-                $xmlString = isset($_GET['SAMLResponse']) ? gzinflate(base64_decode($_GET['SAMLResponse'])) : base64_decode($_POST['SAMLResponse']);
-                $xmlResp = new \DOMDocument();
-                $xmlResp->loadXML($xmlString);
-                if ( $xmlResp->textContent ) {
-                    switch ( $xmlResp->textContent ) {
-                        case stripos( $xmlResp->textContent, 'nr19') !== false:
-                            return '<b>SPID errore 19</b> - Ripetuta sottomissione di credenziali errate';
-                        case stripos( $xmlResp->textContent, 'nr20') !== false:
-                            return '<b>SPID errore 20</b> - Utente privo di credenziali compatibili con il livello richiesto dal fornitore del servizio';
-                        case stripos( $xmlResp->textContent, 'nr21') !== false:
-                            return '<b>SPID errore 21</b> - Timeout';
-                        case stripos( $xmlResp->textContent, 'nr22') !== false:
-                            return '<b>SPID errore 22</b> - Utente nega il consenso all\'invio di dati al SP in caso di sessione vigente';
-                        case stripos( $xmlResp->textContent, 'nr23') !== false:
-                            return '<b>SPID errore 23</b> - Credenziali sospese o revocate';
-                        case stripos( $xmlResp->textContent, 'nr25') !== false:
-                            return '<b>SPID errore 25</b> - Processo di autenticazione annullato dall\'utente';
-                        default:
-                            return 'Si è verificato un errore durante l\'accesso SPID. Contattare l\'amministratore per maggiori informazioni.';
-                    }
-                }
-            }
-        }
         add_filter( 'login_errors', 'spid_errors' );
         return;
     }
@@ -337,6 +312,30 @@ function spid_handle() {
             add_filter( 'login_errors', function() { return 'SPID - Riprovare'; } );
         }
 
+    }
+}
+
+function spid_errors( $errorMsg2 ){
+    $xmlString = isset($_GET['SAMLResponse']) ? gzinflate(base64_decode($_GET['SAMLResponse'])) : base64_decode($_POST['SAMLResponse']);
+    $xmlResp = new \DOMDocument();
+    $xmlResp->loadXML($xmlString);
+    if ( $xmlResp->textContent ) {
+        switch ( $xmlResp->textContent ) {
+            case stripos( $xmlResp->textContent, 'nr19') !== false:
+                return '<b>SPID errore 19</b> - Ripetuta sottomissione di credenziali errate';
+            case stripos( $xmlResp->textContent, 'nr20') !== false:
+                return '<b>SPID errore 20</b> - Utente privo di credenziali compatibili con il livello richiesto dal fornitore del servizio';
+            case stripos( $xmlResp->textContent, 'nr21') !== false:
+                return '<b>SPID errore 21</b> - Timeout';
+            case stripos( $xmlResp->textContent, 'nr22') !== false:
+                return '<b>SPID errore 22</b> - Utente nega il consenso all\'invio di dati al SP in caso di sessione vigente';
+            case stripos( $xmlResp->textContent, 'nr23') !== false:
+                return '<b>SPID errore 23</b> - Credenziali sospese o revocate';
+            case stripos( $xmlResp->textContent, 'nr25') !== false:
+                return '<b>SPID errore 25</b> - Processo di autenticazione annullato dall\'utente';
+            default:
+                return 'Si è verificato un errore durante l\'accesso SPID. Contattare l\'amministratore per maggiori informazioni.';
+        }
     }
 }
 
