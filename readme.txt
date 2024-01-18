@@ -5,8 +5,8 @@ Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubbl
 Requires at least: 4.8
 Requires PHP: 7
 Tested up to: 6.4
-Version: 2.8
-Stable tag: 2.8
+Version: 2.8.1
+Stable tag: 2.8.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -48,6 +48,9 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
 > Backup your data before upgrade.
+
+= 2.8.1 20240118 =
+* [BUGFIX] Aggiornato metadata validator.spid.gov.it
 
 = 2.8 20231025 =
 * [IMPROVE] Nuova gestione degli errori in caso di utenza non registrata (messaggio su standard WP)
