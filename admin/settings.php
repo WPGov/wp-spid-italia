@@ -106,7 +106,7 @@ function spid_menu_func() {
           <label for="sp_org_name">sp_org_name</label>
         </th>
         <td>
-          <input id="sp_org_name" name="spid[sp_org_name]" type="text" value="<?php echo ( isset( $options['sp_org_name']) ? $options['sp_org_name'] : '' ); ?>" maxlength="60"/> your organization full name
+          <input id="sp_org_name" name="spid[sp_org_name]" type="text" value="<?php echo ( isset( $options['sp_org_name']) ? $options['sp_org_name'] : '' ); ?>" maxlength="300"/> your organization full name
         </td>
       </tr>
       <tr valign="top">
