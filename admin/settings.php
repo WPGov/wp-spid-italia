@@ -149,6 +149,24 @@ function spid_menu_func() {
           <input id="sp_contact_phone" name="spid[sp_contact_phone]" type="text" value="<?php echo ( isset( $options['sp_contact_phone']) ? $options['sp_contact_phone'] : '' ); ?>" />
         </td>
       </tr>
+      <tr valign="top">
+        <th scope="row">
+          <label for="sp_add_role">Aggiungi automaticamente un ruolo ai utenti che accedono via SPID</label>
+        </th>
+        <td>
+          <input id="sp_add_role" name="spid[add_role]" type="checkbox" value="1" <?php checked( '1', isset($options['add_role'])  ); ?> />
+        </td>
+      </tr>
+      <tr valign="top">
+        <th scope="row">
+          <label for="sp_role_name">Ruolo da aggiungere</label>
+        </th>
+        <td>
+          <select id="sp_role_name" name="spid[role_name]" type="text">
+            <?php wp_dropdown_roles(isset( $options['role_name']) ? $options['role_name'] : ''); ?>
+          </select>
+        </td>
+      </tr>
     </table>
   <?php
   submit_button();
