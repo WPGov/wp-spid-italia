@@ -4,9 +4,9 @@ Donate link: https://www.paypal.me/milesimarco
 Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubblico di identità digitale, wpgov, marco, milesi, marco milesi
 Requires at least: 4.8
 Requires PHP: 7
-Tested up to: 6.5
-Version: 2.8.2
-Stable tag: 2.8.2
+Tested up to: 6.6
+Version: 2.8.3
+Stable tag: 2.8.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -48,6 +48,9 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
 > Backup your data before upgrade.
+
+= 2.8.3 20240505 =
+* [BUGFIX] Aggiornato metadata PosteID
 
 = 2.8.2 20240226 =
 * [BUGFIX] Aggiornato metadata validator.spid.gov.it - PR #68 https://github.com/WPGov/wp-spid-italia/pull/68
