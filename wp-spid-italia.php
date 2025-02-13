@@ -74,7 +74,6 @@ add_shortcode( 'spid_login_button', function( $atts ) {
     return $button;
 } );
 
-
 add_action( 'login_form', function() {
 
     if ( !is_spid_enabled() ) {
@@ -92,7 +91,6 @@ add_action( 'login_form', function() {
 		$gravatar = ! empty( $_COOKIE[ 'spid_sso_wpcom_gravatar_' . COOKIEHASH ] )
 			? $_COOKIE[ 'spid_sso_wpcom_gravatar_' . COOKIEHASH ]
 			: false;
-
 		?>
 		<div id="spid-sso-wrap">
 			<?php
@@ -113,7 +111,6 @@ add_action( 'login_form', function() {
 
 			<?php endif; ?>
 
-
         <div id="spid-sso-wrap__action">
             <p>
                 <div class="spid-sso-wrap__inner">
@@ -129,7 +126,6 @@ add_action( 'login_form', function() {
             <span><?php esc_html_e( apply_filters( 'spid_filter_login_or_pre', __( 'Oppure', 'spid' ) ) ); ?></span>
         </div>
         
-
         <a href="<?php echo esc_url( add_query_arg( 'spid-sso-show-default-form', '1' ) ); ?>" class="spid-sso-toggle wpcom">
             <?php esc_html_e( apply_filters( 'spid_filter_loginbutton_footer', __( 'Log in with username and password', 'spid' ) ) ); ?>
         </a>
@@ -162,7 +158,6 @@ function spid_get_metadata_url( $type = NULL ) {
         default:
             $url = add_query_arg( 'spid_metadata', spid_get_metadata_token(), trailingslashit( get_home_url() ) );
             break;
-
     }
     return $url;
 }
