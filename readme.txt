@@ -5,8 +5,8 @@ Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubbl
 Requires at least: 4.8
 Requires PHP: 7
 Tested up to: 6.8
-Version: 2.9
-Stable tag: 2.9
+Version: 2.12
+Stable tag: 2.12
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -23,7 +23,7 @@ https://www.youtube.com/watch?v=w5Z5EBG1R1M
 
 https://www.youtube.com/watch?v=i2eTL_Q2xfM
 
-Copyright © 2017-2024 **Marco Milesi**
+Copyright © 2017-2025 **Marco Milesi**
 [www.marcomilesi.com](https://www.marcomilesi.com) - [www.wpgov.it](https://www.wpgov.it)
 
 ### Ringraziamenti
@@ -49,11 +49,14 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 == Changelog ==
 > Backup your data before upgrade.
 
+= 2.12 20250213 =
+* [BUGFIX] Gestione nuovo certificato Aruba
+* Miglioramenti minori
+
 = 2.9 20241228 =
 * [BUGFIX] Gestione nuovo certificato Infocert attivo dal 5 gennaio 2025
 * [BUGFIX] Miglioramenti di sicurezza
 * Testato con WP 6.7
-
 
 = 2.8.3 20240505 =
 * [BUGFIX] Aggiornato metadata PosteID
