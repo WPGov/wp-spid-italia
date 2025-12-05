@@ -5,8 +5,8 @@ Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubbl
 Requires at least: 4.8
 Requires PHP: 7
 Tested up to: 7.0
-Version: 2.13
-Stable tag: 2.13
+Version: 2.13.1
+Stable tag: 2.13.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,7 +50,7 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 > Backup your data before upgrade.
 
-= 2.13 2025-12-05 =
+= 2.13.1 2025-12-05 =
 * Allineamento certificati metadata per i seguenti IdP: ARUBA + INFOCAMERE + NAMIRIAL + POSTE + SIELTE
 * Miglioramenti minori
 * Testato con WP 6.9
