@@ -61,7 +61,6 @@ function spid_get_idp_list( $showinfo = false, $spid_redirect_to = '' ) {
     return $return;
 }
 
-
 function spid_get_loginform_button() {
     $return = '';
 
@@ -83,7 +82,7 @@ function spid_get_loginform_button() {
     $return .= '<img src="'.$plugin_dir . '/img/spid-agid-logo-lb.png" width="200px" alt="Agenzia per l\'Italia Digitale" />';
     $return .= '</div>';
     
-        return $return;
+    return $return;
 }
 
 function spid_get_login_button_link( $size = 's' ) {
@@ -109,7 +108,6 @@ function spid_get_login_button_link( $size = 's' ) {
 function spid_get_login_button( $size = 's', $redirectTo = '' ) {
 
     $return = '';
-
     $plugin_dir = plugin_dir_url( __FILE__ );
     $spid_ico_circle_svg = $plugin_dir . '/img/spid-ico-circle-bb.svg';
     $spid_ico_circle_png = $plugin_dir . '/img/spid-ico-circle-bb.png';

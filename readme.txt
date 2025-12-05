@@ -4,9 +4,9 @@ Donate link: https://www.paypal.me/milesimarco
 Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubblico di identità digitale, wpgov, marco, milesi, marco milesi
 Requires at least: 4.8
 Requires PHP: 7
-Tested up to: 6.8
-Version: 2.12
-Stable tag: 2.12
+Tested up to: 7.0
+Version: 2.13
+Stable tag: 2.13
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -23,7 +23,7 @@ https://www.youtube.com/watch?v=w5Z5EBG1R1M
 
 https://www.youtube.com/watch?v=i2eTL_Q2xfM
 
-Copyright © 2017-2025 **Marco Milesi**
+Copyright © 2017-2026 **Marco Milesi**
 [www.marcomilesi.com](https://www.marcomilesi.com) - [www.wpgov.it](https://www.wpgov.it)
 
 ### Ringraziamenti
@@ -47,7 +47,13 @@ https://www.youtube.com/watch?v=w1jf8GgF1OQ
 https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 == Changelog ==
+
 > Backup your data before upgrade.
+
+= 2.13 2025-12-05 =
+* Allineamento certificati metadata per i seguenti IdP: ARUBA + INFOCAMERE + NAMIRIAL + POSTE + SIELTE
+* Miglioramenti minori
+* Testato con WP 6.9
 
 = 2.12 20250213 =
 * [BUGFIX] Gestione nuovo certificato Aruba

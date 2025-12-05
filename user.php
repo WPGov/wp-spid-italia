@@ -5,8 +5,7 @@ add_action('edit_user_profile', 'spid_user_profile_fields', 0, 1);
 add_action('personal_options_update', 'spid_user_profile_fields_update');
 add_action('edit_user_profile_update', 'spid_user_profile_fields_update');
 
-function spid_user_profile_fields($user) {
-    ?>
+function spid_user_profile_fields($user) { ?>
     <h3>SPID</h3>
     <table class="form-table">
         <tr>
@@ -15,11 +14,11 @@ function spid_user_profile_fields($user) {
             </th>
             <td>
                 <input type="text"
-                       class="regular-text ltr"
-                       id="codice_fiscale"
-                       name="codice_fiscale"
-                       value="<?= esc_attr(get_user_meta($user->ID, 'codice_fiscale', true)); ?>"
-                       pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$">
+                    class="regular-text ltr"
+                    id="codice_fiscale"
+                    name="codice_fiscale"
+                    value="<?= esc_attr(get_user_meta($user->ID, 'codice_fiscale', true)); ?>"
+                    pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$">
             </td>
         </tr>
         <tr>
