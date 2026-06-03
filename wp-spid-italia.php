@@ -79,7 +79,6 @@ add_shortcode( 'spid_login_button', function( $atts ) {
 } );
 
 add_action( 'login_form', function() {
-
     if ( !is_spid_enabled() ) {
         return;
     }
@@ -183,7 +182,12 @@ add_action('init', function() {
     }
 } );
 
-add_filter( 'login_message', function( $message ) { spid_handle(); });
+add_filter( 'login_message', function( $message ) {
+    if ( isset( $_GET['spid_sso'] ) || isset( $_POST['SAMLResponse'] ) ) {
+        spid_handle();
+    }
+    return $message;
+} );
 
 function spid_handle() {
     $internal_debug = false;
@@ -246,9 +250,12 @@ function spid_handle() {
 
         if ( isset( $_GET['spid_idp'] ) && $_GET['spid_idp'] != '' ) {
             if ( $sp->isAuthenticated() ) {
-                session_destroy();
-		        $_SESSION = NULL;
-                session_start();
+                unset( $_SESSION['spidSession'] );
+                unset( $_SESSION['idpName'] );
+                unset( $_SESSION['idpEntityId'] );
+                unset( $_SESSION['acsUrl'] );
+                unset( $_SESSION['RequestID'] );
+                unset( $_SESSION['inResponseTo'] );
             }
             if ( isset( $_GET['spid_redirect_to'] ) ) {
                 $_SESSION['spid_redirect_to'] = $_GET['spid_redirect_to'];
@@ -282,6 +289,17 @@ function spid_handle() {
             }
             if ( is_a( $user, 'WP_User' ) && !is_wp_error( $user ) && !empty( $user ) ) {
 
+                // Check if user's role is excluded from SPID login
+                $spid_options    = get_option( 'spid' );
+                $excluded_roles  = array_unique( array_merge( (array) ( $spid_options['excluded_roles'] ?? [] ), array( 'administrator' ) ) ); // administrator sempre escluso
+                if ( ! empty( array_intersect( (array) $user->roles, $excluded_roles ) ) ) {
+                    remove_action( 'login_footer', 'wp_shake_js', 12 );
+                    add_filter( 'login_errors', function() {
+                        return 'Accesso non consentito.';
+                    } );
+                    return;
+                }
+
                 apply_filters( 'spid_registration_filter_existing_user', $attributes, $user );
                 
                 spid_update_user( $user, $attributes );
@@ -297,7 +315,7 @@ function spid_handle() {
             } else {
                 remove_action('login_footer', 'wp_shake_js', 12);
                 add_filter( 'login_errors', function() {
-                    return 'Il tuo account non è abilitato su questo sito.';
+                    return 'Accesso non consentito.';
                  } );    
             }
         } else {

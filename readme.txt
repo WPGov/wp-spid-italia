@@ -50,11 +50,11 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 > Backup your data before upgrade.
 
-= 2.14 2026-05-15 =
-* Migliorato pannello impostazioni
-* [BUGFIX] Aggiornato metadata Demo
-* Miglioramenti minori
-* Testato con WP 7.0
+= 2.14 2026-06-03 =
+* [SECURITY] Migliorata validazione SAML e firme
+* [IMPROVE] Refactoring codice e pannello impostazioni
+* [IMPROVE] Consolidamento impostazioni con selezione dei ruoli autorizzabili per SPID
+* [BUGFIX] Miglioramenti minori e pulizia codice
 
 = 2.13.1 2025-12-05 =
 * Allineamento certificati metadata per i seguenti IdP: ARUBA + INFOCAMERE + NAMIRIAL + POSTE + SIELTE

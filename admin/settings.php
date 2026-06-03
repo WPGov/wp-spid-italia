@@ -2,7 +2,7 @@
 
 function spid_get_tabs( $id ) {
 
-  $id0 = $id1 = $id2 = $id3 = '';
+  $id0 = $id1 = $id2 = '';
   switch ( $id ) {
     case 0:
       $id0 = ' nav-tab-active';
@@ -13,11 +13,11 @@ function spid_get_tabs( $id ) {
     case 2:
       $id2 = ' nav-tab-active';
       break;
-    }
+  }
   $r = '<h2 class="nav-tab-wrapper wp-clearfix">
-    <a href="?page=spid_menu" class="nav-tab'.$id0.'">Home</a>
-    <a href="?page=spid_menu&spid_action=option" class="nav-tab'.$id1.'">Impostazioni</a>
-    <a href="?page=spid_menu&spid_action=metadata" class="nav-tab'.$id2.'">Metadata</a>
+    <a href="?page=spid_menu" class="nav-tab'.$id0.'">Impostazioni</a>
+    <a href="?page=spid_menu&spid_action=metadata" class="nav-tab'.$id1.'">Metadata</a>
+    <a href="?page=spid_menu&spid_action=info" class="nav-tab'.$id2.'"><span class="dashicons dashicons-info" style="font-size:16px;line-height:1.4;vertical-align:text-bottom;"></span> Info &amp; Supporto</a>
   </h2>';
   return $r;
 }
@@ -40,8 +40,8 @@ function spid_menu_func() {
       </div>
     </div>';
   
-  if ( isset($_GET['spid_action']) && $_GET['spid_action'] == 'option' ) {
-    echo spid_get_tabs( 1 );
+  if ( !isset($_GET['spid_action']) || $_GET['spid_action'] == 'option' ) {
+    echo spid_get_tabs( 0 );
     echo '<form method="post" action="options.php">';
     settings_fields( 'spid_options');
     $options = get_option( 'spid' );
@@ -67,6 +67,24 @@ function spid_menu_func() {
           <input id="enable_validator" name="spid[enable_validator]" type="checkbox" value="1" <?php checked( '1', isset($options['enable_validator'])  ); ?> />
           Attiva i provider di test (validator, localhost e Demo SPID); lasciare questa opzione disattiva quando non sono in corso test.<br>
           <small><em>In caso di problemi con Demo SPID, sostituire il file <code>/wp-spid-italia/metadata/idp_demo.xml</code> con il metadata aggiornato da <a href="https://demo.spid.gov.it/metadata.xml" target="_blank">https://demo.spid.gov.it/metadata.xml</a></em></small>
+        </td>
+      </tr>
+      <tr valign="top">
+        <th scope="row">
+          <label>Ruoli esclusi da SPID</label>
+        </th>
+        <td>
+          <?php
+            $excluded_roles = (array) ( $options['excluded_roles'] ?? [] );
+          ?>
+          <?php
+            foreach ( wp_roles()->roles as $role_slug => $role_data ) {
+              if ( $role_slug === 'administrator' ) continue; // sempre escluso
+              $checked = in_array( $role_slug, $excluded_roles, true ) ? 'checked' : '';
+              echo '<label style="display:block;margin-bottom:4px;"><input type="checkbox" name="spid[excluded_roles][]" value="' . esc_attr( $role_slug ) . '" ' . $checked . '> ' . esc_html( translate_user_role( $role_data['name'] ) ) . '</label>';
+            }
+          ?>
+          <small>Gli utenti con i ruoli selezionati non potranno accedere tramite SPID. Gli <strong>Amministratori</strong> sono sempre esclusi.</small>
         </td>
       </tr>
       <tr valign="top">
@@ -155,7 +173,8 @@ function spid_menu_func() {
           <label for="sp_contact_phone">sp_contact_phone</label>
         </th>
         <td>
-          <input id="sp_contact_phone" name="spid[sp_contact_phone]" type="text" value="<?php echo ( isset( $options['sp_contact_phone']) ? $options['sp_contact_phone'] : '' ); ?>" />
+          <input id="sp_contact_phone" name="spid[sp_contact_phone]" type="text" value="<?php echo ( isset( $options['sp_contact_phone']) ? $options['sp_contact_phone'] : '' ); ?>" placeholder="+393331234567" />
+          <small>Deve iniziare con il prefisso internazionale. Esempio: <code>+393331234567</code></small>
         </td>
       </tr>
     </table>
@@ -163,12 +182,12 @@ function spid_menu_func() {
   submit_button();
   echo '</form>';
   } else if ( isset($_GET['spid_action']) && $_GET['spid_action'] == 'metadata' ) {
-    echo spid_get_tabs( 2 );
+    echo spid_get_tabs( 1 );
     echo '<p>Attenzione! Questi URL devono essere conservati con cura.</p><p>Non comunicare a terzi le informazioni di questa pagina e non indicarle su siti o forum di supporto.</p>';
     echo '<p class="about-description">URL metadata (service provider): <a href="'.spid_get_metadata_url().'" target="_blank">'.spid_get_metadata_url().'</a></p>';
     echo '<p class="about-description">URL metadata (aggregator) [beta]: <a href="'.spid_get_metadata_url( 'aggregator' ).'" target="_blank">'.spid_get_metadata_url( 'aggregator' ).'</a></p>';
   } else {
-    echo spid_get_tabs( 0 );
+    echo spid_get_tabs( 2 );
     ?>
     <div class="changelog">
       <div class="under-the-hood two-col">

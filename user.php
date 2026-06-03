@@ -18,7 +18,9 @@ function spid_user_profile_fields($user) { ?>
                     id="codice_fiscale"
                     name="codice_fiscale"
                     value="<?= esc_attr(get_user_meta($user->ID, 'codice_fiscale', true)); ?>"
-                    pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$">
+                    pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$"
+                    placeholder="RSSMRA80A01H501U">
+                <small>Inserire il codice fiscale senza prefisso. Esempio: <code>RSSMRA80A01H501U</code> (non <code>TINIT-RSSMRA80A01H501U</code>)</small>
             </td>
         </tr>
         <tr>

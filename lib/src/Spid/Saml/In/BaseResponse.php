@@ -79,30 +79,39 @@ class BaseResponse
         $ns_saml = 'urn:oasis:names:tc:SAML:2.0:assertion';
         $hasAssertion = $this->xml->getElementsByTagNameNS($ns_saml, 'Assertion')->length > 0;
 
+        if ($this->root === 'Response' && !$hasAssertion) {
+            throw new \Exception("Invalid Response.");
+        }
+
         $ns_signature = 'http://www.w3.org/2000/09/xmldsig#';
         $signatures = $this->xml->getElementsByTagNameNS($ns_signature, 'Signature');
-        if ($hasAssertion && $signatures->length == 0) {
-            throw new \Exception("Invalid Response. Response must contain at least one signature");
+
+        if ($signatures->length == 0) {
+            throw new \Exception("Invalid Response.");
         }
 
         $responseSignature = null;
         $assertionSignature = null;
-        if ($signatures->length > 0) {
-            foreach ($signatures as $key => $item) {
-                if ($item->parentNode->localName == 'Assertion') {
-                    $assertionSignature = $item;
-                }
-                if ($item->parentNode->localName == $this->root) {
-                    $responseSignature = $item;
-                }
+        foreach ($signatures as $key => $item) {
+            if ($item->parentNode->localName == 'Assertion') {
+                $assertionSignature = $item;
             }
-            if ($hasAssertion && is_null($assertionSignature)) {
-                throw new \Exception("Invalid Response. Assertion must be signed");
+            if ($item->parentNode->localName == $this->root) {
+                $responseSignature = $item;
             }
         }
-        if (!SignatureUtils::validateXmlSignature($responseSignature, $cert) ||
-            !SignatureUtils::validateXmlSignature($assertionSignature, $cert)) {
-            throw new \Exception("Invalid Response. Signature validation failed");
+        if ($hasAssertion && is_null($assertionSignature)) {
+            throw new \Exception("Invalid Response.");
+        }
+        if (!$hasAssertion && is_null($responseSignature)) {
+            throw new \Exception("Invalid Response.");
+        }
+        // FIX: only validate non-null signatures; null means that element was not individually signed
+        if (!is_null($responseSignature) && !SignatureUtils::validateXmlSignature($responseSignature, $cert)) {
+            throw new \Exception("Invalid Response.");
+        }
+        if (!is_null($assertionSignature) && !SignatureUtils::validateXmlSignature($assertionSignature, $cert)) {
+            throw new \Exception("Invalid Response.");
         }
         return $this->response->validate($this->xml, $hasAssertion);
     }

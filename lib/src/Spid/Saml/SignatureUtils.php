@@ -71,7 +71,7 @@ class SignatureUtils
     public static function validateXmlSignature($xml, $cert) : bool
     {
         if (is_null($xml)) {
-            return true;
+            return false;
         }
         $dom = clone $xml->ownerDocument;
 
