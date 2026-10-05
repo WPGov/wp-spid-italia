@@ -5,8 +5,8 @@ Tags: spid, login, identità digitale, italia, wpgov
 Requires at least: 4.8
 Requires PHP: 7.0
 Tested up to: 7.2
-Version: 2.14
-Stable tag: 2.14
+Version: 2.14.1
+Stable tag: 2.14.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
