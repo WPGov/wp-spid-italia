@@ -1,10 +1,10 @@
 ﻿=== WP SPID Italia ===
 Contributors: Milmor
 Donate link: https://www.paypal.me/milesimarco
-Tags: spid, italia, sistema, pubblico, identità, digitale, login, sistema pubblico di identità digitale, wpgov, marco, milesi, marco milesi
+Tags: spid, login, identità digitale, italia, wpgov
 Requires at least: 4.8
-Requires PHP: 7
-Tested up to: 7.0
+Requires PHP: 7.0
+Tested up to: 7.2
 Version: 2.14
 Stable tag: 2.14
 License: GPLv3
