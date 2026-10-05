@@ -50,6 +50,9 @@ https://www.youtube.com/watch?v=2UNAtVjFFAs
 
 > Backup your data before upgrade.
 
+= 2.14.1 2026-10-05 =
+* Testato con WP 7.2
+
 = 2.14 2026-06-03 =
 * [SECURITY] Migliorata validazione SAML e firme
 * [IMPROVE] Refactoring codice e pannello impostazioni
